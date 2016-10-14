@@ -1,3 +1,8 @@
-#Force Request System
-Project in compliance with the needs of course CS-606.
+This is a Force Request System
 
+Developers:-
+Adil Hamid Malla
+Aditya Nanjangud
+Bhavik Ameta
+Navneet Gupta
+Shubham Jain
