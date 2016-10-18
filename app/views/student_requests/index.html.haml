@@ -1,0 +1,37 @@
+%h1 Students Dashboard Page
+
+%table#movies
+  %thead
+    %tr
+      %th UIN
+      %th Full Name
+      %th Major
+      %th Classification
+      %th Minor
+      %th Course ID
+      %th Section ID
+      %th State
+      %th Action
+      
+     
+  %tbody
+    - @student_requests.each do |record|
+      %tr
+        %td= record.uin 
+        %td= record.full_name
+        %td= record.major
+        %td= record.classification
+        %td= record.minor
+        %td= record.course_id
+        %td= record.section_id
+        %td= record.state
+        %td = link_to <button type="button">Cancel</button>'.html_safe
+        
+  = link_to '<button type="button">New Force Request</button>'.html_safe, new_student_request_path
+          
+        
+        
+      
+
+
+

@@ -1,0 +1,41 @@
+%h1 Making New Request
+
+= form_tag student_requests_path do
+
+  = label :student_request, :uin , 'UIN'
+  = text_field :student_request, :uin
+
+  = label :student_request, :full_name, 'Full Name'
+  = text_field :student_request, 'full_name'
+  
+  = label :student_request, :full_name, 'Major'
+  = text_field :student_request, 'full_name'
+  
+  = label :student_request, :classification, 'Classification'
+  = select :student_request, 'classification', ['G7', 'G8']
+   
+  = label :student_request, :minor, 'Minor'
+  = text_field :student_request, 'minor'
+   
+  = label :student_request, :email, 'Email'
+  = text_field :student_request, 'email'
+  
+  = label :student_request, :phone, 'Phone'
+  = text_field :student_request, 'phone'
+  
+  = label :student_request, :expected_graduation, 'Expected Graduation'
+  = text_field :student_request, 'expected_graduation'
+  
+  = label :student_request, :request_semester, 'Request Semester'
+  = text_field :student_request, 'request_semester'
+  
+  = label :student_request, :course_id, 'Course Id'
+  = text_field :student_request, 'course_id'
+  
+  = label :student_request, :section_id, 'Section Id'
+  = text_field :student_request, 'section_id'
+  
+  = label :student_request, :notes, 'Notes '
+  = text_area :student_request, 'notes'
+  
+= submit_tag 'Save Request'
