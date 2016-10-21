@@ -7,6 +7,7 @@
     = csrf_meta_tags
 
   %body
+    = render 'layouts/header'
     %h1.title CSE Force request System 
     #main
       - if flash[:notice]
@@ -15,3 +16,4 @@
         #warning.message= flash[:warning]
 
       = yield
+    = render 'layouts/footer'
