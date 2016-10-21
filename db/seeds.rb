@@ -23,10 +23,14 @@ movies.each do |movie|
 end
 
 
-student_requests = [{:request_id => '1', :uin => '425008306', :full_name => 'Adil Hamid Malla', 
+student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla', 
                      :major => 'CSE', :classification => 'A', :minor => 'VISION', :email => 'adil@gmail.com', :phone => '97977979', 
                      :expected_graduation => '2018', :request_semester => 'fall',
-                     :course_id => '026', :section_id => '101', :notes => 'hello mar ja' , :state => 'active'}]
+                     :course_id => '026', :section_id => '101', :notes => 'hello mar ja' , :state => 'active'},
+                     {:uin => '225008988', :full_name => 'Bhavik Ameta', 
+                      :major => 'CSE', :classification => 'A', :minor => 'Database', :email => 'bhavik@tamu.edu', :phone => '97977979', 
+                      :expected_graduation => '2018', :request_semester => 'fall',
+                      :course_id => '026', :section_id => '101', :notes => 'superman' , :state => 'active'}]
 
 student_requests.each do |record|
   StudentRequest.create!(record)
