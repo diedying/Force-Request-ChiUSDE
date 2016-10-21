@@ -3,7 +3,6 @@
 %table#movies
   %thead
     %tr
-      %th Request ID
       %th UIN
       %th Full Name
       %th Major
@@ -18,7 +17,6 @@
   %tbody
     - @student_requests.each do |record|
       %tr
-        %td= record.request_id
         %td= record.uin 
         %td= record.full_name
         %td= record.major

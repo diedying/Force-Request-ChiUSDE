@@ -5,7 +5,7 @@ class StudentRequest < ActiveRecord::Base
 
     def create_request_id
       begin
-        self. request_id = SecureRandom.hex(5) # or whatever you chose like UUID tools
+        self. request_id = "FRS" + SecureRandom.hex(10)
       end while self.class.exists?(:request_id => request_id)
     end
 end

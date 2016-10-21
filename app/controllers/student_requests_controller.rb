@@ -26,7 +26,7 @@ class StudentRequestsController < ApplicationController
 
   def create
     @student_request = StudentRequest.create!(student_request_params)
-    flash[:notice] = "#{@student_request.request_id} was successfully created."
+    flash[:notice] = "Student Request was successfully created."
     redirect_to student_requests_path
   end
 
