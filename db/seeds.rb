@@ -6,22 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-movies = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
-    	  {:title => 'The Terminator', :rating => 'R', :release_date => '26-Oct-1984'},
-    	  {:title => 'When Harry Met Sally', :rating => 'R', :release_date => '21-Jul-1989'},
-      	  {:title => 'The Help', :rating => 'PG-13', :release_date => '10-Aug-2011'},
-      	  {:title => 'Chocolat', :rating => 'PG-13', :release_date => '5-Jan-2001'},
-      	  {:title => 'Amelie', :rating => 'R', :release_date => '25-Apr-2001'},
-      	  {:title => '2001: A Space Odyssey', :rating => 'G', :release_date => '6-Apr-1968'},
-      	  {:title => 'The Incredibles', :rating => 'PG', :release_date => '5-Nov-2004'},
-      	  {:title => 'Raiders of the Lost Ark', :rating => 'PG', :release_date => '12-Jun-1981'},
-      	  {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
-  	 ]
-
-movies.each do |movie|
-  Movie.create!(movie)
-end
-
 
 student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla', 
                      :major => 'CSE', :classification => 'A', :minor => 'VISION', :email => 'adil@gmail.com', :phone => '97977979', 
@@ -30,7 +14,11 @@ student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla',
                      {:uin => '225008988', :full_name => 'Bhavik Ameta', 
                       :major => 'CSE', :classification => 'A', :minor => 'Database', :email => 'bhavik@tamu.edu', :phone => '97977979', 
                       :expected_graduation => '2018', :request_semester => 'fall',
-                      :course_id => '026', :section_id => '101', :notes => 'superman' , :state => 'active'}]
+                      :course_id => '026', :section_id => '101', :notes => 'superman' , :state => 'active'},
+                      {:uin => '225008989', :full_name => 'Shubham Jain', 
+                      :major => 'CSE', :classification => 'A', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
+                      :expected_graduation => '2018', :request_semester => 'fall',
+                      :course_id => '026', :section_id => '101', :notes => 'This force request is at number 1 in queue :P' , :state => 'active'}]
 
 student_requests.each do |record|
   StudentRequest.create!(record)

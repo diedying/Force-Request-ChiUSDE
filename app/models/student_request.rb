@@ -1,6 +1,17 @@
 class StudentRequest < ActiveRecord::Base
+  
+    ACTIVE_STATE = "active"
+    REJECTED_STATE = "rejected"
+    WITHDRAWN_STATE = "withdraw"
+    
     self.primary_key = "request_id"
     validates :uin, presence: true
+    validates :full_name, presence: true
+    validates :major, presence: true
+    validates :classification, presence: true
+    validates :email, presence: true
+    validates :request_semester, presence: true
+    validates :course_id, presence: true
     before_create :create_request_id
 
     def create_request_id

@@ -8,8 +8,8 @@
   = label :student_request, :full_name, 'Full Name'
   = text_field :student_request, 'full_name'
   
-  = label :student_request, :full_name, 'Major'
-  = text_field :student_request, 'full_name'
+  = label :student_request, :major, 'Major'
+  = text_field :student_request, 'major'
   
   = label :student_request, :classification, 'Classification'
   = select :student_request, 'classification', ['G7', 'G8']
@@ -38,4 +38,6 @@
   = label :student_request, :notes, 'Notes '
   = text_area :student_request, 'notes'
   
+  %br
+  %br
   = submit_tag 'Save Request'
