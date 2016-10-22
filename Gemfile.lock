@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/shubham7jain/rubycas-client.git
+  revision: 7b67c8f1b5515ee4e28479d640d2da0a5aadfbe0
+  specs:
+    rubycas-client (2.3.10.rc1)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -228,6 +235,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails_12factor
   rspec-rails
+  rubycas-client!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -241,4 +249,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
