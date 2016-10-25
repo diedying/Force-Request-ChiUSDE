@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.all.where(:state => "active")
+    @student_requests = StudentRequest.all.where(:state => StudentRequest::ACTIVE_STATE)
   end
 
 
@@ -28,7 +28,7 @@ class StudentRequestsController < ApplicationController
 
   def create
     @student_request = StudentRequest.new(student_request_params)
-    @student_request.state = "active"
+    @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.save!
     flash[:notice] = "Student Request was successfully created."
     redirect_to student_requests_path
@@ -36,7 +36,7 @@ class StudentRequestsController < ApplicationController
   
   def edit
     @student_request = StudentRequest.find params[:id]
-    @student_request.state = "false"
+    @student_request.state = StudentRequest::WITHDRAWN_STATE
     @student_request.save!
     flash[:notice] = "Student Request was successfully deleted."
     redirect_to student_requests_path
