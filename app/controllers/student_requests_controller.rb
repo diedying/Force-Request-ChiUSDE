@@ -3,7 +3,7 @@ class StudentRequestsController < ApplicationController
   # before_filter CASClient::Frameworks::Rails::Filter
   
   def student_request_params
-    params.require(:student_request).permit(:request_id, :uin, :full_name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes)
+    params.require(:student_request).permit(:request_id, :uin, :full_name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
   end
 
   # def show
@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.all
+    @student_requests = StudentRequest.all.where(:state => "active")
   end
 
 
@@ -27,13 +27,20 @@ class StudentRequestsController < ApplicationController
   end
 
   def create
-    @student_request = StudentRequest.create!(student_request_params)
+    @student_request = StudentRequest.new(student_request_params)
+    @student_request.state = "active"
+    @student_request.save!
     flash[:notice] = "Student Request was successfully created."
     redirect_to student_requests_path
   end
-
+  
   def edit
-    @student_request = StudentRequest.find params[:request_id]
+    @student_request = StudentRequest.find params[:id]
+    @student_request.state = "false"
+    @student_request.save!
+    flash[:notice] = "Student Request was successfully deleted."
+    redirect_to student_requests_path
+    
   end
 
   def update
