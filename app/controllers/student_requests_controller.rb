@@ -13,7 +13,8 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.all.where(:state => StudentRequest::ACTIVE_STATE)
+    #@student_requests = StudentRequest.all.where(:state => StudentRequest::ACTIVE_STATE)
+    @student_requests = StudentRequest.all
   end
 
 
@@ -34,22 +35,21 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_path
   end
   
-  def update
-    @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest::WITHDRAWN_STATE
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully deleted."
-    redirect_to student_requests_path
-  end
-  
   def edit
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::WITHDRAWN_STATE
     @student_request.save!
     flash[:notice] = "Student Request was successfully deleted."
     redirect_to student_requests_path
+    
   end
 
+  def update
+    @student_request = StudentRequest.find params[:id]
+    @student_request.update_attributes!(student_request_params)
+    flash[:notice] = "#{@student_request.request_id} was successfully updated."
+    redirect_to student_requests_path(@student_request)
+  end
 
   def destroy
     @student_request = StudentRequest.find(params[:id])
