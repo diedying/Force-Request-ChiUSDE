@@ -25,8 +25,9 @@
         %td= record.course_id
         %td= record.section_id
         %td= record.state
-        %td= link_to('<button type="button">Withdraw</button>'.html_safe, edit_student_request_path(record), :confirm => 'Are You Sure?')
-        
+        %td= button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put
+
+
   = link_to '<button type="button">New Force Request</button>'.html_safe, new_student_request_path
           
         
