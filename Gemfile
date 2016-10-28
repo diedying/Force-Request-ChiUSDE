@@ -57,3 +57,11 @@ group :production do
   gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
 end
+
+# Gemfile
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
