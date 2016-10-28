@@ -70,4 +70,5 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov', :require => false
 end
