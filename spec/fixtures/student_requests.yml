@@ -1,0 +1,11 @@
+# spec/fixtures/student_requests.yml
+
+john_doe:
+    request_id: 1 
+    uin: 111222333
+    full_name: John Doe
+    major: CSCE
+    classification: G7
+    email: johndoe@tamu.edu
+    request_semester: Fall
+    course_id: 606
