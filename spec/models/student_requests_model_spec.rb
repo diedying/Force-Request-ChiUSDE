@@ -4,10 +4,6 @@ require 'rails_helper'
 
 describe StudentRequest do
     fixtures :student_requests
-    it 'should include request_id' do
-        student_request = student_requests(:john_doe)
-        student_request.request_id == 1
-    end
     it 'should include an uin' do
         student_request = student_requests(:john_doe)
         student_request.uin == 111222333
