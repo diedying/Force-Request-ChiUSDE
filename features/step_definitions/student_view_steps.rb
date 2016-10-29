@@ -4,35 +4,43 @@ Given(/^I am on the Student Dashboard Page$/) do
 end
 
 When(/^I click on New Force Request/) do
-  visit('/student_requests/new')
+  click_link('New Force Request')
   @student_request = {:uin => "1234312", :full_name =>"Dummy Guy", :major=>"Computer Science", :classification=>"G8", 
-  :minor=>"None", :email=>"dummy@dummy.com", :phone=>"312321312", :expected_graduation=>"2018", :request_semester=>"Fall"}
-  #visit("/student_requests", :post, @student_request)
-  StudentRequest.create(@student_request)
+  :minor=>"None", :email=>"dummy@dummy.com", :phone=>"312321312", :expected_graduation=>"2018", :request_semester=>"Fall", :course_id=>"12"}
+  fill_in('UIN', :with => @student_request[:uin])
+  fill_in('Full Name', :with => @student_request[:full_name])
+  fill_in('Major', :with => @student_request[:major])
+  select('G7', :from => 'Classification')
+  fill_in('Minor', :with => @student_request[:minor])
+  fill_in('Email', :with => @student_request[:email])
+  fill_in('Phone', :with => @student_request[:phone])
+  fill_in('Expected Graduation', :with => @student_request[:expected_graduation])
+  fill_in('Request Semester', :with => @student_request[:request_semester])
+  fill_in('Course Id', :with => @student_request[:uin]) 
+  click_button('Save Request')
 end
 
 Then(/^I should see my request on Student Dashboard Page$/) do
-  page.has_content?("Making New Request")
+  page.has_content?("Students Dashboard Page") and page.has_content?("Dummy")
 end
 
 When(/^I click on Withdraw$/) do
-  # #visit('/student_requests', :put, :)
-  # @request_body = {:uin => "1234312", :full_name =>"Dummy Guy", :major=>"Computer Science", :classification=>"G8", 
-  # :minor=>"None", :email=>"dummy@dummy.com", :phone=>"312321312", :expected_graduation=>"2018", :request_semester=>"Fall"}
-  # @request_method = "PUT"
-  # @request_url = "/student_requests/edit"
-  # @successful_response_code = 201
-  # @error_response_code_email_reserved = 409
-  # @response = RestApi.call(@request_method, @request_url,
-  #     body: @request_body, expect: @successful_response_code)
-  visit('/student_requests')
+  click_link('New Force Request')
   @student_request = {:uin => "1234312", :full_name =>"Dummy Guy", :major=>"Computer Science", :classification=>"G8", 
-  :minor=>"None", :email=>"dummy@dummy.com", :phone=>"312321312", :expected_graduation=>"2018", :request_semester=>"Fall"}
-  #visit("/student_requests", :post, @student_request)
-  StudentRequest.create(@student_request)
-  page.has_content?('Action')
+  :minor=>"None", :email=>"dummy@dummy.com", :phone=>"312321312", :expected_graduation=>"2018", :request_semester=>"Fall", :course_id=>"12"}
+  fill_in('UIN', :with => @student_request[:uin])
+  fill_in('Full Name', :with => @student_request[:full_name])
+  fill_in('Major', :with => @student_request[:major])
+  select('G7', :from => 'Classification')
+  fill_in('Minor', :with => @student_request[:minor])
+  fill_in('Email', :with => @student_request[:email])
+  fill_in('Phone', :with => @student_request[:phone])
+  fill_in('Expected Graduation', :with => @student_request[:expected_graduation])
+  fill_in('Request Semester', :with => @student_request[:request_semester])
+  fill_in('Course Id', :with => @student_request[:uin])  
+  click_button('Save Request')
   
-  #click_button('Withdraw')
+  click_button('Withdraw')
 end
 
 Then(/^I should not see that request on Student Dashboard Page$/) do
