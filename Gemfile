@@ -60,6 +60,7 @@ group :development do
 end
 
 group :production do
+  gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
   gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
 end
