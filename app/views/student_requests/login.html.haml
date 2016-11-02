@@ -1,0 +1,6 @@
+%h1 Login Page
+
+%p= button_to 'Student Login', {:action => "index", :controller => "student_requests"}, :method => :get
+
+//Currently Admin Login also links to student page. Once admin page is in postition we can link it to admin_request#index.
+%p= button_to 'Admin Login', {:action => "index", :controller => "student_requests"}, :method => :get
