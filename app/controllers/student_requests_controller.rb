@@ -57,4 +57,8 @@ class StudentRequestsController < ApplicationController
     flash[:notice] = "Request '#{@student_request.request_id}' deleted."
     redirect_to student_requests_path
   end
+  
+  def allstudents
+    @student_requests = StudentRequest.all
+  end
 end
