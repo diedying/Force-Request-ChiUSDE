@@ -1,8 +1,10 @@
 class StudentRequest < ActiveRecord::Base
   
     ACTIVE_STATE = "active"
-    REJECTED_STATE = "rejected"
     WITHDRAWN_STATE = "withdraw"
+    REJECTED_STATE = "rejected"
+    HOLD_STATE = "hold"
+    APPROVED_STATE = "approved"
     
     self.primary_key = "request_id"
     validates :uin, presence: true
