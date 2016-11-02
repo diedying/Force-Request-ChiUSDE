@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.all.where(:state => StudentRequest::ACTIVE_STATE)
+    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE)
   end
 
 
