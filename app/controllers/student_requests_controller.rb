@@ -68,5 +68,4 @@ class StudentRequestsController < ApplicationController
     @student_request.save!
     flash[:notice] = "The request was successfully updated to " + @student_request.state
   end
-  
 end
