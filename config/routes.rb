@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #   resources :products
 
   get 'student_requests/allstudents' => 'student_requests#allstudents'
+  put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   resources :student_requests
   
   # Example resource route with options:
