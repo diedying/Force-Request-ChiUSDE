@@ -30,33 +30,12 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.string "state"
     t.datetime "creation_date"
     t.datetime "last_updated"
+    t.text "notes_to_student"
+    t.text "admin_notes"
   end
-  
+
   add_index "student_requests", ["request_id"], name: "index_student_requests_on_request_id", unique: true
   add_index "student_requests", ["course_id"], name: "index_student_requests_on_course_id"
   add_index "student_requests", ["section_id"], name: "index_student_requests_on_section_id"
   add_index "student_requests", ["state"], name: "index_student_requests_on_state"
-  
-  create_table "admin_requests", force: :cascade do |t|
-    t.string "faculty_uin"
-    t.string "request_id"
-    t.string "action"
-    t.text "notes"
-    t.datetime "creation_date"
-    t.datetime "last_updated"
-  end
-  
-  add_index "admin_requests", ["faculty_uin"], name: "index_admin_requests_on_faculty_uin"
-  add_index "admin_requests", ["faculty_uin", "request_id"], name: "index_admin_requests_on_faculty_uin_and_request_id", unique: true
-  
-  create_table "courses", force: :cascade do |t|
-    t.string "course_id"
-    t.string "section_id"
-    t.integer "total_seats"
-    t.integer "occupied_seats"
-    t.integer "is_fr_enable"
-  end
-  
-  add_index "courses", ["course_id"], name: "index_courses_on_course_id"
-  add_index "courses", ["course_id", "section_id"], name: "index_courses_on_course_id_and_section_id"
 end
