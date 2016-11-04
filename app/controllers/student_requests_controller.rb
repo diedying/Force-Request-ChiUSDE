@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE)
+    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE).where(:uin => session[:uin])
   end
 
 
@@ -59,6 +59,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
+    @allAdminStates = [StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
@@ -70,9 +71,10 @@ class StudentRequestsController < ApplicationController
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest.find params[:state]
+    @student_request.state = params[:state]
     @student_request.save!
     flash[:notice] = "The request was successfully updated to " + @student_request.state
+    redirect_to student_requests_adminview_path
   end
   
   def login

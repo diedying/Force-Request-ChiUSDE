@@ -1,6 +1,5 @@
 %h1 
   Admin Dashboard Page
-
 - @allcourses.each do |course|
   %h1
     Course Name #{course}
@@ -16,6 +15,7 @@
         %th Section ID
         %th State
         %th Action
+        %th Email
       
      
     %tbody
@@ -29,6 +29,9 @@
           %td= record.course_id
           %td= record.section_id
           %td= record.state
-          %td= select "update" , :state, options_for_select(["approve", "reject"], :selected )
-          %td= button_to 'Select', {:action => "update", :id => record.request_id, :controller => "student_requests", :pval => record.state }, :method => :put
+          %td
+            = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
+              = hidden_field_tag 'id', record.request_id
+              = select_tag("state", options_for_select(@allAdminStates))
+              = submit_tag 'Update'
           %td= mail_to record.email, "email"
