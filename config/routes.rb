@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #root 'movies#index'
+  
   root 'student_requests#login'
 
   # Example of regular route:
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  get 'student_requests/allstudents' => 'student_requests#allstudents'
+  get 'student_requests/adminview' => 'student_requests#adminview'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   #put 'student_requests/login' => 'student_request#login'
   resources :student_requests
