@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.all.where(:state => StudentRequest::ACTIVE_STATE)
+    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE)
   end
 
 
@@ -60,5 +60,12 @@ class StudentRequestsController < ApplicationController
   
   def allstudents
     @student_requests = StudentRequest.all
+  end
+  
+  def updaterequestbyadmin
+    @student_request = StudentRequest.find params[:id]
+    @student_request.state = StudentRequest.find params[:state]
+    @student_request.save!
+    flash[:notice] = "The request was successfully updated to " + @student_request.state
   end
 end
