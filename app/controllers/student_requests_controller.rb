@@ -64,8 +64,22 @@ class StudentRequestsController < ApplicationController
    
     @allcourses.each do |course|
       @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
+      if (params[:state_sel] != nil)
+        @students = @students.reject{ |s| !params[:state_sel].has_key?(s.state) }
+      end
       @coursestudentlist[course] = @students
     end
+    
+    @selected = {}
+    
+    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
+    @all_states.each { |state|
+      if params[:state_sel] == nil
+        @selected[state] = true
+      else
+        @selected[state] = params[:state_sel].has_key?(state)
+      end
+    }
   end
   
   def updaterequestbyadmin
