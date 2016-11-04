@@ -1,5 +1,4 @@
-%h1 Admin Dashboard Page
-
+%h1 Students Dashboard Page
 
 %table#student_requests
   %thead
@@ -13,8 +12,6 @@
       %th Section ID
       %th State
       %th Action
-      %th Apply Action
-      %th Email Student
       
      
   %tbody
@@ -28,7 +25,7 @@
         %td= record.course_id
         %td= record.section_id
         %td= record.state
-        %td= select_tag 'select_state', options_for_select([["approve", 1], ["reject", 2]], :selected => 2)
-        %td= button_to 'Apply', {:action => "update", :id => record.request_id, :controller => "student_requests", :act => ''}, :method => :put
-        %td= button_to 'Email'
+        %td= button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put
 
+
+  = link_to '<button type="button">New Force Request</button>'.html_safe, new_student_request_path
