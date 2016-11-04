@@ -79,7 +79,7 @@ class StudentRequestsController < ApplicationController
     session[:uin] = params[:session][:uin]
     list_of_admin_uins = ['123', '234', '345']
     if list_of_admin_uins.include? session[:uin]
-      redirect_to student_requests_path
+      redirect_to student_requests_adminview_path
     else
       redirect_to student_requests_path
     end
