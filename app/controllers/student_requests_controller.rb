@@ -58,7 +58,7 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_path
   end
   
-  def allstudents
+  def adminview
     @student_requests = StudentRequest.all
   end
   
