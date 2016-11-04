@@ -59,7 +59,13 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @student_requests = StudentRequest.all
+    @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
+    @coursestudentlist = Hash.new
+   
+    @allcourses.each do |course|
+      @students = StudentRequest.where(course_id: course)
+      @coursestudentlist[course] = @students
+    end
   end
   
   def updaterequestbyadmin
