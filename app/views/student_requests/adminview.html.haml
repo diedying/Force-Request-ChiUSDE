@@ -31,4 +31,4 @@
           %td= record.state
           %td= select "update" , :state, options_for_select(["approve", "reject"], :selected )
           %td= button_to 'Select', {:action => "update", :id => record.request_id, :controller => "student_requests", :pval => record.state }, :method => :put
-          %td= button_to 'Email'
+          %td= mail_to record.email, "email"
