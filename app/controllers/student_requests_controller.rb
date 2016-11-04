@@ -70,8 +70,9 @@ class StudentRequestsController < ApplicationController
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest.find params[:state]
+    @student_request.state = params[:state]
     @student_request.save!
     flash[:notice] = "The request was successfully updated to " + @student_request.state
+    redirect_to student_requests_adminview_path
   end
 end
