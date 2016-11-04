@@ -58,7 +58,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @allAdminStates = [StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allAdminStates = [" ",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
@@ -70,11 +70,15 @@ class StudentRequestsController < ApplicationController
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    @student_request.state = params[:state]
-    @student_request.admin_notes = params[:notes_for_myself]
-    @student_request.notes_to_student = params[:notes_for_student]
-    @student_request.save!
-    flash[:notice] = "The request was successfully updated to " + @student_request.state
+      if(!params[:state] == " ")
+      @student_request.state = params[:state]
+      @student_request.admin_notes = params[:notes_for_myself]
+      @student_request.notes_to_student = params[:notes_for_student]
+      @student_request.save!
+      flash[:notice] = "The request was successfully updated to " + @student_request.state
+    else
+       flash[:notice] = "Please Select Appropriate action " 
+    end
     redirect_to student_requests_adminview_path
   end
   
