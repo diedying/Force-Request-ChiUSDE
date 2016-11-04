@@ -64,7 +64,7 @@ class StudentRequestsController < ApplicationController
     @coursestudentlist = Hash.new
    
     @allcourses.each do |course|
-      @students = StudentRequest.where(course_id: course)
+      @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
       @coursestudentlist[course] = @students
     end
   end
