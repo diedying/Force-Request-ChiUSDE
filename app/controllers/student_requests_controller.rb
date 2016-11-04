@@ -13,9 +13,8 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE).where(:uin => session[:uin])
+    @student_requests = StudentRequest.where(:uin => session[:uin])
   end
-
 
   def new
     # default: render 'new' template
@@ -72,6 +71,8 @@ class StudentRequestsController < ApplicationController
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
     @student_request.state = params[:state]
+    @student_request.admin_notes = params[:notes_for_myself]
+    @student_request.notes_to_student = params[:notes_for_student]
     @student_request.save!
     flash[:notice] = "The request was successfully updated to " + @student_request.state
     redirect_to student_requests_adminview_path

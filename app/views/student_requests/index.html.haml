@@ -11,6 +11,8 @@
       %th Course ID
       %th Section ID
       %th State
+      %th Notes By Me
+      %th Notes By Admin
       %th Action
       
      
@@ -25,6 +27,8 @@
         %td= record.course_id
         %td= record.section_id
         %td= record.state
+        %td= record.notes
+        %td= record.notes_to_student
         %td= button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put
 
 
