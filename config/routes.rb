@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'student_requests/allstudents' => 'student_requests#allstudents'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
-  post 'student_requests/login' => 'student_request#login'
+  post 'student_requests/login' => 'student_requests#login'
   resources :student_requests
   
   # Example resource route with options:

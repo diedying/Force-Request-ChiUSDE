@@ -1,8 +1,8 @@
 %h1 Login Page
 
 =  form_tag('/student_requests/login', method: :post) do
-
-  = text_field(:session, :user)
+  = label :session, :uin, 'Enter your UIN'
+  = text_field(:session, :uin)
   
   %br
   %br
