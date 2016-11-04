@@ -35,6 +35,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def update
+    byebug
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::WITHDRAWN_STATE
     @student_request.save!
@@ -58,7 +59,7 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_path
   end
   
-  def allstudents
+  def adminview
     @student_requests = StudentRequest.all
   end
   
