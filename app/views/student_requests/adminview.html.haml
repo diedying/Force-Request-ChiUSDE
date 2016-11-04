@@ -16,6 +16,8 @@
         %th Section ID
         %th State
         %th Action
+        %th Apply Action
+        %th Send Email
       
      
     %tbody
@@ -30,5 +32,5 @@
           %td= record.section_id
           %td= record.state
           %td= select "update" , :state, options_for_select(["approve", "reject"], :selected )
-          %td= button_to 'Select', {:action => "update", :id => record.request_id, :controller => "student_requests", :pval => record.state }, :method => :put
+          %td= button_to 'Apply', {:action => "update", :id => record.request_id, :controller => "student_requests", :pval => record.state }, :method => :put
           %td= button_to 'Email'
