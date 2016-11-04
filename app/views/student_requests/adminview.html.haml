@@ -32,6 +32,6 @@
           %td
             = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
               = hidden_field_tag 'id', record.request_id
-              = select_tag("state", options_for_select(["approved", "rejected"]))
+              = select_tag("state", options_for_select(@allAdminStates, :prompt => "Select Venue"))
               = submit_tag 'Update'
           %td= mail_to record.email, "email"

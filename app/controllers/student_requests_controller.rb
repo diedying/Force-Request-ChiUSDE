@@ -59,6 +59,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
+    @allAdminStates = [StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE, StudentRequest::APPROVED_STATE]
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
