@@ -68,4 +68,14 @@ class StudentRequestsController < ApplicationController
     @student_request.save!
     flash[:notice] = "The request was successfully updated to " + @student_request.state
   end
+  
+  def student_init
+    #@student_request = StudentRequest.all
+    #byebug
+    #@local_var = 1
+  end
+  
+  def login
+    byebug
+  end
 end
