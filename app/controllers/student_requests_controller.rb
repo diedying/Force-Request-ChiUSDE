@@ -75,4 +75,14 @@ class StudentRequestsController < ApplicationController
     flash[:notice] = "The request was successfully updated to " + @student_request.state
     redirect_to student_requests_adminview_path
   end
+  
+  def login
+    session[:uin] = params[:session][:uin]
+    list_of_admin_uins = ['123', '234', '345']
+    if list_of_admin_uins.include? session[:uin]
+      redirect_to student_requests_adminview_path
+    else
+      redirect_to student_requests_path
+    end
+  end
 end

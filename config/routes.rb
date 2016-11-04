@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #root 'movies#index'
-  
-  root 'student_requests#login'
+  root 'student_requests#student_init'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -18,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'student_requests/adminview' => 'student_requests#adminview'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
-  #put 'student_requests/login' => 'student_request#login'
+  post 'student_requests/login' => 'student_requests#login'
   resources :student_requests
   
   # Example resource route with options:
