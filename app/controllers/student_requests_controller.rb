@@ -35,7 +35,6 @@ class StudentRequestsController < ApplicationController
   end
   
   def update
-    byebug
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::WITHDRAWN_STATE
     @student_request.save!
