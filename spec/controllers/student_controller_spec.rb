@@ -5,16 +5,18 @@ describe StudentRequestsController, :type => :controller do
 	describe 'get index' do
 	    before :each do
 		  @fake_students = [double('student1'), double('student2')]
+		  @request.session[:uin] = '3213213'
 	    end
 	    it 'should call the model method that retrieves all Users' do
-	      StudentRequest.should_receive(:where).with({state: StudentRequest::ACTIVE_STATE}).once.and_return(@fake_students)
+	      StudentRequest.should_receive(:where).with({uin: @request.session[:uin]}).once.and_return(@fake_students)
 	      get :index
 	    end
 	    
 	    describe 'after valid search' do
 	      before :each do
 		    @fake_students = [double('student1'), double('student2')]
-		    StudentRequest.should_receive(:where).with({state: StudentRequest::ACTIVE_STATE}).once.and_return(@fake_students)
+		    @request.session[:uin] = '3213213'
+		    StudentRequest.should_receive(:where).with({uin: @request.session[:uin]}).once.and_return(@fake_students)
 		    get :index
           end
 	      
