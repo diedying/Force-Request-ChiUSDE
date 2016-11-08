@@ -89,11 +89,12 @@ class StudentRequestsController < ApplicationController
     @student_request = StudentRequest.find params[:id]
     if([StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE].include? params[:state] or
       [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
-      if(params[:state] == "Select State")
-        @student_request.priority = params[:priority]
-      end
-      if(params[:priority] == "Select Priority")
+      if(params[:state] != "Select State")
         @student_request.state = params[:state]
+     end
+      
+      if(params[:priority] != "Select Priority")
+         @student_request.priority = params[:priority]
       end
       
       @student_request.admin_notes = params[:notes_for_myself]
