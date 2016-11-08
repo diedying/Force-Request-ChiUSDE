@@ -1,10 +1,17 @@
 %h1 
   Admin Dashboard Page
 = form_tag student_requests_adminview_path, :method => :get do
-  Filter Requests:
+  Filter Requests - State:
   - @all_states.each do |state|
     = state
-    = check_box_tag "state_sel[#{state}]", 'true', @selected[state]
+    = check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]
+  = submit_tag 'Refresh'
+  
+= form_tag student_requests_adminview_path, :method => :get do
+  Filter Requests - Priority:
+  - @all_priorities.each do |priority|
+    = priority
+    = check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
   = submit_tag 'Refresh'
   
 - @allcourses.each do |course|
