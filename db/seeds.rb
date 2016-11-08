@@ -31,4 +31,3 @@ student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla',
 student_requests.each do |record|
   StudentRequest.create!(record)
 end
-

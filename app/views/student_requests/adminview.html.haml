@@ -1,6 +1,13 @@
 %h1 
   Admin Dashboard Page
-
+  
+= form_tag student_requests_adminview_path, :method => :get do
+  Filter Requests:
+  - @all_states.each do |state|
+    = state
+    = check_box_tag "state_sel[#{state}]", 'true', @selected[state]
+  = submit_tag 'Refresh'
+  
 - @allcourses.each do |course|
   %h1
     Course Name #{course}
@@ -15,7 +22,9 @@
         %th Course ID
         %th Section ID
         %th State
+        %th Notes
         %th Action
+        %th Email
       
      
     %tbody
@@ -29,6 +38,13 @@
           %td= record.course_id
           %td= record.section_id
           %td= record.state
-          %td= select "update" , :state, options_for_select(["approve", "reject"], :selected )
-          %td= button_to 'Select', {:action => "update", :id => record.request_id, :controller => "student_requests", :pval => record.state }, :method => :put
-          %td= button_to 'Email'
+          %td= record.notes
+          %td
+            %center
+            = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
+              = hidden_field_tag 'id', record.request_id
+              %textarea{:name => "notes_for_student", :placeholder => "Notes for student"}
+              %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself"}
+              = select_tag("state", options_for_select(@allAdminStates))
+              = submit_tag 'Update'
+          %td= mail_to record.email, "email"

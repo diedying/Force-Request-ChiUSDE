@@ -13,9 +13,8 @@ class StudentRequestsController < ApplicationController
   # end
 
   def index
-    @student_requests = StudentRequest.where(:state => StudentRequest::ACTIVE_STATE)
+    @student_requests = StudentRequest.where(:uin => session[:uin])
   end
-
 
   def new
     # default: render 'new' template
@@ -59,19 +58,51 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
+    @allAdminStates = [" ",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
     @allcourses.each do |course|
-      @students = StudentRequest.where(course_id: course)
+      @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
+      if (params[:state_sel] != nil)
+        @students = @students.reject{ |s| !params[:state_sel].has_key?(s.state) }
+      end
       @coursestudentlist[course] = @students
     end
+    
+    @selected = {}
+    
+    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
+    @all_states.each { |state|
+      if params[:state_sel] == nil
+        @selected[state] = true
+      else
+        @selected[state] = params[:state_sel].has_key?(state)
+      end
+    }
   end
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest.find params[:state]
-    @student_request.save!
-    flash[:notice] = "The request was successfully updated to " + @student_request.state
+    if(params[:state] != " ")
+      @student_request.state = params[:state]
+      @student_request.admin_notes = params[:notes_for_myself]
+      @student_request.notes_to_student = params[:notes_for_student]
+      @student_request.save!
+      flash[:notice] = "The request was successfully updated to " + @student_request.state
+    else
+       flash[:notice] = "Please Select Appropriate action " 
+    end
+    redirect_to student_requests_adminview_path
+  end
+  
+  def login
+    session[:uin] = params[:session][:uin]
+    list_of_admin_uins = ['123', '234', '345']
+    if list_of_admin_uins.include? session[:uin]
+      redirect_to student_requests_adminview_path
+    else
+      redirect_to student_requests_path
+    end
   end
 end
