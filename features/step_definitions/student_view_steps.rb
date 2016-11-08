@@ -1,6 +1,8 @@
 # features/step_definitions/contact_form_steps.rb
 Given(/^I am on the Student Dashboard Page$/) do
-  visit('/student_requests')
+  visit('/')
+  fill_in('Enter your UIN', :with => "1234312")
+  click_button('Login')
 end
 
 When(/^I click on New Force Request/) do
