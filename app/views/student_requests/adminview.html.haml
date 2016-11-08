@@ -1,6 +1,5 @@
 %h1 
   Admin Dashboard Page
-  
 = form_tag student_requests_adminview_path, :method => :get do
   Filter Requests:
   - @all_states.each do |state|
@@ -11,6 +10,7 @@
 - @allcourses.each do |course|
   %h1
     Course Name #{course}
+  = link_to "Download as .xlsx", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
   %table#student_requests
     %thead 
       %tr

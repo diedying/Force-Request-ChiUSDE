@@ -21,4 +21,13 @@ class StudentRequest < ActiveRecord::Base
         self. request_id = "FRS" + SecureRandom.hex(10)
       end while self.class.exists?(:request_id => request_id)
     end
+    
+    def self.to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |student_request|
+          csv << student_request.attributes.values_at(*column_names)
+        end
+      end
+    end
 end

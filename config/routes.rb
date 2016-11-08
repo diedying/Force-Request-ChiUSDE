@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'student_requests/adminview' => 'student_requests#adminview'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   post 'student_requests/login' => 'student_requests#login'
+  get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
+  
   resources :student_requests
   
   # Example resource route with options:
