@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.string "section_id"
     t.text "notes"
     t.string "state"
+    t.string "priority"
     t.datetime "creation_date"
     t.datetime "last_updated"
     t.text "notes_to_student"
