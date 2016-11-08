@@ -28,6 +28,7 @@ class StudentRequestsController < ApplicationController
   def create
     @student_request = StudentRequest.new(student_request_params)
     @student_request.state = StudentRequest::ACTIVE_STATE
+    @student_request.priority = StudentRequest::NORMAL_PRIORITY
     @student_request.save!
     flash[:notice] = "Student Request was successfully created."
     redirect_to student_requests_path
@@ -58,7 +59,9 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @allAdminStates = [" ",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+   
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
@@ -84,15 +87,23 @@ class StudentRequestsController < ApplicationController
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    if(params[:state] != " ")
-      @student_request.state = params[:state]
+    if([StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE].include? params[:state] or
+      [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
+      if(params[:state] == "Select State")
+        @student_request.priority = params[:priority]
+      end
+      if(params[:priority] == "Select Priority")
+        @student_request.state = params[:state]
+      end
+      
       @student_request.admin_notes = params[:notes_for_myself]
       @student_request.notes_to_student = params[:notes_for_student]
       @student_request.save!
-      flash[:notice] = "The request was successfully updated to " + @student_request.state
-    else
-       flash[:notice] = "Please Select Appropriate action " 
+      flash[:notice] = "The request was successfully updated to " + @student_request.state + " " + @student_request.priority
+    else 
+      flash[:notice] = "Please Select Appropriate action " 
     end
+   
     redirect_to student_requests_adminview_path
   end
   
