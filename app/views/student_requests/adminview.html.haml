@@ -47,4 +47,4 @@
               %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself"}
               = select_tag("state", options_for_select(@allAdminStates))
               = submit_tag 'Update'
-          %td= mail_to record.email, "email"
+          %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
