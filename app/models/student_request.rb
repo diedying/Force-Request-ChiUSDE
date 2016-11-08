@@ -1,10 +1,19 @@
 class StudentRequest < ActiveRecord::Base
   
-    ACTIVE_STATE = "active"
-    WITHDRAWN_STATE = "withdraw"
-    REJECTED_STATE = "rejected"
-    HOLD_STATE = "hold"
-    APPROVED_STATE = "approved"
+  
+  # States of the students 
+    ACTIVE_STATE = "Active"
+    WITHDRAWN_STATE = "Withdraw"
+    REJECTED_STATE = "Rejected"
+    HOLD_STATE = "Hold"
+    APPROVED_STATE = "Approved"
+    
+    # Priority of the Students
+    VERYHIGH_PRIORITY = "Very High"
+    HIGH_PRIORITY = "High"
+    NORMAL_PRIORITY = "Normal"
+    LOW_PRIORITY = "Low"
+    VERYLOW_PRIORITY = "Very Low"
     
     self.primary_key = "request_id"
     validates :uin, presence: true

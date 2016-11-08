@@ -28,6 +28,7 @@ class StudentRequestsController < ApplicationController
   def create
     @student_request = StudentRequest.new(student_request_params)
     @student_request.state = StudentRequest::ACTIVE_STATE
+    @student_request.priority = StudentRequest::NORMAL_PRIORITY
     @student_request.save!
     flash[:notice] = "Student Request was successfully created."
     redirect_to student_requests_path
@@ -58,41 +59,51 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @allAdminStates = [" ",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @selected = {}
+    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
+    @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
+    if params[:state_sel] == nil
+      @all_states.each { |state|
+        @selected[state] = @default_states.include? (state)
+      }
+    else
+      @all_states.each { |state|
+        @selected[state] = params[:state_sel].has_key?(state)
+      }
+    end
+  
+    @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+   
     @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
     @coursestudentlist = Hash.new
    
     @allcourses.each do |course|
       @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
-      if (params[:state_sel] != nil)
-        @students = @students.reject{ |s| !params[:state_sel].has_key?(s.state) }
-      end
-      @coursestudentlist[course] = @students
+      @coursestudentlist[course] = @students.reject{ |s| @selected[s.state] == false}
     end
-    
-    @selected = {}
-    
-    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
-    @all_states.each { |state|
-      if params[:state_sel] == nil
-        @selected[state] = true
-      else
-        @selected[state] = params[:state_sel].has_key?(state)
-      end
-    }
   end
   
   def updaterequestbyadmin
     @student_request = StudentRequest.find params[:id]
-    if(params[:state] != " ")
-      @student_request.state = params[:state]
+    if([StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE].include? params[:state] or
+      [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
+      if(params[:state] != "Select State")
+        @student_request.state = params[:state]
+     end
+      
+      if(params[:priority] != "Select Priority")
+         @student_request.priority = params[:priority]
+      end
+      
       @student_request.admin_notes = params[:notes_for_myself]
       @student_request.notes_to_student = params[:notes_for_student]
       @student_request.save!
-      flash[:notice] = "The request was successfully updated to " + @student_request.state
-    else
-       flash[:notice] = "Please Select Appropriate action " 
+      flash[:notice] = "The request was successfully updated to " + @student_request.state + " " + @student_request.priority
+    else 
+      flash[:notice] = "Please Select Appropriate action " 
     end
+   
     redirect_to student_requests_adminview_path
   end
   
