@@ -116,4 +116,11 @@ class StudentRequestsController < ApplicationController
       redirect_to student_requests_path
     end
   end
+  
+  def getSpreadsheet
+    @student_by_course = StudentRequest.where(course_id: params[:course_id])
+    respond_to do |format|
+    format.csv { send_data @student_by_course.to_csv }
+    end
+  end
 end
