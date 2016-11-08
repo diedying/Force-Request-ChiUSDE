@@ -59,6 +59,19 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
+    @selected = {}
+    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
+    @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
+    if params[:state_sel] == nil
+      @all_states.each { |state|
+        @selected[state] = @default_states.include? (state)
+      }
+    else
+      @all_states.each { |state|
+        @selected[state] = params[:state_sel].has_key?(state)
+      }
+    end
+  
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
    
@@ -67,22 +80,8 @@ class StudentRequestsController < ApplicationController
    
     @allcourses.each do |course|
       @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
-      if (params[:state_sel] != nil)
-        @students = @students.reject{ |s| !params[:state_sel].has_key?(s.state) }
-      end
-      @coursestudentlist[course] = @students
+      @coursestudentlist[course] = @students.reject{ |s| @selected[s.state] == false}
     end
-    
-    @selected = {}
-    
-    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
-    @all_states.each { |state|
-      if params[:state_sel] == nil
-        @selected[state] = true
-      else
-        @selected[state] = params[:state_sel].has_key?(state)
-      end
-    }
   end
   
   def updaterequestbyadmin
