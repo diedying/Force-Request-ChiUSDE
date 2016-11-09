@@ -51,19 +51,31 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @selected = {}
+    @state_selected = {}
+    @priority_selected = {}
+    @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
     @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
     @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
     if params[:state_sel] == nil
       @all_states.each { |state|
-        @selected[state] = @default_states.include? (state)
+        @state_selected[state] = @default_states.include?(state)
       }
     else
       @all_states.each { |state|
-        @selected[state] = params[:state_sel].has_key?(state)
+        @state_selected[state] = params[:state_sel].has_key?(state)
       }
     end
   
+    if params[:priority_sel] == nil
+      @all_priorities.each { |priority|
+        @priority_selected[priority] = @all_priorities.include?(priority)
+      }
+    else
+      @all_priorities.each { |priority|
+        @priority_selected[priority] = params[:priority_sel].has_key?(priority)
+      }
+    end
+    
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
    
@@ -72,7 +84,9 @@ class StudentRequestsController < ApplicationController
    
     @allcourses.each do |course|
       @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
-      @coursestudentlist[course] = @students.reject{ |s| @selected[s.state] == false}
+      @students = @students.reject{ |s| @state_selected[s.state] == false}
+      @students = @students.reject{ |s| @priority_selected[s.priority] == false}
+      @coursestudentlist[course] = @students
     end
   end
   
