@@ -1,5 +1,4 @@
 %h1 Students Dashboard Page
-
 %table#student_requests
   %thead
     %tr
@@ -32,4 +31,4 @@
         %td= button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put
 
 
-  = link_to '<button type="button">New Force Request</button>'.html_safe, new_student_request_path
+  = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path

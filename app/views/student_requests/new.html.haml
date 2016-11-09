@@ -1,43 +1,68 @@
 %h1 Making New Request
-
-= form_tag student_requests_path do
-
-  = label :student_request, :uin , 'UIN'
-  = text_field :student_request, :uin
-
-  = label :student_request, :full_name, 'Full Name'
-  = text_field :student_request, 'full_name'
+.form_new_request
+  = form_tag student_requests_path do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :student_request, :uin , 'UIN'
+        %td
+          = text_field :student_request, :uin, class: 'input-field'
+      %tr
+        %td
+          = label :student_request, :full_name, 'Full Name'
+        %td  
+          = text_field :student_request, 'full_name', class: 'input-field'
+      %tr
+        %td  
+          = label :student_request, :major, 'Major'
+        %td  
+          = text_field :student_request, 'major', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :classification, 'Classification'
+        %td  
+          = select :student_request, 'classification', @classificationList
+      %tr
+        %td    
+          = label :student_request, :minor, 'Minor'
+        %td  
+          = text_field :student_request, 'minor', class: 'input-field'
+      %tr
+        %td 
+          = label :student_request, :email, 'Email'
+        %td  
+          = text_field :student_request, 'email', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :phone, 'Phone'
+        %td  
+          = text_field :student_request, 'phone', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :expected_graduation, 'Expected Graduation'
+        %td  
+          = text_field :student_request, 'expected_graduation', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :request_semester, 'Request Semester'
+        %td  
+          = text_field :student_request, 'request_semester', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :course_id, 'Course Id'
+        %td  
+          = text_field :student_request, 'course_id', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :section_id, 'Section Id'
+        %td  
+          = text_field :student_request, 'section_id', class: 'input-field'
+      %tr
+        %td   
+          = label :student_request, :notes, 'Notes '
+        %td  
+          = text_area :student_request, 'notes', class: 'notes'
   
-  = label :student_request, :major, 'Major'
-  = text_field :student_request, 'major'
-  
-  = label :student_request, :classification, 'Classification'
-  = select :student_request, 'classification', ['G7', 'G8']
-   
-  = label :student_request, :minor, 'Minor'
-  = text_field :student_request, 'minor'
-   
-  = label :student_request, :email, 'Email'
-  = text_field :student_request, 'email'
-  
-  = label :student_request, :phone, 'Phone'
-  = text_field :student_request, 'phone'
-  
-  = label :student_request, :expected_graduation, 'Expected Graduation'
-  = text_field :student_request, 'expected_graduation'
-  
-  = label :student_request, :request_semester, 'Request Semester'
-  = text_field :student_request, 'request_semester'
-  
-  = label :student_request, :course_id, 'Course Id'
-  = text_field :student_request, 'course_id'
-  
-  = label :student_request, :section_id, 'Section Id'
-  = text_field :student_request, 'section_id'
-  
-  = label :student_request, :notes, 'Notes '
-  = text_area :student_request, 'notes'
-  
-  %br
-  %br
-  = submit_tag 'Save Request'
+    %br
+    %br
+    = submit_tag 'Save Request'

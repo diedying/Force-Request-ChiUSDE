@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+function toggleMe(a){
+	var e=document.getElementById(a);
+	if(!e)return true;
+	if(e.style.display=="none"){
+	e.style.display="block"
+	}
+	else{
+	e.style.display="none"
+	}
+	return true;
+}

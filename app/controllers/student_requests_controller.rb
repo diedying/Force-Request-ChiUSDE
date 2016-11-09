@@ -1,37 +1,34 @@
 class StudentRequestsController < ApplicationController
 
+  ###The following line is commented right now because the service is not registered with CAS.
+  ### Once our service will be registered with CAS, we will uncomment this and handle session.
+  
   # before_filter CASClient::Frameworks::Rails::Filter
   
   def student_request_params
     params.require(:student_request).permit(:request_id, :uin, :full_name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
   end
 
-  # def show
-  #   req = params[:request_id] # retrieve request ID from URI route
-  #   @student_request = StudentRequest.find(req) # look up request by unique ID
-  #   # will render app/views/student_requests/show.<extension> by default
-  # end
-
   def index
     @student_requests = StudentRequest.where(:uin => session[:uin])
   end
 
   def new
+    @classificationList = StudentRequest::CLASSIFICATION_LIST
     # default: render 'new' template
-  end
-  
-  
-  def cancel
-    
   end
 
   def create
     @student_request = StudentRequest.new(student_request_params)
     @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully created."
-    redirect_to student_requests_path
+    if @student_request.save
+      flash[:notice] = "Student Request was successfully created."
+      redirect_to student_requests_path
+    else
+      flash[:warning] = "There is some invalid data given"
+      render :new
+    end
   end
   
   def update
@@ -59,19 +56,31 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminview
-    @selected = {}
+    @state_selected = {}
+    @priority_selected = {}
+    @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
     @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
     @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
     if params[:state_sel] == nil
       @all_states.each { |state|
-        @selected[state] = @default_states.include? (state)
+        @state_selected[state] = @default_states.include?(state)
       }
     else
       @all_states.each { |state|
-        @selected[state] = params[:state_sel].has_key?(state)
+        @state_selected[state] = params[:state_sel].has_key?(state)
       }
     end
   
+    if params[:priority_sel] == nil
+      @all_priorities.each { |priority|
+        @priority_selected[priority] = @all_priorities.include?(priority)
+      }
+    else
+      @all_priorities.each { |priority|
+        @priority_selected[priority] = params[:priority_sel].has_key?(priority)
+      }
+    end
+    
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
    
@@ -80,7 +89,9 @@ class StudentRequestsController < ApplicationController
    
     @allcourses.each do |course|
       @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
-      @coursestudentlist[course] = @students.reject{ |s| @selected[s.state] == false}
+      @students = @students.reject{ |s| @state_selected[s.state] == false}
+      @students = @students.reject{ |s| @priority_selected[s.priority] == false}
+      @coursestudentlist[course] = @students
     end
   end
   
@@ -90,7 +101,7 @@ class StudentRequestsController < ApplicationController
       [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
       if(params[:state] != "Select State")
         @student_request.state = params[:state]
-     end
+      end
       
       if(params[:priority] != "Select Priority")
          @student_request.priority = params[:priority]
