@@ -143,6 +143,7 @@ input[type=submit] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: #f2f2f2;
 }
 
 .notes {
@@ -189,4 +190,11 @@ input[type=submit].filter {
 
 label {
   font-size: 17px;
+}
+
+table.sortable thead {
+    background-color:#eee;
+    color:white;
+    font-weight: bold;
+    cursor: default;
 }
