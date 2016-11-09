@@ -15,6 +15,9 @@ class StudentRequest < ActiveRecord::Base
     LOW_PRIORITY = "Low"
     VERYLOW_PRIORITY = "Very Low"
     
+    #Classification
+    CLASSIFICATION_LIST = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
+    
     self.primary_key = "request_id"
     validates :uin, presence: true
     validates :full_name, presence: true
