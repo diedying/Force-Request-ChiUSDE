@@ -21,9 +21,13 @@ class StudentRequestsController < ApplicationController
     @student_request = StudentRequest.new(student_request_params)
     @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully created."
-    redirect_to student_requests_path
+    if @student_request.save
+      flash[:notice] = "Student Request was successfully created."
+      redirect_to student_requests_path
+    else
+      flash[:warning] = "There is some invalid data given"
+      render :new
+    end
   end
   
   def update
