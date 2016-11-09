@@ -121,7 +121,14 @@ input[type=submit] {
     background-color: #f2f2f2;
     padding: 20px;
 }
-input[type=text], select {
+
+#update_admin_form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.form_new_request input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -131,6 +138,33 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-/*input[type=text_area] {*/
-/*    width: 100%;*/
-/*}*/
+.notes {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.update_admin {
+  width: 30%;
+}
+
+
+.student_requests {
+    table-layout: fixed;
+}
+
+.regularbutton {
+  background-color:brown;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}

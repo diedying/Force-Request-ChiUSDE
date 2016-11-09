@@ -18,20 +18,20 @@
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
   = link_to "Download as .xlsx", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
-  %table{:id => "student_requests_#{course}"}
+  %table{:id => "student_requests_#{course}", :class => "student_requests"}
     %thead 
       %tr
         %th UIN
         %th Full Name
         %th Major
-        %th Classification
+        %th Class
         %th Minor
         %th Course ID
         %th Section ID
         %th State
         %th Priority
         %th Notes
-        %th Action
+        %th{ :class => "update_admin" } Action
         %th Email
       
      
@@ -52,8 +52,8 @@
             %center
             = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
               = hidden_field_tag 'id', record.request_id
-              %textarea{:name => "notes_for_student", :placeholder => "Notes for student"}
-              %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself"}
+              %textarea{:name => "notes_for_student", :placeholder => "Notes for student", :class => "notes"}
+              %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself", :class => "notes"}
               = select_tag("state", options_for_select(@allAdminStates))
               = select_tag("priority", options_for_select(@allPriorityStates))
               = submit_tag 'Update'
