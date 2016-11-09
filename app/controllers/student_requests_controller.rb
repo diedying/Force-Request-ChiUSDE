@@ -14,6 +14,7 @@ class StudentRequestsController < ApplicationController
   end
 
   def new
+    @classificationList = StudentRequest::CLASSIFICATION_LIST
     # default: render 'new' template
   end
 

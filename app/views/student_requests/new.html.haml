@@ -21,7 +21,7 @@
         %td   
           = label :student_request, :classification, 'Classification'
         %td  
-          = select :student_request, 'classification', ['G7', 'G8']
+          = select :student_request, 'classification', @classificationList
       %tr
         %td    
           = label :student_request, :minor, 'Minor'
