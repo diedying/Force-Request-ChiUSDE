@@ -8,10 +8,10 @@
   = submit_tag 'Refresh'
   
 - @allcourses.each do |course|
-  %h1
-    Course Name #{course}
+  %h4
+    %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
   = link_to "Download as .xlsx", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
-  %table#student_requests
+  %table{:id => "student_requests_#{course}"}
     %thead 
       %tr
         %th UIN

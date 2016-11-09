@@ -1,16 +1,13 @@
 class StudentRequestsController < ApplicationController
 
+  ###The following line is commented right now because the service is not registered with CAS.
+  ### Once our service will be registered with CAS, we will uncomment this and handle session.
+  
   # before_filter CASClient::Frameworks::Rails::Filter
   
   def student_request_params
     params.require(:student_request).permit(:request_id, :uin, :full_name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
   end
-
-  # def show
-  #   req = params[:request_id] # retrieve request ID from URI route
-  #   @student_request = StudentRequest.find(req) # look up request by unique ID
-  #   # will render app/views/student_requests/show.<extension> by default
-  # end
 
   def index
     @student_requests = StudentRequest.where(:uin => session[:uin])
@@ -18,11 +15,6 @@ class StudentRequestsController < ApplicationController
 
   def new
     # default: render 'new' template
-  end
-  
-  
-  def cancel
-    
   end
 
   def create
@@ -90,7 +82,7 @@ class StudentRequestsController < ApplicationController
       [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
       if(params[:state] != "Select State")
         @student_request.state = params[:state]
-     end
+      end
       
       if(params[:priority] != "Select Priority")
          @student_request.priority = params[:priority]
