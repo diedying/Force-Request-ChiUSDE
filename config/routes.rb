@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   post 'student_requests/login' => 'student_requests#login'
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
+  get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'
   
   resources :student_requests
   
