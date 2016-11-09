@@ -21,7 +21,7 @@
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
   = link_to "Download as Excel Sheet", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
-  %table{:id => "student_requests_#{course}", :class => "student_requests"}
+  %table{:id => "student_requests_#{course}", :class => "student_requests", :class => "sortable"}
     %thead 
       %tr
         %th UIN
