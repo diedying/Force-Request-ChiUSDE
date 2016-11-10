@@ -41,7 +41,8 @@
     %tbody
       - @coursestudentlist[course].each do |record|
         %tr
-          %td= record.uin 
+          %td
+            %a{:onclick => "return buttonclick(#{record.uin})"} #{record.uin}
           %td= record.full_name
           %td= record.major
           %td= record.classification
@@ -61,3 +62,7 @@
               = select_tag("priority", options_for_select(@allPriorityStates))
               = submit_tag 'Update'
           %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
+
+#myModal.modal
+  %span.close{:onclick => "return spanclick()"} x
+  .modal-content

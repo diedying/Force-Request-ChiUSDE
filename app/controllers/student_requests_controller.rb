@@ -134,4 +134,8 @@ class StudentRequestsController < ApplicationController
     format.csv { send_data @student_by_course.to_csv }
     end
   end
+  
+  def getStudentInformationByUin
+    @student_by_uin = StudentRequest.where(uin: params[:uin])
+  end
 end
