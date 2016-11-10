@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get 'student_requests/adminview' => 'student_requests#adminview'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
+  put 'student_requests/multiupdate' => 'student_requests#multiupdate'
   post 'student_requests/login' => 'student_requests#login'
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
   get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'

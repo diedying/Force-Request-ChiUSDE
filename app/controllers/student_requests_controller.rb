@@ -138,4 +138,21 @@ class StudentRequestsController < ApplicationController
   def getStudentInformationByUin
     @student_by_uin = StudentRequest.where(uin: params[:uin])
   end
+
+  def multiupdate
+    params[:request_ids].each { |id|
+      @student_request = StudentRequest.find id
+      if(params[:multi_state_sel] != "Select State")
+        @student_request.state = params[:multi_state_sel]
+        @student_request.save!
+      end
+    }
+    redirect_to student_requests_adminview_path
+  end
+  
+  def initForNewForceRequest
+    @classificationList = StudentRequest::CLASSIFICATION_LIST
+    @expectedGraduationList = StudentRequest::EXPECTED_GRADUATION_LIST
+    @requestSemesterList = StudentRequest::REQUEST_SEMESTER_LIST
+  end
 end
