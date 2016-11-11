@@ -32,6 +32,10 @@ class StudentRequest < ActiveRecord::Base
     validates :email, presence: true
     validates :request_semester, presence: true
     validates :course_id, presence: true
+    validates :classification, inclusion: { in: CLASSIFICATION_LIST, 
+      message: "%{value} is not a valid classification" }
+    validates :request_semester, inclusion: { in: REQUEST_SEMESTER_LIST, 
+      message: "%{value} is not a valid request semester" }
     before_create :create_request_id
 
     def create_request_id
