@@ -63,23 +63,37 @@ class StudentRequestsController < ApplicationController
     @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
     @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
     if params[:state_sel] == nil
-      @all_states.each { |state|
-        @state_selected[state] = @default_states.include?(state)
-      }
+      if session[:state_sel] != nil
+        @all_states.each { |state|
+          @state_selected[state] = session[:state_sel].has_key?(state)
+        }
+      else
+        @all_states.each { |state|
+          @state_selected[state] = @default_states.include?(state)
+        }
+      end
     else
       @all_states.each { |state|
         @state_selected[state] = params[:state_sel].has_key?(state)
       }
+      session[:state_sel] = params[:state_sel]
     end
   
     if params[:priority_sel] == nil
-      @all_priorities.each { |priority|
-        @priority_selected[priority] = @all_priorities.include?(priority)
-      }
+      if session[:priority_sel] != nil
+        @all_priorities.each { |priority|
+          @priority_selected[priority] = session[:priority_sel].has_key?(priority)
+        }
+      else
+        @all_priorities.each { |priority|
+          @priority_selected[priority] = @all_priorities.include?(priority)
+        }
+      end
     else
       @all_priorities.each { |priority|
         @priority_selected[priority] = params[:priority_sel].has_key?(priority)
       }
+      session[:priority_sel] = params[:priority_sel]
     end
     
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
@@ -132,7 +146,7 @@ class StudentRequestsController < ApplicationController
   def getSpreadsheet
     @student_by_course = StudentRequest.where(course_id: params[:course_id])
     respond_to do |format|
-    format.csv { send_data @student_by_course.to_csv }
+    format.csv { send_data @student_by_course.to_csv, :filename => params[:course_id]+".csv" }
     end
   end
   
