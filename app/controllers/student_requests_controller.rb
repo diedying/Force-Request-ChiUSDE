@@ -14,8 +14,8 @@ class StudentRequestsController < ApplicationController
   end
 
   def new
-    @classificationList = StudentRequest::CLASSIFICATION_LIST
     # default: render 'new' template
+    initForNewForceRequest
   end
 
   def create
@@ -26,7 +26,8 @@ class StudentRequestsController < ApplicationController
       flash[:notice] = "Student Request was successfully created."
       redirect_to student_requests_path
     else
-      flash[:warning] = "There is some invalid data given"
+      flash[:warning] = @student_request.errors.full_messages.join(",")
+      initForNewForceRequest
       render :new
     end
   end
