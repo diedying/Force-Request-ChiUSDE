@@ -1,3 +1,5 @@
+
+
 %h1 
   Admin Dashboard Page
 .filter_form
@@ -21,47 +23,57 @@
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
   = link_to "Download as Excel Sheet", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
-  %table{:id => "student_requests_#{course}", :class => "student_requests", :class => "sortable"}
-    %thead 
-      %tr
-        %th UIN
-        %th Full Name
-        %th Major
-        %th Class
-        %th Minor
-        %th Course ID
-        %th Section ID
-        %th State
-        %th Priority
-        %th Notes
-        %th{ :class => "update_admin" } Action
-        %th Email
-      
-     
-    %tbody
-      - @coursestudentlist[course].each do |record|
+  
+  = form_tag(student_requests_multiupdate_path(), method: "put") do
+    %table{:id => "student_requests_#{course}", :class => "student_requests", :class => "sortable"}
+      %thead 
         %tr
-          %td
-            %a{:onclick => "return buttonclick(#{record.uin})"} #{record.uin}
-          %td= record.full_name
-          %td= record.major
-          %td= record.classification
-          %td= record.minor
-          %td= record.course_id
-          %td= record.section_id
-          %td= record.state
-          %td= record.priority
-          %td= record.notes
-          %td
-            %center
-            = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
-              = hidden_field_tag 'id', record.request_id
-              %textarea{:name => "notes_for_student", :placeholder => "Notes for student", :class => "notes"}
-              %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself", :class => "notes"}
-              = select_tag("state", options_for_select(@allAdminStates))
-              = select_tag("priority", options_for_select(@allPriorityStates))
-              = submit_tag 'Update'
-          %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
+          %th 
+          %th UIN
+          %th Full Name
+          %th Major
+          %th Class
+          %th Minor
+          %th Course ID
+          %th Section ID
+          %th State
+          %th Priority
+          %th Notes
+          %th{ :class => "update_admin" } Action
+          %th Email
+      
+      %tbody
+        :javascript
+          var email_id_list = [];
+        - @coursestudentlist[course].each do |record|
+          %tr
+            %td= check_box_tag "request_ids[]", record.request_id, false, :onclick => "email_id_list.push(\"#{record.email}\")"
+            %td
+              %a{:onclick => "return buttonclick(#{record.uin})"} #{record.uin}
+            %td= record.full_name
+            %td= record.major
+            %td= record.classification
+            %td= record.minor
+            %td= record.course_id
+            %td= record.section_id
+            %td= record.state
+            %td= record.priority
+            %td= record.notes
+            %td
+              %center
+              = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
+                = hidden_field_tag 'id', record.request_id
+                %textarea{:name => "notes_for_student", :placeholder => "Notes for student", :class => "notes"}
+                %textarea{:name => "notes_for_myself", :placeholder => "Notes for Myself", :class => "notes"}
+                = select_tag("state", options_for_select(@allAdminStates))
+                = select_tag("priority", options_for_select(@allPriorityStates))
+                = submit_tag 'Update'
+            %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
+            
+    = select_tag("multi_state_sel", options_for_select(@allAdminStates))
+    = select_tag("multi_priority_sel", options_for_select(@allPriorityStates))
+    = submit_tag "Update Selected"
+    = link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\", email_id_list); return false"
 
 #myModal.modal
   %span.close{:onclick => "return spanclick()"} x
