@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
   get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'
   
+  get 'student_requests/logout' => 'student_requests#logout'
+
   resources :student_requests
   
   # Example resource route with options:
