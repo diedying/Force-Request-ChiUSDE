@@ -1,7 +1,6 @@
 
 
 function multi_email(subject, email_list) {
-    
     var uniq_email_list = email_list.filter(function(itm, i) {
         return email_list.indexOf(itm)== i; 
     });

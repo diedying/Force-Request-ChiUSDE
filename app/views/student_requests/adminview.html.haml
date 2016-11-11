@@ -71,8 +71,9 @@
             %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
             
     = select_tag("multi_state_sel", options_for_select(@allAdminStates))
+    = select_tag("multi_priority_sel", options_for_select(@allPriorityStates))
     = submit_tag "Update Selected"
-    = link_to "Email Selected", "", :onclick => "multi_email(#{course}, email_id_list); return false"
+    = link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\", email_id_list); return false"
 
 #myModal.modal
   %span.close{:onclick => "return spanclick()"} x

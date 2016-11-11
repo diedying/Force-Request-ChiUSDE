@@ -147,6 +147,10 @@ class StudentRequestsController < ApplicationController
         @student_request.state = params[:multi_state_sel]
         @student_request.save!
       end
+      if(params[:multi_priority_sel] != "Select Priority")
+        @student_request.priority = params[:multi_priority_sel]
+        @student_request.save!
+      end
     }
     redirect_to student_requests_adminview_path
   end
