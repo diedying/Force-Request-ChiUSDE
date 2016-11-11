@@ -49,12 +49,12 @@ class StudentRequestsController < ApplicationController
   end
 
 
-  def destroy
-    @student_request = StudentRequest.find(params[:id])
-    @student_request.destroy
-    flash[:notice] = "Request '#{@student_request.request_id}' deleted."
-    redirect_to student_requests_path
-  end
+  # def destroy
+  #   @student_request = StudentRequest.find(params[:id])
+  #   @student_request.destroy
+  #   flash[:notice] = "Request '#{@student_request.request_id}' deleted."
+  #   redirect_to student_requests_path
+  # end
   
   def adminview
     @state_selected = {}
