@@ -1,6 +1,6 @@
 class StudentRequest < ActiveRecord::Base
   
-  
+  audited
   # States of the students 
     ACTIVE_STATE = "Active"
     WITHDRAWN_STATE = "Withdraw"
@@ -17,6 +17,12 @@ class StudentRequest < ActiveRecord::Base
     
     #Classification
     CLASSIFICATION_LIST = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
+    
+    # Expected Graduation List
+    EXPECTED_GRADUATION_LIST = ['2017 Spring', '2017 Summer', '2017 Fall', '2018 Spring', '2018 Summer', '2018 Fall']
+    
+    # Expected Graduation List
+    REQUEST_SEMESTER_LIST = ['2017 Spring', '2017 Summer', '2017 Fall']
     
     self.primary_key = "request_id"
     validates :uin, presence: true
