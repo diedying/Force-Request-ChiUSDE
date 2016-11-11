@@ -132,7 +132,7 @@ class StudentRequestsController < ApplicationController
   def getSpreadsheet
     @student_by_course = StudentRequest.where(course_id: params[:course_id])
     respond_to do |format|
-    format.csv { send_data @student_by_course.to_csv }
+    format.csv { send_data @student_by_course.to_csv, :filename => params[:course_id]+".csv" }
     end
   end
   
