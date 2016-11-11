@@ -33,19 +33,20 @@ class StudentRequestsController < ApplicationController
   end
   
   def update
-    @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest::WITHDRAWN_STATE
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully deleted."
-    redirect_to student_requests_path
+    unless params[:id].nil?
+      @student_request = StudentRequest.find params[:id]
+      if @student_request.state == StudentRequest::ACTIVE_STATE
+        @student_request.state = StudentRequest::WITHDRAWN_STATE
+        @student_request.save!
+        flash[:notice] = "Student Request was successfully withdrawn."
+      else
+        flash[:warning] = "Student Request cannot be withdrawn."
+        redirect_to student_requests_path
+      end
+    end
   end
   
   def edit
-    @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest::WITHDRAWN_STATE
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully deleted."
-    redirect_to student_requests_path
   end
 
 
