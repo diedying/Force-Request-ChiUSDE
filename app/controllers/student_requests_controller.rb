@@ -43,8 +43,8 @@ class StudentRequestsController < ApplicationController
         flash[:notice] = "Student Request was successfully withdrawn."
       else
         flash[:warning] = "Student Request cannot be withdrawn."
-        redirect_to student_requests_path
       end
+      redirect_to student_requests_path
     end
   end
   
@@ -185,5 +185,11 @@ class StudentRequestsController < ApplicationController
     @classificationList = StudentRequest::CLASSIFICATION_LIST
     @expectedGraduationList = StudentRequest::EXPECTED_GRADUATION_LIST
     @requestSemesterList = StudentRequest::REQUEST_SEMESTER_LIST
+  end
+  
+  def getStudentInformationById
+    @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+    @student_by_id =  StudentRequest.where(request_id: params[:id])
   end
 end

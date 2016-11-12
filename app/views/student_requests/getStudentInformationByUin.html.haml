@@ -1,18 +1,21 @@
-= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :get
 %h2 Student Details
 %table#student_requests.sortable
   %thead
     %tr
       %th UIN
       %th Full Name
+      %th Email
+      %th Phone
       %th Major
       %th Classification
       %th Minor
       %th Course ID
       %th Section ID
+      %th Expected Graduation
+      %th Request Semester
       %th State
-      %th Notes By Me
-      %th Notes By Admin
+      %th Notes By Student
+      %th Notes By Me For Student
       
      
   %tbody
@@ -20,6 +23,8 @@
       %tr
         %td= record.uin 
         %td= record.full_name
+        %td= record.email
+        %td= record.phone
         %td= record.major
         %td= record.classification
         %td= record.minor
