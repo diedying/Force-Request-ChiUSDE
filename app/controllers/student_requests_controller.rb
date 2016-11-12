@@ -12,6 +12,7 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
+    byebug
     @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
@@ -137,6 +138,7 @@ class StudentRequestsController < ApplicationController
   
  def login
     #session[:uin] = params[:session][:uin]
+    byebug
     session_update(:uin, params[:session][:uin])
     list_of_admin_uins = ['123', '234', '345']
     if list_of_admin_uins.include? session_get(:uin)
@@ -148,7 +150,7 @@ class StudentRequestsController < ApplicationController
   
   def logout
     #session[:uin] = nil
-    session_clear
+    session_removeDel(0)
     redirect_to root_path
   end
   
