@@ -28,5 +28,26 @@ describe StudentRequestsController, :type => :controller do
 		    assigns(:StudentRequest).should == @fake_users
 	      end
 	    end
-	end    
+	end
+	
+	describe 'new force request' do
+	      before :each do
+			get :new
+	      end
+	      
+	      it 'should render create new force request page' do
+			response.should render_template('new')
+	      end
+	end
+	
+	describe 'delete a force request' do
+	    before :each do
+	      @fake_student = FactoryGirl.create(:student_request)
+	    end
+	    
+	    it 'should call the model method that retrieves the student request for that id and sets state to WITHDRAWN_STATE' do
+	      StudentRequest.should_receive(:find).once.and_return(@fake_student)
+	      put :update, id: @fake_student.id
+	    end
+	end
 end

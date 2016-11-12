@@ -70,4 +70,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'simplecov', :require => false
+  gem "factory_girl_rails", "~> 4.0"
 end

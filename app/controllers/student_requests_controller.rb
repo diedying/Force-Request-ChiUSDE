@@ -1,5 +1,7 @@
 class StudentRequestsController < ApplicationController
-
+  
+  include Session_Helper
+  
   ###The following line is commented right now because the service is not registered with CAS.
   ### Once our service will be registered with CAS, we will uncomment this and handle session.
   
@@ -10,7 +12,8 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
-    @student_requests = StudentRequest.where(:uin => session[:uin])
+    byebug
+    @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
   def new
@@ -50,12 +53,12 @@ class StudentRequestsController < ApplicationController
   end
 
 
-  def destroy
-    @student_request = StudentRequest.find(params[:id])
-    @student_request.destroy
-    flash[:notice] = "Request '#{@student_request.request_id}' deleted."
-    redirect_to student_requests_path
-  end
+  # def destroy
+  #   @student_request = StudentRequest.find(params[:id])
+  #   @student_request.destroy
+  #   flash[:notice] = "Request '#{@student_request.request_id}' deleted."
+  #   redirect_to student_requests_path
+  # end
   
   def adminview
     @state_selected = {}
@@ -64,9 +67,9 @@ class StudentRequestsController < ApplicationController
     @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
     @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
     if params[:state_sel] == nil
-      if session[:state_sel] != nil
+      if session_get(:state_sel) != nil
         @all_states.each { |state|
-          @state_selected[state] = session[:state_sel].has_key?(state)
+          @state_selected[state] = session_get(:state_sel).has_key?(state)
         }
       else
         @all_states.each { |state|
@@ -77,13 +80,13 @@ class StudentRequestsController < ApplicationController
       @all_states.each { |state|
         @state_selected[state] = params[:state_sel].has_key?(state)
       }
-      session[:state_sel] = params[:state_sel]
+      session_update(:state_sel, params[:state_sel])
     end
   
     if params[:priority_sel] == nil
-      if session[:priority_sel] != nil
+      if session_get(:priority_sel) != nil
         @all_priorities.each { |priority|
-          @priority_selected[priority] = session[:priority_sel].has_key?(priority)
+          @priority_selected[priority] = session_get(:priority_sel).has_key?(priority)
         }
       else
         @all_priorities.each { |priority|
@@ -94,7 +97,7 @@ class StudentRequestsController < ApplicationController
       @all_priorities.each { |priority|
         @priority_selected[priority] = params[:priority_sel].has_key?(priority)
       }
-      session[:priority_sel] = params[:priority_sel]
+      session_update(:priority_sel, params[:priority_sel])
     end
     
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
@@ -134,14 +137,22 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_adminview_path
   end
   
-  def login
-    session[:uin] = params[:session][:uin]
+ def login
+    #session[:uin] = params[:session][:uin]
+    byebug
+    session_update(:uin, params[:session][:uin])
     list_of_admin_uins = ['123', '234', '345']
-    if list_of_admin_uins.include? session[:uin]
+    if list_of_admin_uins.include? session_get(:uin)
       redirect_to student_requests_adminview_path
     else
       redirect_to student_requests_path
     end
+  end
+  
+  def logout
+    #session[:uin] = nil
+    session_removeDel(0)
+    redirect_to root_path
   end
   
   def getSpreadsheet
