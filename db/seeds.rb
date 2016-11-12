@@ -24,7 +24,7 @@ student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla',
                       :expected_graduation => '2017 Fall', :request_semester => '2017 Fall',
                       :course_id => '027', :section_id => '101', :notes => 'This force request is at number 1 in queue :P' ,:priority => 'Very High', :state => 'Active'},
                        {:uin => '225008989', :full_name => 'Shubhamkjkj Jain', 
-                      :major => 'CSE', :classification => 'U7', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
+                      :major => 'CSE', :classification => 'U3', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
                       :expected_graduation => '2017 Fall', :request_semester => '2017 Spring',
                       :course_id => '028', :section_id => '101', :notes => 'This force request is at number 1 in queue :P',:priority => 'Very High' , :state => 'Active'}]
 
