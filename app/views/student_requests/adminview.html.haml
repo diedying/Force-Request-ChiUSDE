@@ -1,7 +1,6 @@
-
-= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :get
+= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :post
 %h1 
-  Admin Dashboard Page
+  Admin Dashboard Page 
 .filter_form
   = form_tag student_requests_adminview_path, :method => :get do
     %h4

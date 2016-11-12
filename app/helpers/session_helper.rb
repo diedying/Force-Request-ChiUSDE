@@ -1,4 +1,4 @@
-module Session_Helper
+module SessionHelper
     
     def session_update( key, value)
         session[key] = value
@@ -8,9 +8,7 @@ module Session_Helper
        session[key]
     end
     
-    def session_removeDel(val)
-        @val = 25
-        @val2 = 50
-        session = {}
+    def session_remove()
+        reset_session
     end
 end

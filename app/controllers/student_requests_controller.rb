@@ -1,6 +1,6 @@
 class StudentRequestsController < ApplicationController
   
-  include Session_Helper
+  include SessionHelper
   
   ###The following line is commented right now because the service is not registered with CAS.
   ### Once our service will be registered with CAS, we will uncomment this and handle session.
@@ -12,6 +12,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
+    if session_get(:uin) == nil
+      redirect_to root_path
+    end
     @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
@@ -62,6 +65,9 @@ class StudentRequestsController < ApplicationController
   # end
   
   def adminview
+    if session_get(:uin) == nil
+      redirect_to root_path
+    end
     @state_selected = {}
     @priority_selected = {}
     @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
@@ -150,8 +156,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def logout
-    #session[:uin] = nil
-    session_removeDel(0)
+    session_remove
     redirect_to root_path
   end
   
