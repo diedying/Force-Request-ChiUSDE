@@ -243,3 +243,26 @@ select
     line-height:30px;
     background:#f4f4f4;
 } 
+
+.multiUpdate
+{
+  width:100%;
+  border-style: none;
+}
+
+.multiUpdate td {
+  width: 25%;
+  border-style: none;
+  text-align: center
+}
+
+.excel_sheet td {
+  text-align: left;
+}
+
+.evenrow td {
+  background-color: white; 
+}
+.oddrow td {
+  background-color: silver; 
+}
