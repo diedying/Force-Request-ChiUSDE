@@ -18,11 +18,31 @@ class StudentRequest < ActiveRecord::Base
     #Classification
     CLASSIFICATION_LIST = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
     
-    # Expected Graduation List
-    EXPECTED_GRADUATION_LIST = ['2017 Spring', '2017 Summer', '2017 Fall', '2018 Spring', '2018 Summer', '2018 Fall']
+    time = Time.new
+    # List Year and Semester
+    CURRENT_YEAR = time.strftime("%Y")
+    current_year = CURRENT_YEAR.to_i
     
-    # Expected Graduation List
-    REQUEST_SEMESTER_LIST = ['2017 Spring', '2017 Summer', '2017 Fall']
+    LIST_YEAR = []
+    for i in current_year..current_year+10
+      LIST_YEAR << i.to_s
+    end
+    
+    LIST_SEMESTER = ['Spring', 'Fall', 'Summer']
+    
+    YEAR_SEMESTER = []
+    LIST_YEAR.each do |year|
+      LIST_SEMESTER.each do |semester|
+        YEAR_SEMESTER << year + " " + semester
+      end
+    end
+    
+    REQUEST_SEMESTER = []
+    for i in current_year..current_year+1
+      LIST_SEMESTER.each do |semester|
+        REQUEST_SEMESTER << i.to_s + " " + semester
+      end
+    end
     
     self.primary_key = "request_id"
     validates :uin, presence: true
@@ -34,7 +54,7 @@ class StudentRequest < ActiveRecord::Base
     validates :course_id, presence: true
     validates :classification, inclusion: { in: CLASSIFICATION_LIST, 
       message: "%{value} is not a valid classification" }
-    validates :request_semester, inclusion: { in: REQUEST_SEMESTER_LIST, 
+    validates :request_semester, inclusion: { in: YEAR_SEMESTER, 
       message: "%{value} is not a valid request semester" }
     before_create :create_request_id
 
