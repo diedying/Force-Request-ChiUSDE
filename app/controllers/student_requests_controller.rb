@@ -21,7 +21,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def create
-    @student_request = StudentRequest.new(student_request_params)
+    student_request_params_with_uin = {:uin => session[:uin]}
+    student_request_params_with_uin.merge!(student_request_params)
+    @student_request = StudentRequest.new(student_request_params_with_uin)
     @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
     if @student_request.save
