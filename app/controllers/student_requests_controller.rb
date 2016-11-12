@@ -12,7 +12,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
-    byebug
+    if session_get(:uin) == nil
+      redirect_to root_path
+    end
     @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
@@ -60,6 +62,9 @@ class StudentRequestsController < ApplicationController
   # end
   
   def adminview
+    if session_get(:uin) == nil
+      redirect_to root_path
+    end
     @state_selected = {}
     @priority_selected = {}
     @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
@@ -138,7 +143,6 @@ class StudentRequestsController < ApplicationController
   
  def login
     #session[:uin] = params[:session][:uin]
-    byebug
     session_update(:uin, params[:session][:uin])
     list_of_admin_uins = ['123', '234', '345']
     if list_of_admin_uins.include? session_get(:uin)
@@ -150,7 +154,8 @@ class StudentRequestsController < ApplicationController
   
   def logout
     #session[:uin] = nil
-    session_removeDel(0)
+    session_remove
+    #reset_session
     redirect_to root_path
   end
   
