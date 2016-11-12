@@ -12,7 +12,6 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
-    byebug
     @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
@@ -36,19 +35,20 @@ class StudentRequestsController < ApplicationController
   end
   
   def update
-    @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest::WITHDRAWN_STATE
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully deleted."
-    redirect_to student_requests_path
+    unless params[:id].nil?
+      @student_request = StudentRequest.find params[:id]
+      if @student_request.state == StudentRequest::ACTIVE_STATE
+        @student_request.state = StudentRequest::WITHDRAWN_STATE
+        @student_request.save!
+        flash[:notice] = "Student Request was successfully withdrawn."
+      else
+        flash[:warning] = "Student Request cannot be withdrawn."
+        redirect_to student_requests_path
+      end
+    end
   end
   
   def edit
-    @student_request = StudentRequest.find params[:id]
-    @student_request.state = StudentRequest::WITHDRAWN_STATE
-    @student_request.save!
-    flash[:notice] = "Student Request was successfully deleted."
-    redirect_to student_requests_path
   end
 
 
@@ -138,7 +138,6 @@ class StudentRequestsController < ApplicationController
   
  def login
     #session[:uin] = params[:session][:uin]
-    byebug
     session_update(:uin, params[:session][:uin])
     list_of_admin_uins = ['123', '234', '345']
     if list_of_admin_uins.include? session_get(:uin)
