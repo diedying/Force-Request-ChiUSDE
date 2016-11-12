@@ -1,4 +1,4 @@
-module Session_Helper
+module SessionHelper
     
     def session_update( key, value)
         session[key] = value

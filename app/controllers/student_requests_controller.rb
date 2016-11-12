@@ -1,6 +1,6 @@
 class StudentRequestsController < ApplicationController
   
-  include Session_Helper
+  include SessionHelper
   
   ###The following line is commented right now because the service is not registered with CAS.
   ### Once our service will be registered with CAS, we will uncomment this and handle session.
@@ -156,9 +156,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def logout
-    #session[:uin] = nil
     session_remove
-    #reset_session
     redirect_to root_path
   end
   
