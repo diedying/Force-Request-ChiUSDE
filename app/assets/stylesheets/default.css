@@ -48,6 +48,7 @@ table th {
 table th, table td {
   padding: 4px;
   text-align: left;
+  word-break:break-all;
 }
 #notice #warning {
   background: rosybrown;
@@ -177,11 +178,6 @@ input[type=submit] {
   width: 25%;
 }
 
-
-.student_requests {
-    table-layout: fixed;
-}
-
 .regularbutton {
   background-color:brown;
 	border:1px solid #18ab29;
@@ -237,7 +233,7 @@ table.sortable thead {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -253,6 +249,11 @@ table.sortable thead {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#student_requests {
+    table-layout: fixed;
+    width: 100%;
 }
 
 select 
