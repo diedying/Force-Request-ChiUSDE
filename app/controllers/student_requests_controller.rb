@@ -183,8 +183,8 @@ class StudentRequestsController < ApplicationController
   
   def initForNewForceRequest
     @classificationList = StudentRequest::CLASSIFICATION_LIST
-    @expectedGraduationList = StudentRequest::EXPECTED_GRADUATION_LIST
-    @requestSemesterList = StudentRequest::REQUEST_SEMESTER_LIST
+    @YearSemester = StudentRequest::YEAR_SEMESTER
+    @requestSemester = StudentRequest::REQUEST_SEMESTER
   end
   
   def getStudentInformationById
