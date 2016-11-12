@@ -9,9 +9,11 @@
       %th Minor
       %th Course ID
       %th Section ID
+      %th Expected Graduation
+      %th Request Semester
       %th State
-      %th Notes By Me
-      %th Notes By Admin
+      %th Notes By Student
+      %th Notes By Me For Student
       %th{ :class => "update_admin" } Action
       
      
@@ -25,6 +27,8 @@
         %td= record.minor
         %td= record.course_id
         %td= record.section_id
+        %td= record.expected_graduation
+        %td= record.request_semester
         %td= record.state
         %td= record.notes
         %td= record.notes_to_student
