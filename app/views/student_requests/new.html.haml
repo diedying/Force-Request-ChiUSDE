@@ -5,11 +5,6 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :student_request, :uin , 'UIN'
-        %td
-          = text_field :student_request, :uin, class: 'input-field', :required => true, :value => session[:uin], :disabled => true
-      %tr
-        %td
           = label :student_request, :full_name, 'Full Name'
         %td  
           = text_field :student_request, 'full_name', class: 'input-field', :required => true
@@ -42,12 +37,12 @@
         %td   
           = label :student_request, :expected_graduation, 'Expected Graduation'
         %td 
-          = select :student_request, 'expected_graduation', @expectedGraduationList
+          = select :student_request, 'expected_graduation', @YearSemester
       %tr
         %td   
           = label :student_request, :request_semester, 'Request Semester'
         %td  
-          = select :student_request, 'request_semester', @requestSemesterList, :required => true
+          = select :student_request, 'request_semester', @requestSemester, :required => true
       %tr
         %td   
           = label :student_request, :course_id, 'Course Id'

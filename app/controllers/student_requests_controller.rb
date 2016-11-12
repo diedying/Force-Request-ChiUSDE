@@ -24,7 +24,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def create
-    @student_request = StudentRequest.new(student_request_params)
+    student_request_params_with_uin = {:uin => session[:uin]}
+    student_request_params_with_uin.merge!(student_request_params)
+    @student_request = StudentRequest.new(student_request_params_with_uin)
     @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
     if @student_request.save
@@ -46,8 +48,8 @@ class StudentRequestsController < ApplicationController
         flash[:notice] = "Student Request was successfully withdrawn."
       else
         flash[:warning] = "Student Request cannot be withdrawn."
-        redirect_to student_requests_path
       end
+      redirect_to student_requests_path
     end
   end
   
@@ -190,7 +192,13 @@ class StudentRequestsController < ApplicationController
   
   def initForNewForceRequest
     @classificationList = StudentRequest::CLASSIFICATION_LIST
-    @expectedGraduationList = StudentRequest::EXPECTED_GRADUATION_LIST
-    @requestSemesterList = StudentRequest::REQUEST_SEMESTER_LIST
+    @YearSemester = StudentRequest::YEAR_SEMESTER
+    @requestSemester = StudentRequest::REQUEST_SEMESTER
+  end
+  
+  def getStudentInformationById
+    @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+    @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+    @student_by_id =  StudentRequest.where(request_id: params[:id])
   end
 end

@@ -48,6 +48,7 @@ table th {
 table th, table td {
   padding: 4px;
   text-align: left;
+  word-break:break-all;
 }
 #notice #warning {
   background: rosybrown;
@@ -116,6 +117,24 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+.loginpage {
+    margin: auto;
+    width: 50%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.loginpage input[type=text], input[type=email], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+}
 
 .form_new_request {
     border-radius: 5px;
@@ -157,11 +176,6 @@ input[type=submit] {
 
 .update_admin {
   width: 25%;
-}
-
-
-.student_requests {
-    table-layout: fixed;
 }
 
 .regularbutton {
@@ -219,7 +233,7 @@ table.sortable thead {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -237,9 +251,37 @@ table.sortable thead {
     cursor: pointer;
 }
 
+#student_requests {
+    table-layout: fixed;
+    width: 100%;
+}
+
 select 
 {
     height:30px;
     line-height:30px;
     background:#f4f4f4;
 } 
+
+.multiUpdate
+{
+  width:100%;
+  border-style: none;
+}
+
+.multiUpdate td {
+  width: 25%;
+  border-style: none;
+  text-align: center
+}
+
+.excel_sheet td {
+  text-align: left;
+}
+
+.evenrow td {
+  background-color: white; 
+}
+.oddrow td {
+  background-color: silver; 
+}
