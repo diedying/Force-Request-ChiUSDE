@@ -14,8 +14,9 @@ class StudentRequestsController < ApplicationController
   def index
     if session_get(:uin) == nil
       redirect_to root_path
+    else
+      @student_requests = StudentRequest.where(:uin => session_get(:uin))
     end
-    @student_requests = StudentRequest.where(:uin => session_get(:uin))
   end
 
   def new
@@ -67,57 +68,58 @@ class StudentRequestsController < ApplicationController
   def adminview
     if session_get(:uin) == nil
       redirect_to root_path
-    end
-    @state_selected = {}
-    @priority_selected = {}
-    @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
-    @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
-    @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
-    if params[:state_sel] == nil
-      if session_get(:state_sel) != nil
-        @all_states.each { |state|
-          @state_selected[state] = session_get(:state_sel).has_key?(state)
-        }
+    else
+      @state_selected = {}
+      @priority_selected = {}
+      @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+      @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]
+      @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]
+      if params[:state_sel] == nil
+        if session_get(:state_sel) != nil
+          @all_states.each { |state|
+            @state_selected[state] = session_get(:state_sel).has_key?(state)
+          }
+        else
+          @all_states.each { |state|
+            @state_selected[state] = @default_states.include?(state)
+          }
+        end
       else
         @all_states.each { |state|
-          @state_selected[state] = @default_states.include?(state)
+          @state_selected[state] = params[:state_sel].has_key?(state)
         }
+        session_update(:state_sel, params[:state_sel])
       end
-    else
-      @all_states.each { |state|
-        @state_selected[state] = params[:state_sel].has_key?(state)
-      }
-      session_update(:state_sel, params[:state_sel])
-    end
-  
-    if params[:priority_sel] == nil
-      if session_get(:priority_sel) != nil
-        @all_priorities.each { |priority|
-          @priority_selected[priority] = session_get(:priority_sel).has_key?(priority)
-        }
-      else
-        @all_priorities.each { |priority|
-          @priority_selected[priority] = @all_priorities.include?(priority)
-        }
-      end
-    else
-      @all_priorities.each { |priority|
-        @priority_selected[priority] = params[:priority_sel].has_key?(priority)
-      }
-      session_update(:priority_sel, params[:priority_sel])
-    end
     
-    @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
-    @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
-   
-    @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
-    @coursestudentlist = Hash.new
-   
-    @allcourses.each do |course|
-      @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
-      @students = @students.reject{ |s| @state_selected[s.state] == false}
-      @students = @students.reject{ |s| @priority_selected[s.priority] == false}
-      @coursestudentlist[course] = @students
+      if params[:priority_sel] == nil
+        if session_get(:priority_sel) != nil
+          @all_priorities.each { |priority|
+            @priority_selected[priority] = session_get(:priority_sel).has_key?(priority)
+          }
+        else
+          @all_priorities.each { |priority|
+            @priority_selected[priority] = @all_priorities.include?(priority)
+          }
+        end
+      else
+        @all_priorities.each { |priority|
+          @priority_selected[priority] = params[:priority_sel].has_key?(priority)
+        }
+        session_update(:priority_sel, params[:priority_sel])
+      end
+      
+      @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+      @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
+     
+      @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
+      @coursestudentlist = Hash.new
+     
+      @allcourses.each do |course|
+        @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
+        @students = @students.reject{ |s| @state_selected[s.state] == false}
+        @students = @students.reject{ |s| @priority_selected[s.priority] == false}
+        @coursestudentlist[course] = @students
+      end
     end
   end
   
