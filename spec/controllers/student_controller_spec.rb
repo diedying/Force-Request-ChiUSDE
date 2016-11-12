@@ -29,6 +29,7 @@ describe StudentRequestsController, :type => :controller do
 	      end
 	    end
 	end
+	
 	describe 'new force request' do
 	      before :each do
 			get :new
@@ -38,26 +39,15 @@ describe StudentRequestsController, :type => :controller do
 			response.should render_template('new')
 	      end
 	end
-	describe 'delete a user' do
+	
+	describe 'delete a force request' do
 	    before :each do
-	      @fake_user = FactoryGirl.create(:student_request)
+	      @fake_student = FactoryGirl.create(:student_request)
 	    end
 	    
-	    it 'should do something' do
-	    	#blah blah blah
+	    it 'should call the model method that retrieves the student request for that id and sets state to WITHDRAWN_STATE' do
+	      StudentRequest.should_receive(:find).once.and_return(@fake_student)
+	      put :update, id: @fake_student.id
 	    end
-	  #  it 'should call the model method that retrieves the User for that id and delete it from the database' do
-	  #    User.should_receive(:find).once.and_return(@fake_user)
-	  #    @fake_user.should_receive(:destroy).once
-	  #    delete :destroy, id: @fake_user.id
-	  #  end
-	    
-	  #  describe 'after valid deletion' do
-	  #    before :each do
-	  #      User.stub(:find).and_return(@fake_user)
-			# @fake_user.stub(:destroy)
-			# delete :destroy, id: @fake_user.id
-	  #    end
-	  #  end
 	end
 end
