@@ -5,11 +5,6 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :student_request, :uin , 'UIN'
-        %td
-          = text_field :student_request, :uin, class: 'input-field', :value => session[:uin], :readonly => true
-      %tr
-        %td
           = label :student_request, :full_name, 'Full Name'
         %td  
           = text_field :student_request, 'full_name', class: 'input-field', :required => true
