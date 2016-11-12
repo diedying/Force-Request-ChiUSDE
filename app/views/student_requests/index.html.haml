@@ -1,3 +1,4 @@
+= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :get
 %h1 Students Dashboard Page
 %table#student_requests.sortable
   %thead
@@ -28,7 +29,9 @@
         %td= record.state
         %td= record.notes
         %td= record.notes_to_student
-        %td= button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put
+        %td 
+          -if record.state == StudentRequest::ACTIVE_STATE
+            = button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put, :data => { confirm: 'Are you sure?', disable_with: 'loading...' }
 
 
   = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
