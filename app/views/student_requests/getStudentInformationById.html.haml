@@ -1,39 +1,47 @@
-%h2 Student Details
+%h2 Request Id Details
 %table#student_requests.sortable
   %thead
+  - @student_by_id.each do |record|
     %tr
       %th UIN
+      %td= record.uin 
+    %tr
       %th Full Name
+      %td= record.full_name
+    %tr  
       %th Major
+      %td= record.major
+    %tr  
       %th Classification
+      %td= record.classification
+    %tr  
       %th Minor
+      %td= record.minor
+    %tr  
       %th Course ID
+      %td= record.course_id
+    %tr  
       %th Section ID
+      %td= record.section_id
+    %tr  
       %th Expected Graduation
+      %td= record.expected_graduation
+    %tr  
       %th Request Semester
+      %td= record.request_semester
+    %tr  
       %th State
+      %td= record.state
+    %tr  
       %th Notes By Student
+      %td= record.notes
+    %tr  
       %th Notes By Me For Student
+      %td= record.notes_to_student
+    %tr  
       %th{ :class => "update_admin" } Action
-      
-     
-  %tbody
-    - @student_by_id.each do |record|
-      %tr
-        %td= record.uin 
-        %td= record.full_name
-        %td= record.major
-        %td= record.classification
-        %td= record.minor
-        %td= record.course_id
-        %td= record.section_id
-        %td= record.expected_graduation
-        %td= record.request_semester
-        %td= record.state
-        %td= record.notes
-        %td= record.notes_to_student
-        %td
-          %center
+      %td
+        %center
           = form_tag('/student_requests/updaterequestbyadmin', method: "put") do
             = hidden_field_tag 'id', record.request_id
             %textarea{:name => "notes_for_student", :placeholder => "Notes for student", :class => "notes"}
@@ -41,3 +49,14 @@
             = select_tag("state", options_for_select(@allAdminStates))
             = select_tag("priority", options_for_select(@allPriorityStates))
             = submit_tag 'Update'
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
