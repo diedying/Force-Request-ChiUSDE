@@ -147,7 +147,6 @@ class StudentRequestsController < ApplicationController
   end
   
  def login
-    #session[:uin] = params[:session][:uin]
     session_update(:uin, params[:session][:uin])
     list_of_admin_uins = ['123', '234', '345']
     if list_of_admin_uins.include? session_get(:uin)
