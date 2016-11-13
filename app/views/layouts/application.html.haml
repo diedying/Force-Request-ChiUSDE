@@ -7,8 +7,11 @@
     = csrf_meta_tags
 
   %body
+    %h1.title CSE Force request System 
     = render 'layouts/header'
-    %h1.title CSE Force request System
+    - unless session[:uin].nil?
+      = render 'layouts/login'
+   
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
