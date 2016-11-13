@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   post 'student_requests/login' => 'student_requests#login'
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
   get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'
+  get 'student_requests/id/:id' => 'student_requests#getStudentInformationById'
   
-  get 'student_requests/logout' => 'student_requests#logout'
+  post 'student_requests/logout' => 'student_requests#logout'
 
   resources :student_requests
   

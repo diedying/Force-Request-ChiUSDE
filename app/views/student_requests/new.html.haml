@@ -1,13 +1,8 @@
-= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :get
+= button_to 'Logout', {:action => "logout", :controller => "student_requests"}, :method => :post
 %h1 Making New Request
 .form_new_request
   = form_tag student_requests_path, :id => 'new_request' do
     %table{:border => "0"}
-      %tr
-        %td
-          = label :student_request, :uin , 'UIN'
-        %td
-          = text_field :student_request, :uin, class: 'input-field', :required => true
       %tr
         %td
           = label :student_request, :full_name, 'Full Name'
@@ -42,12 +37,12 @@
         %td   
           = label :student_request, :expected_graduation, 'Expected Graduation'
         %td 
-          = select :student_request, 'expected_graduation', @expectedGraduationList
+          = select :student_request, 'expected_graduation', @YearSemester
       %tr
         %td   
           = label :student_request, :request_semester, 'Request Semester'
         %td  
-          = select :student_request, 'request_semester', @requestSemesterList, :required => true
+          = select :student_request, 'request_semester', @requestSemester, :required => true
       %tr
         %td   
           = label :student_request, :course_id, 'Course Id'
