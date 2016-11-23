@@ -19,6 +19,7 @@ describe StudentRequestsController, :type => :controller do
 		    StudentRequest.should_receive(:where).with({uin: @request.session[:uin]}).once.and_return(@fake_students)
 		    get :index
           end
+          
 	      
 	      it 'should select the index template for rendering' do
 		    response.should render_template('index')
@@ -49,5 +50,21 @@ describe StudentRequestsController, :type => :controller do
 	      StudentRequest.should_receive(:find).once.and_return(@fake_student)
 	      put :update, id: @fake_student.id
 	    end
+	end
+	
+	describe 'get a adminview with no session set' do
+		it 'should redirect to root path' do
+			get 'adminview'
+		end
+	end
+	
+	describe 'get a adminview with session set' do
+		before :each do
+		  @fake_students = [double('student1'), double('student2')]
+		  @request.session[:uin] = '123'
+	    end
+		it 'should call model method to get all data for admin' do
+			get 'adminview'
+		end
 	end
 end
