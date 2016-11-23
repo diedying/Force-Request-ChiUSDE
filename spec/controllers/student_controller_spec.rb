@@ -67,4 +67,21 @@ describe StudentRequestsController, :type => :controller do
 			get 'adminview'
 		end
 	end
+	
+	describe 'update status by admin' do
+		before :each do
+		  @fake_student = FactoryGirl.create(:student_request)
+		  @request.session[:uin] = '123'
+	    end
+	    it 'should call updaterequestbyadmin' do
+	    	StudentRequest.should_receive(:find).once.and_return(@fake_student)
+	    	put 'updaterequestbyadmin', {:id => "1", :state => StudentRequest::APPROVED_STATE, :priority => StudentRequest::VERYHIGH_PRIORITY}
+	    end
+	    
+	    	   
+	    it 'should call updaterequestbyadmin but throws error' do
+	    	StudentRequest.should_receive(:find).once.and_return(@fake_student)
+	    	put 'updaterequestbyadmin', {:id => "1"}
+	    end
+	end
 end

@@ -130,7 +130,6 @@ class StudentRequestsController < ApplicationController
       if(params[:state] != "Select State")
         @student_request.state = params[:state]
       end
-      
       if(params[:priority] != "Select Priority")
          @student_request.priority = params[:priority]
       end
