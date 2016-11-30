@@ -1,3 +1,5 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
 %h1 Making New Request
 .form_new_request
   = form_tag student_requests_path, :id => 'new_request' do

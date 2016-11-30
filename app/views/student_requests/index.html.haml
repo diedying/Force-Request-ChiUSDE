@@ -1,3 +1,5 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
 %h1 Students Dashboard Page
 %table#student_requests.sortable
   %thead
