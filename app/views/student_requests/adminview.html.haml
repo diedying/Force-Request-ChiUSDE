@@ -16,7 +16,7 @@
         = priority
         = check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
       = submit_tag 'Refresh', class: "filter"
-  
+  %p= link_to "Download the entire Force Request System data as Excel Sheet", student_requests_getSpreadsheetAllCourses_path(format: "csv")
 - @allcourses.each do |course|
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
