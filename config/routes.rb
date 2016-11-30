@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   put 'student_requests/multiupdate' => 'student_requests#multiupdate'
   post 'student_requests/login' => 'student_requests#login'
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
+  get 'student_requests/getSpreadsheetAllCourses' => 'student_requests#getSpreadsheetAllCourses'
   get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'
   get 'student_requests/id/:id' => 'student_requests#getStudentInformationById'
   
