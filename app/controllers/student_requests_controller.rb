@@ -145,10 +145,10 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_adminview_path
   end
   
- def login
+  def login
     session_update(:uin, params[:session][:uin])
-    list_of_admin_uins = ['123', '234', '345']
-    if list_of_admin_uins.include? session_get(:uin)
+    
+    if Admin.exists?(:uin => session_get(:uin))
       redirect_to student_requests_adminview_path
     else
       redirect_to student_requests_path

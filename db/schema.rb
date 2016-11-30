@@ -66,5 +66,9 @@ ActiveRecord::Schema.define(version: 20161109212823) do
   create_table "majors", force: :cascade do |t|
     t.string "major_id"
   end
+  
+  create_table "admins", force: :cascade do |t|
+    t.string "uin"
+  end
 
 end
