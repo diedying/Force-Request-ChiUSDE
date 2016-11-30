@@ -144,14 +144,19 @@ class StudentRequestsController < ApplicationController
    
     redirect_to student_requests_adminview_path
   end
-  
+
   def login
-    session_update(:uin, params[:session][:uin])
-    
-    if Admin.exists?(:uin => session_get(:uin))
-      redirect_to student_requests_adminview_path
+    if params[:session][:uin] =~ /^\d+$/
+      session_update(:uin, params[:session][:uin])
+      
+      if Admin.exists?(:uin => session_get(:uin))
+        redirect_to student_requests_adminview_path
+      else
+        redirect_to student_requests_path
+      end
     else
-      redirect_to student_requests_path
+      flash[:warning] = "Invalid UIN format"
+      redirect_to root_path
     end
   end
   
