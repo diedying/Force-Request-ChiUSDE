@@ -47,7 +47,7 @@
             var email_id_list = [];
           - @coursestudentlist[course].each do |record|
             %tr{:class => "#{cycle('oddrow', 'evenrow')}"}
-              %td= check_box_tag "request_ids[]", record.request_id, false, :onclick => "email_id_list.push(\"#{record.email}\")"
+              %td= check_box_tag "request_ids", "#{record.email}", false, :onclick => "email_id_list.push(\"#{record.email}\")", :id => course
               %td
                 %a{:onclick => "return getDetailsById('#{record.request_id}')"} #{record.request_id}
               %td
