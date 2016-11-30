@@ -146,12 +146,17 @@ class StudentRequestsController < ApplicationController
   end
   
  def login
-    session_update(:uin, params[:session][:uin])
-    list_of_admin_uins = ['123', '234', '345']
-    if list_of_admin_uins.include? session_get(:uin)
-      redirect_to student_requests_adminview_path
+    if params[:session][:uin] =~ /^\d+$/
+      session_update(:uin, params[:session][:uin])
+      list_of_admin_uins = ['123', '234', '345']
+      if list_of_admin_uins.include? session_get(:uin)
+        redirect_to student_requests_adminview_path
+      else
+        redirect_to student_requests_path
+      end
     else
-      redirect_to student_requests_path
+      flash[:warning] = "Invalid UIN format"
+      redirect_to root_path
     end
   end
   
