@@ -22,6 +22,8 @@ class StudentRequest < ActiveRecord::Base
     # List Year and Semester
     CURRENT_YEAR = time.strftime("%Y")
     current_year = CURRENT_YEAR.to_i
+    CURRENT_MONTH = time.strftime("%m")
+    current_month = CURRENT_MONTH.to_i
     
     LIST_YEAR = []
     for i in current_year..current_year+10
@@ -33,14 +35,30 @@ class StudentRequest < ActiveRecord::Base
     YEAR_SEMESTER = []
     LIST_YEAR.each do |year|
       LIST_SEMESTER.each do |semester|
-        YEAR_SEMESTER << year + " " + semester
+        if year.to_i == current_year and current_month <= 4
+          YEAR_SEMESTER << year + " " + semester
+        elsif year.to_i == current_year and current_month <= 8 and semester != "Spring"
+          YEAR_SEMESTER << year + " " + semester
+        elsif semester == "Fall"
+          YEAR_SEMESTER << year + " " + semester
+        elsif year.to_i != current_year
+          YEAR_SEMESTER << year + " " + semester
+        end
       end
     end
     
     REQUEST_SEMESTER = []
     for i in current_year..current_year+1
       LIST_SEMESTER.each do |semester|
-        REQUEST_SEMESTER << i.to_s + " " + semester
+        if i == current_year and current_month <= 4
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif i == current_year and current_month <= 8 and semester != "Spring"
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif semester == "Fall"
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif i != current_year
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        end
       end
     end
     
