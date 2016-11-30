@@ -31,7 +31,7 @@ student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla',
 majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {:major_id => 'ELEN'}, {:major_id => 'APMS'},
             {:major_id => 'CPSL'}, {:major_id => 'CECL'}, {:major_id => 'CEEL'}, {:major_id => 'Others'}]
             
-admins = [{:uin => '123'}]
+admins = [{:uin => '123'}, {:uin => '123456789'}, {:uin => '456789123'}, {:uin => '987654321'}]
 
 student_requests.each do |record|
   StudentRequest.create!(record)
