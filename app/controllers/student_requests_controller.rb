@@ -167,6 +167,13 @@ class StudentRequestsController < ApplicationController
     end
   end
   
+  def getSpreadsheetAllCourses
+    @student = StudentRequest.all
+    respond_to do |format|
+    format.csv { send_data @student.to_csv, :filename => "All_force_requests"+".csv" }
+    end
+  end
+    
   def getStudentInformationByUin
     @student_by_uin = StudentRequest.where(uin: params[:uin])
   end
@@ -192,6 +199,7 @@ class StudentRequestsController < ApplicationController
     @classificationList = StudentRequest::CLASSIFICATION_LIST
     @YearSemester = StudentRequest::YEAR_SEMESTER
     @requestSemester = StudentRequest::REQUEST_SEMESTER
+    @majorList = Major.pluck(:major_id)
   end
   
   def getStudentInformationById
