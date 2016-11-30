@@ -11,7 +11,7 @@
         %td  
           = label :student_request, :major, 'Major'
         %td  
-          = text_field :student_request, 'major', class: 'input-field', :required => true
+          = select :student_request, 'major', @majorList, :required => true
       %tr
         %td   
           = label :student_request, :classification, 'Classification'
