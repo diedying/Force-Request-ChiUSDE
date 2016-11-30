@@ -192,6 +192,7 @@ class StudentRequestsController < ApplicationController
     @classificationList = StudentRequest::CLASSIFICATION_LIST
     @YearSemester = StudentRequest::YEAR_SEMESTER
     @requestSemester = StudentRequest::REQUEST_SEMESTER
+    @majorList = Major.pluck(:major_id)
   end
   
   def getStudentInformationById
