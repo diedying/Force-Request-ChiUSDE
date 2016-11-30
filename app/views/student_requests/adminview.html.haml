@@ -24,10 +24,10 @@
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
   %div{:id => "student_requests_#{course}"}
     = form_tag(student_requests_multiupdate_path(), method: "put") do
-      %table{:class => "student_requests", :class => "sortable"}
+      %table#student_requests.sortableadmin
         %thead 
           %tr
-            %th 
+            %th Select
             %th Id
             %th UIN
             %th Full Name
