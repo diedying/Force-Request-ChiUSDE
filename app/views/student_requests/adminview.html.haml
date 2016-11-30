@@ -2,7 +2,7 @@
   = render 'layouts/login'
 %h1 
   Admin Dashboard Page
-  = button_to 'More Actions' , {:action => "adminprivileges", :controller => "student_requests" }, :method => :get, class: 'logout-class'
+= link_to '<button type="button" class="regularbutton">More Actions</button>'.html_safe, student_requests_adminprivileges_path
 .filter_form
   = form_tag student_requests_adminview_path, :method => :get do
     %h4
