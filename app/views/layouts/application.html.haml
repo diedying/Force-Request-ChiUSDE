@@ -9,8 +9,7 @@
   %body
     %h1.title CSE Force request System 
     = render 'layouts/header'
-    - unless session[:uin].nil?
-      = render 'layouts/login'
+    
    
     #main
       - if flash[:notice]

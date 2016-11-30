@@ -144,14 +144,19 @@ class StudentRequestsController < ApplicationController
    
     redirect_to student_requests_adminview_path
   end
-  
- def login
-    session_update(:uin, params[:session][:uin])
-    list_of_admin_uins = ['123', '234', '345']
-    if list_of_admin_uins.include? session_get(:uin)
-      redirect_to student_requests_adminview_path
+
+  def login
+    if params[:session][:uin] =~ /^\d+$/
+      session_update(:uin, params[:session][:uin])
+      
+      if Admin.exists?(:uin => session_get(:uin))
+        redirect_to student_requests_adminview_path
+      else
+        redirect_to student_requests_path
+      end
     else
-      redirect_to student_requests_path
+      flash[:warning] = "Invalid UIN format"
+      redirect_to root_path
     end
   end
   
@@ -167,6 +172,13 @@ class StudentRequestsController < ApplicationController
     end
   end
   
+  def getSpreadsheetAllCourses
+    @student = StudentRequest.all
+    respond_to do |format|
+    format.csv { send_data @student.to_csv, :filename => "All_force_requests"+".csv" }
+    end
+  end
+    
   def getStudentInformationByUin
     @student_by_uin = StudentRequest.where(uin: params[:uin])
   end
@@ -192,6 +204,7 @@ class StudentRequestsController < ApplicationController
     @classificationList = StudentRequest::CLASSIFICATION_LIST
     @YearSemester = StudentRequest::YEAR_SEMESTER
     @requestSemester = StudentRequest::REQUEST_SEMESTER
+    @majorList = Major.pluck(:major_id)
   end
   
   def getStudentInformationById

@@ -62,5 +62,13 @@ ActiveRecord::Schema.define(version: 20161109212823) do
   add_index "student_requests", ["request_id"], name: "index_student_requests_on_request_id", unique: true
   add_index "student_requests", ["section_id"], name: "index_student_requests_on_section_id"
   add_index "student_requests", ["state"], name: "index_student_requests_on_state"
+  
+  create_table "majors", force: :cascade do |t|
+    t.string "major_id"
+  end
+  
+  create_table "admins", force: :cascade do |t|
+    t.string "uin"
+  end
 
 end

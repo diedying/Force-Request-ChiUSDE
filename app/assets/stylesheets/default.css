@@ -48,7 +48,7 @@ table th {
 table th, table td {
   padding: 4px;
   text-align: left;
-  word-break:break-all;
+  word-wrap: break-word;
 }
 #notice #warning {
   background: rosybrown;
@@ -83,7 +83,7 @@ caption {
 }
 
 th {
-	font: bold 13px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	
 	color: #4f6b72;
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
@@ -214,12 +214,23 @@ label {
 }
 
 table.sortable thead {
+    font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
     background-color:#eee;
     color:white;
     font-weight: bold;
     cursor: default;
 }
 
+
+table.sortableadmin thead {
+    font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+    background-color:#eee;
+    color:white;
+    font-weight: bold;
+    cursor: default;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -265,7 +276,7 @@ table.sortable thead {
 
 select 
 {
-    height:30px;
+    height:45px;
     line-height:30px;
     background:#f4f4f4;
 } 
