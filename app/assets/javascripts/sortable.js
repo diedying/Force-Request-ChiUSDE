@@ -100,12 +100,13 @@ function ts_resortTable(lnk, clid) {
 		}
 		i++;
 	}
-	if (itm == "") return; 
+	if (itm == "") return;
 	sortfn = ts_sort_caseinsensitive;
 	if (itm.match(/^\d\d[\/\.-][a-zA-z][a-zA-Z][a-zA-Z][\/\.-]\d\d\d\d$/)) sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/\.-]\d\d[\/\.-]\d\d\d{2}?$/)) sortfn = ts_sort_date;
 	if (itm.match(/^-?[£$€Û¢´]\d/)) sortfn = ts_sort_numeric;
 	if (itm.match(/^-?(\d+[,\.]?)+(E[-+][\d]+)?%?$/)) sortfn = ts_sort_numeric;
+	if (itm.match(/\b(^High$|^Low$|^Very High$|^Very Low$|^Normal$)\b/)) sortfn = ts_sort_priority;
 	SORT_COLUMN_INDEX = column;
 	var firstRow = new Array();
 	var newRows = new Array();
@@ -249,6 +250,26 @@ function compare_numeric(a,b) {
 function ts_sort_caseinsensitive(a,b) {
 	aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]).toLowerCase();
 	bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]).toLowerCase();
+	if (aa==bb) {
+		return 0;
+	}
+	if (aa<bb) {
+		return -1;
+	}
+	return 1;
+}
+function ts_sort_priority(a,b) {
+	aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]);
+	bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]);
+	var dict = {};
+
+	dict['Very High'] = 1;
+	dict['High'] = 2;
+	dict['Normal'] = 3;
+	dict['Low'] = 4;
+	dict['Very Low'] = 5;
+	aa = dict[aa];
+	bb = dict[bb];
 	if (aa==bb) {
 		return 0;
 	}
