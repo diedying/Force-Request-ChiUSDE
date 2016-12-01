@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20161109212823) do
     t.text     "notes"
     t.string   "state"
     t.string   "priority"
-    t.datetime "creation_date", :default => DateTime.now
-    t.datetime "last_updated", :default => DateTime.now
+    t.datetime "creation_date"
+    t.datetime "last_updated"
     t.text     "notes_to_student"
     t.text     "admin_notes"
   end
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20161109212823) do
     t.text     "notes"
     t.string   "state"
     t.string   "priority"
-    t.datetime "creation_date", :default => DateTime.now
-    t.datetime "last_updated", :default => DateTime.now
+    t.datetime "creation_date"
+    t.datetime "last_updated"
     t.text     "notes_to_student"
     t.text     "admin_notes"
   end

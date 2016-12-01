@@ -83,6 +83,11 @@ class StudentRequest < ActiveRecord::Base
     before_create :create_request_id
     before_save :update_time
     
+    before_create :set_creation_date
+  
+    def set_creation_date
+      self.creation_date = DateTime.now()
+    end
 
     def update_time
       self.last_updated = DateTime.now()
