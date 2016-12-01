@@ -7,17 +7,17 @@
       %table{:border => "0"}
         %tr
           %td
-            = label :student_request, :full_name, 'Full Name'
+            = label :student_request, :full_name, 'Full Name*'
           %td  
             = text_field :student_request, 'full_name', class: 'input-field', :required => true
         %tr
           %td  
-            = label :student_request, :major, 'Major'
+            = label :student_request, :major, 'Major*'
           %td  
             = select :student_request, 'major', @majorList, :required => true
         %tr
           %td   
-            = label :student_request, :classification, 'Classification'
+            = label :student_request, :classification, 'Classification*'
           %td  
             = select :student_request, 'classification', @classificationList, :required => true
         %tr
@@ -28,32 +28,32 @@
             %span#minor_tip.form-help Enter the 4-letter code for your minor, if any
         %tr
           %td 
-            = label :student_request, :email, 'Email'
+            = label :student_request, :email, 'Email*'
           %td  
             = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
         %tr
           %td   
-            = label :student_request, :phone, 'Phone'
+            = label :student_request, :phone, 'Phone*'
           %td  
             = text_field :student_request, 'phone', class: 'input-field'
         %tr
           %td   
-            = label :student_request, :expected_graduation, 'Expected Graduation'
+            = label :student_request, :expected_graduation, 'Expected Graduation*'
           %td 
             = select :student_request, 'expected_graduation', @YearSemester
         %tr
           %td   
-            = label :student_request, :request_semester, 'Request Semester'
+            = label :student_request, :request_semester, 'Request Semester*'
           %td  
             = select :student_request, 'request_semester', @requestSemester, :required => true
         %tr
           %td   
-            = label :student_request, :course_id, 'Course Id'
+            = label :student_request, :course_id, 'Course Id*'
           %td  
             = text_field :student_request, 'course_id', class: 'input-field', :required => true
         %tr
           %td   
-            = label :student_request, :section_id, 'Section Id'
+            = label :student_request, :section_id, 'Section Id*'
           %td  
             = text_field :student_request, 'section_id', class: 'input-field', :required => true
         %tr
