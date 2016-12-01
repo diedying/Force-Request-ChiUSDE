@@ -41,11 +41,9 @@
             %th Email
       
         %tbody
-          :javascript
-            var email_id_list = [];
           - @coursestudentlist[course].each do |record|
             %tr{:class => "#{cycle('oddrow', 'evenrow')}"}
-              %td= check_box_tag "request_ids", "#{record.email}", false, :onclick => "email_id_list.push(\"#{record.email}\")", :id => course
+              %td= check_box_tag "request_ids[]", record.request_id, false, data: { "mail" => "#{record.email}"}, "sub" => course 
               %td
                 %a{:onclick => "return getDetailsById('#{record.request_id}')"} #{record.request_id}
               %td
@@ -67,7 +65,7 @@
               %td= select_tag("multi_state_sel", options_for_select(@allAdminStates))
               %td= select_tag("multi_priority_sel", options_for_select(@allPriorityStates))
               %td= submit_tag "Update Selected"
-              %td= link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\", email_id_list); return false"
+              %td= link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\"); return false"
             %tr{ :class => "excel_sheet"}
               %td= link_to "Download as Excel Sheet", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
 %p= link_to "Download the entire Force Request System data as Excel Sheet", student_requests_getSpreadsheetAllCourses_path(format: "csv")
