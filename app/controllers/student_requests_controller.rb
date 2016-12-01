@@ -22,6 +22,7 @@ class StudentRequestsController < ApplicationController
   def new
     # default: render 'new' template
     initForNewForceRequest
+    render :new
   end
 
   def create
@@ -34,7 +35,7 @@ class StudentRequestsController < ApplicationController
       flash[:notice] = "Student Request was successfully created."
       redirect_to student_requests_path
     else
-      flash[:warning] = @student_request.errors.full_messages.join(",")
+      flash[:warning] = @student_request.errors.full_messages.join(", ")
       initForNewForceRequest
       render :new
     end

@@ -87,3 +87,33 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function formtooltip(el,flag)
+{
+	try 
+	{
+		elem = document.getElementById(el);
+		if (flag) 
+		{ 
+			elem.parentNode.parentNode.style.zIndex=1000;
+			elem.parentNode.parentNode.style.borderRight='0px solid #000';
+			elem.style.visibility='visible';
+		}
+		else 
+		{
+			elem.parentNode.parentNode.style.zIndex=1;
+			elem.parentNode.parentNode.style.border='none';
+			elem.style.visibility='hidden';
+		};
+	}
+	catch (err) 
+	{
+		return(true);
+	}
+}
+
+function pageinit()
+{
+    subMenu = document.getElementById("minor_tip");
+    subMenu.style.visibility = "hidden";
+}
