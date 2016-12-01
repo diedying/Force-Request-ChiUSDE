@@ -210,17 +210,27 @@ class StudentRequestsController < ApplicationController
 
   def multiupdate
     if (params[:request_ids] != nil)
+      isUpdate = false
       params[:request_ids].each { |id|
         @student_request = StudentRequest.find id
         if(params[:multi_state_sel] != "Select State")
+          isUpdate = true
           @student_request.state = params[:multi_state_sel]
           @student_request.save!
         end
         if(params[:multi_priority_sel] != "Select Priority")
+          isUpdate = true
           @student_request.priority = params[:multi_priority_sel]
           @student_request.save!
         end
       }
+      if(isUpdate)
+        flash[:notice] = "Requests has been updated"
+      else
+        flash[:warning] = "No State or Priority Selected"
+      end
+    else
+      flash[:warning] = "Nothing has been selected for Update"
     end
     redirect_to student_requests_adminview_path
   end

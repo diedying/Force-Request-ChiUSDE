@@ -22,4 +22,4 @@
   Archive All Force Request Data to Archival Database
   
   = form_tag('/student_requests/deleteall', method: "delete") do
-    = submit_tag 'Archive All Data'
+    = submit_tag 'Archive All Data', :data => { confirm: 'Are you sure?', disable_with: 'loading...' }

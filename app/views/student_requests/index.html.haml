@@ -3,9 +3,10 @@
 %h1 Students Dashboard Page
 
 - if @student_requests[0].nil?
-  %h1= "Howdy! #{session_get(:uin)}. Sorry, you have no Requests " 
+  %h2= "Howdy! #{session_get(:uin)}"
+  %h2= "You have not created any requests till now" 
 - else
-  %h1= "Howdy! Welcome back #{@student_requests[0].full_name} "
+  %h2= "Howdy! Welcome back #{@student_requests[0].full_name} "
 
 = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
 
