@@ -329,3 +329,9 @@ select
   font-style: normal;
   border: none;
 }
+
+#student_requests th:hover {
+    background: -webkit-linear-gradient(top, maroon 0%, #f2fbff 40%, #e2f8ff 40%, #e2f8ff 100%);
+    border-bottom:1px solid #9eeaff;
+    cursor:pointer;
+}
