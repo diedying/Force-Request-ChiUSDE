@@ -8,23 +8,23 @@
 
 
 student_requests = [{:uin => '425008306', :full_name => 'Adil Hamid Malla', 
-                     :major => 'CPSC', :classification => 'U2', :minor => 'VISION', :email => 'adil@gmail.com', :phone => '97977979', 
+                     :major => 'CPSC', :classification => 'U2', :minor => 'CECN', :email => 'adil@gmail.com', :phone => '9797797697', 
                      :expected_graduation => '2018 Spring', :request_semester => '2017 Fall',
                      :course_id => '026', :section_id => '101', :notes => 'hello mar ja',:priority => 'Very High' , :state => 'Active'},
                      {:uin => '225008988', :full_name => 'Bhavik Ameta', 
-                      :major => 'CPSC', :classification => 'G7', :minor => 'Database', :email => 'bhavik@tamu.edu', :phone => '97977979', 
+                      :major => 'CPSC', :classification => 'G7', :minor => 'MECH', :email => 'bhavik@tamu.edu', :phone => '9797769279', 
                       :expected_graduation => '2018 Summer', :request_semester => '2017 Spring',
                       :course_id => '026', :section_id => '101', :notes => 'superman',:priority => 'Very High' , :state => 'Active'},
                       {:uin => '225008989', :full_name => 'Shubham Jain', 
-                      :major => 'CPSC', :classification => 'G8', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
+                      :major => 'CPSC', :classification => 'G8', :minor => 'CVEN', :email => 'shubham7jain@tamu.edu', :phone => '9793477979', 
                       :expected_graduation => '2018 Fall', :request_semester => '2017 Summer',
                       :course_id => '027', :section_id => '101', :notes => 'This force request is at number 1 in queue :P' ,:priority => 'Very High', :state => 'Active'},
                        {:uin => '225008989', :full_name => 'Shubham Jain', 
-                      :major => 'CPSC', :classification => 'G8', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
+                      :major => 'CPSC', :classification => 'G8', :minor => 'MATH', :email => 'shubham7jain@tamu.edu', :phone => '9797797900', 
                       :expected_graduation => '2017 Fall', :request_semester => '2017 Fall',
                       :course_id => '026', :section_id => '101', :notes => 'This force request is at number 1 in queue :P' ,:priority => 'Very High', :state => 'Active'},
                        {:uin => '225008989', :full_name => 'Shubham Jain', 
-                      :major => 'CPSC', :classification => 'G8', :minor => 'Image Processing', :email => 'shubham7jain@tamu.edu', :phone => '97977979', 
+                      :major => 'CPSC', :classification => 'G8', :minor => 'PHYS', :email => 'shubham7jain@tamu.edu', :phone => '9792377979', 
                       :expected_graduation => '2017 Fall', :request_semester => '2017 Spring',
                       :course_id => '028', :section_id => '101', :notes => 'This force request is at number 1 in queue :P',:priority => 'Very High' , :state => 'Active'}]
 
