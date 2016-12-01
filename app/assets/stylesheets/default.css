@@ -310,3 +310,13 @@ select
 .oddrow td {
   background-color: silver; 
 }
+
+.mainbutton {
+  margin: 0 0;
+  padding: 0px;
+  background-color: maroon;
+  color: white;
+  font-size: 1em;
+  font-style: normal;
+  border: none;
+}
