@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'student_requests/getSpreadsheetAllCourses' => 'student_requests#getSpreadsheetAllCourses'
   get 'student_requests/uin/:uin' => 'student_requests#getStudentInformationByUin'
   get 'student_requests/id/:id' => 'student_requests#getStudentInformationById'
+  get 'student_requests/adminprivileges' => 'student_requests#adminprivileges'
+  post 'student_requests/addadmin' => 'student_requests#addadmin'
   
   post 'student_requests/logout' => 'student_requests#logout'
 

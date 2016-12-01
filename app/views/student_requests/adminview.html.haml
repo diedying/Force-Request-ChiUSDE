@@ -1,7 +1,8 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
 %h1 
-  Admin Dashboard Page 
+  Admin Dashboard Page
+= link_to '<button type="button" class="regularbutton">More Actions</button>'.html_safe, student_requests_adminprivileges_path
 .filter_form
   = form_tag student_requests_adminview_path, :method => :get do
     %h4
@@ -10,15 +11,12 @@
         = state
         = check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]
       = submit_tag 'Refresh', class: "filter"
-  
-  = form_tag student_requests_adminview_path, :method => :get do
-    %h4
+
       Filter Requests - Priority:
       - @all_priorities.each do |priority|
         = priority
         = check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
       = submit_tag 'Refresh', class: "filter"
-  %p= link_to "Download the entire Force Request System data as Excel Sheet", student_requests_getSpreadsheetAllCourses_path(format: "csv")
 - @allcourses.each do |course|
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
@@ -72,7 +70,7 @@
               %td= link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\", email_id_list); return false"
             %tr{ :class => "excel_sheet"}
               %td= link_to "Download as Excel Sheet", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
-
+%p= link_to "Download the entire Force Request System data as Excel Sheet", student_requests_getSpreadsheetAllCourses_path(format: "csv")
 #myModal.modal
   %span.close{:onclick => "return spanclick()"} x
   .modal-content

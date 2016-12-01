@@ -207,6 +207,23 @@ class StudentRequestsController < ApplicationController
     @majorList = Major.pluck(:major_id)
   end
   
+  def adminprivileges
+    
+  end
+  
+  def addadmin
+    admin_request_params = {:uin => params[:admin_request][:uin]}
+    @admin_request = Admin.new(admin_request_params)
+    if @admin_request.save
+      flash[:notice] = "Admin was successfully created."
+      redirect_to student_requests_adminview_path
+    else
+      flash[:warning] = @admin_request.errors.full_messages.join(",")
+      redirect_to student_requests_adminview_path
+    end
+      
+  end
+  
   def getStudentInformationById
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]

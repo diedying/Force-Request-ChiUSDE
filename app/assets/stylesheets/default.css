@@ -107,6 +107,13 @@ td {
 	border: 1px solid #008000;
 	width: 230px;
 }
+
+.input-field-admin {
+	background-color :Lightgray;
+	border: 1px solid #008000;
+	width: 230px;
+	height: 20px;
+}
 input[type=submit] {
     width: 100%;
     background-color: brown;
