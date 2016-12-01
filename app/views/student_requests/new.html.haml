@@ -1,65 +1,67 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
-%h1 Making New Request
-.form_new_request
-  = form_tag student_requests_path, :id => 'new_request' do
-    %table{:border => "0"}
-      %tr
-        %td
-          = label :student_request, :full_name, 'Full Name'
-        %td  
-          = text_field :student_request, 'full_name', class: 'input-field', :required => true
-      %tr
-        %td  
-          = label :student_request, :major, 'Major'
-        %td  
-          = select :student_request, 'major', @majorList, :required => true
-      %tr
-        %td   
-          = label :student_request, :classification, 'Classification'
-        %td  
-          = select :student_request, 'classification', @classificationList, :required => true
-      %tr
-        %td    
-          = label :student_request, :minor, 'Minor'
-        %td  
-          = text_field :student_request, 'minor', class: 'input-field'
-      %tr
-        %td 
-          = label :student_request, :email, 'Email'
-        %td  
-          = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
-      %tr
-        %td   
-          = label :student_request, :phone, 'Phone'
-        %td  
-          = text_field :student_request, 'phone', class: 'input-field'
-      %tr
-        %td   
-          = label :student_request, :expected_graduation, 'Expected Graduation'
-        %td 
-          = select :student_request, 'expected_graduation', @YearSemester
-      %tr
-        %td   
-          = label :student_request, :request_semester, 'Request Semester'
-        %td  
-          = select :student_request, 'request_semester', @requestSemester, :required => true
-      %tr
-        %td   
-          = label :student_request, :course_id, 'Course Id'
-        %td  
-          = text_field :student_request, 'course_id', class: 'input-field', :required => true
-      %tr
-        %td   
-          = label :student_request, :section_id, 'Section Id'
-        %td  
-          = text_field :student_request, 'section_id', class: 'input-field', :required => true
-      %tr
-        %td   
-          = label :student_request, :notes, 'Notes '
-        %td  
-          = text_area :student_request, 'notes', class: 'notes'
-  
-    %br
-    %br
-    = submit_tag 'Save Request', :onclick => "return formValidation()"
+%body{:onload => "pageinit()"}
+  %h1 Making New Request
+  .form_new_request
+    = form_tag student_requests_path, :id => 'new_request' do
+      %table{:border => "0"}
+        %tr
+          %td
+            = label :student_request, :full_name, 'Full Name'
+          %td  
+            = text_field :student_request, 'full_name', class: 'input-field', :required => true
+        %tr
+          %td  
+            = label :student_request, :major, 'Major'
+          %td  
+            = select :student_request, 'major', @majorList, :required => true
+        %tr
+          %td   
+            = label :student_request, :classification, 'Classification'
+          %td  
+            = select :student_request, 'classification', @classificationList, :required => true
+        %tr
+          %td    
+            = label :student_request, :minor, 'Minor'
+          %td  
+            = text_field :student_request, 'minor', class: 'input-field', :onfocus => "formtooltip('minor_tip',1)", :onblur => "formtooltip('minor_tip',0)", :size => "6", :type => "text", :value => ""
+            %span#minor_tip.form-help Enter the 4-letter code for your minor, if any
+        %tr
+          %td 
+            = label :student_request, :email, 'Email'
+          %td  
+            = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
+        %tr
+          %td   
+            = label :student_request, :phone, 'Phone'
+          %td  
+            = text_field :student_request, 'phone', class: 'input-field'
+        %tr
+          %td   
+            = label :student_request, :expected_graduation, 'Expected Graduation'
+          %td 
+            = select :student_request, 'expected_graduation', @YearSemester
+        %tr
+          %td   
+            = label :student_request, :request_semester, 'Request Semester'
+          %td  
+            = select :student_request, 'request_semester', @requestSemester, :required => true
+        %tr
+          %td   
+            = label :student_request, :course_id, 'Course Id'
+          %td  
+            = text_field :student_request, 'course_id', class: 'input-field', :required => true
+        %tr
+          %td   
+            = label :student_request, :section_id, 'Section Id'
+          %td  
+            = text_field :student_request, 'section_id', class: 'input-field', :required => true
+        %tr
+          %td   
+            = label :student_request, :notes, 'Notes '
+          %td  
+            = text_area :student_request, 'notes', class: 'notes'
+    
+      %br
+      %br
+      = submit_tag 'Save Request'

@@ -22,6 +22,7 @@ class StudentRequestsController < ApplicationController
   def new
     # default: render 'new' template
     initForNewForceRequest
+    render :new
   end
 
   def create
