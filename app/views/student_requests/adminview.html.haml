@@ -3,20 +3,25 @@
 %h1 
   Admin Dashboard Page
 = link_to '<button type="button" class="regularbutton">More Actions</button>'.html_safe, student_requests_adminprivileges_path
-.filter_form
-  = form_tag student_requests_adminview_path, :method => :get do
-    %h4
-      Filter Requests - State:
-      - @all_states.each do |state|
-        = state
-        = check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]
-      = submit_tag 'Refresh', class: "filter"
-
-      Filter Requests - Priority:
-      - @all_priorities.each do |priority|
-        = priority
-        = check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
-      = submit_tag 'Refresh', class: "filter"
+= form_tag student_requests_adminview_path, :method => :get do
+  %h4
+  .filter_form1
+    %strong Filter Requests - State:
+    %br
+    %table
+    - @all_states.each do |state|
+      %tr
+        %td= state
+        %td= check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]
+    = submit_tag 'Refresh', class: "filter"
+  .filter_form2
+    %strong Filter Requests - Priority:
+    %br
+    %table
+    - @all_priorities.each do |priority|
+      %td= priority
+      %td= check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
+    = submit_tag 'Refresh', class: "filter"
 - @allcourses.each do |course|
   %h4
     %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
