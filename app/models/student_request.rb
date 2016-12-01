@@ -81,7 +81,13 @@ class StudentRequest < ActiveRecord::Base
     validates :request_semester, inclusion: { in: YEAR_SEMESTER, 
       message: "%{value} is not a valid request semester" }
     before_create :create_request_id
+    before_save :update_time
+    
 
+    def update_time
+      self.last_updated = DateTime.now()
+    end
+    
     def create_request_id
       begin
         self. request_id = "FRS" + SecureRandom.hex(10)
