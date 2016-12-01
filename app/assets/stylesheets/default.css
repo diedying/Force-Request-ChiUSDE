@@ -156,10 +156,19 @@ input[type= submit].logout-class
     padding: 20px;
 }
 
-.filter_form {
+.filter_form1 {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    /*padding: 2px;*/
+    width: 50%;
+    float: left;
+}
+
+.filter_form2 {
+    /*border-radius: 5px;*/
+    background-color: #f2f2f2;
+    /*padding: 20px;*/
+    margin-left: 50%;
 }
 
 #update_admin_form {
@@ -206,7 +215,7 @@ input[type= submit].logout-class
 }
 
 input[type=submit].filter {
-    width: 10%;
+    width: 20%;
     background-color: maroon;
     color: white;
     padding: 14px 20px;
