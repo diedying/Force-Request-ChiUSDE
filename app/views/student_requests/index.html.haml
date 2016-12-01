@@ -1,38 +1,43 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
 %h1 Students Dashboard Page
-%table#student_requests.sortable
-  %thead
-    %tr
-      %th UIN
-      %th Full Name
-      %th Major
-      %th Classification
-      %th Minor
-      %th Course ID
-      %th Section ID
-      %th State
-      %th Notes By Me
-      %th Notes By Admin
-      %th Action
-      
-     
-  %tbody
-    - @student_requests.each do |record|
+
+- if @student_requests[0].nil?
+  %h1= "Howdy! #{session_get(:uin)}. Sorry, you have no Requests " 
+- else
+  %h1= "Howdy! Welcome back #{@student_requests[0].full_name} "
+
+= link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
+
+- if @student_requests[0] != nil
+  %table#student_requests.sortable
+    %thead
       %tr
-        %td= record.uin 
-        %td= record.full_name
-        %td= record.major
-        %td= record.classification
-        %td= record.minor
-        %td= record.course_id
-        %td= record.section_id
-        %td= record.state
-        %td= record.notes
-        %td= record.notes_to_student
-        %td 
-          -if record.state == StudentRequest::ACTIVE_STATE
-            = button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put, :data => { confirm: 'Are you sure?', disable_with: 'loading...' }
+        %th UIN
+        %th Full Name
+        %th Major
+        %th Classification
+        %th Minor
+        %th Course ID
+        %th Section ID
+        %th State
+        %th Notes By Me
+        %th Notes By Admin
+        %th Action
+    %tbody
+      - @student_requests.each do |record|
+        %tr
+          %td= record.uin 
+          %td= record.full_name
+          %td= record.major
+          %td= record.classification
+          %td= record.minor
+          %td= record.course_id
+          %td= record.section_id
+          %td= record.state
+          %td= record.notes
+          %td= record.notes_to_student
+          %td 
+            -if record.state == StudentRequest::ACTIVE_STATE
+              = button_to 'Withdraw', {:action => "update", :id => record.request_id, :controller => "student_requests"}, :method => :put, :data => { confirm: 'Are you sure?', disable_with: 'loading...' }
 
-
-  = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
