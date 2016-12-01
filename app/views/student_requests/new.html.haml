@@ -38,14 +38,14 @@
             = text_field :student_request, 'phone', class: 'input-field'
         %tr
           %td   
-            = label :student_request, :expected_graduation, 'Expected Graduation'
+            = label :student_request, :expected_graduation, 'Expected Graduation*'
           %td 
-            = select :student_request, 'expected_graduation*', @YearSemester
+            = select :student_request, 'expected_graduation', @YearSemester
         %tr
           %td   
-            = label :student_request, :request_semester, 'Request Semester'
+            = label :student_request, :request_semester, 'Request Semester*'
           %td  
-            = select :student_request, 'request_semester*', @requestSemester, :required => true
+            = select :student_request, 'request_semester', @requestSemester, :required => true
         %tr
           %td   
             = label :student_request, :course_id, 'Course Id*'
