@@ -22,6 +22,8 @@ class StudentRequest < ActiveRecord::Base
     # List Year and Semester
     CURRENT_YEAR = time.strftime("%Y")
     current_year = CURRENT_YEAR.to_i
+    CURRENT_MONTH = time.strftime("%m")
+    current_month = CURRENT_MONTH.to_i
     
     LIST_YEAR = []
     for i in current_year..current_year+10
@@ -33,25 +35,47 @@ class StudentRequest < ActiveRecord::Base
     YEAR_SEMESTER = []
     LIST_YEAR.each do |year|
       LIST_SEMESTER.each do |semester|
-        YEAR_SEMESTER << year + " " + semester
+        if year.to_i == current_year and current_month <= 4
+          YEAR_SEMESTER << year + " " + semester
+        elsif year.to_i == current_year and current_month <= 8 and semester != "Spring"
+          YEAR_SEMESTER << year + " " + semester
+        elsif semester == "Fall"
+          YEAR_SEMESTER << year + " " + semester
+        elsif year.to_i != current_year
+          YEAR_SEMESTER << year + " " + semester
+        end
       end
     end
     
     REQUEST_SEMESTER = []
     for i in current_year..current_year+1
       LIST_SEMESTER.each do |semester|
-        REQUEST_SEMESTER << i.to_s + " " + semester
+        if i == current_year and current_month <= 4
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif i == current_year and current_month <= 8 and semester != "Spring"
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif semester == "Fall"
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        elsif i != current_year
+          REQUEST_SEMESTER << i.to_s + " " + semester
+        end
       end
     end
     
     self.primary_key = "request_id"
     validates :uin, presence: true
     validates :full_name, presence: true
+    validates_format_of :full_name, :with => /^[^0-9`!@#\$%\^&*+_=]+$/, :multiline => true
     validates :major, presence: true
     validates :classification, presence: true
     validates :email, presence: true
+    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     validates :request_semester, presence: true
     validates :course_id, presence: true
+    validates_format_of :course_id, :with => /^\d+$/, :multiline => true
+    validates_format_of :section_id, :with => /^\d*$/, :multiline => true
+    validates_format_of :phone, :with => /1?\s*\W?\s*([2-9][0-8][0-9])\s*\W?\s*([2-9][0-9]{2})\s*\W?\s*([0-9]{4})(\se?x?t?(\d*))?/
+    validates_format_of :minor, :with => /^[a-zA-Z]{4}$/, :multiline => true
     validates :classification, inclusion: { in: CLASSIFICATION_LIST, 
       message: "%{value} is not a valid classification" }
     validates :request_semester, inclusion: { in: YEAR_SEMESTER, 

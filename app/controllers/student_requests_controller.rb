@@ -34,7 +34,7 @@ class StudentRequestsController < ApplicationController
       flash[:notice] = "Student Request was successfully created."
       redirect_to student_requests_path
     else
-      flash[:warning] = @student_request.errors.full_messages.join(",")
+      flash[:warning] = @student_request.errors.full_messages.join(", ")
       initForNewForceRequest
       render :new
     end
@@ -205,6 +205,23 @@ class StudentRequestsController < ApplicationController
     @YearSemester = StudentRequest::YEAR_SEMESTER
     @requestSemester = StudentRequest::REQUEST_SEMESTER
     @majorList = Major.pluck(:major_id)
+  end
+  
+  def adminprivileges
+    
+  end
+  
+  def addadmin
+    admin_request_params = {:uin => params[:admin_request][:uin]}
+    @admin_request = Admin.new(admin_request_params)
+    if @admin_request.save
+      flash[:notice] = "Admin was successfully created."
+      redirect_to student_requests_adminview_path
+    else
+      flash[:warning] = @admin_request.errors.full_messages.join(",")
+      redirect_to student_requests_adminview_path
+    end
+      
   end
   
   def getStudentInformationById

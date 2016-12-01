@@ -1,0 +1,19 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
+%h1 
+  Add Admin Request
+  .form_new_request
+  = form_tag student_requests_addadmin_path, :id => 'new_request' do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :uin, 'UIN of Admin to be added'
+        %td 
+          = text_field :admin_request, 'uin', class: 'input-field-admin', :required => true
+      %tr
+      
+    %br
+    %br
+    = submit_tag 'Save Request'
+  
+  
