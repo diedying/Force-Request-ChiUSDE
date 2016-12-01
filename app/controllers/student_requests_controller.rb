@@ -177,7 +177,7 @@ class StudentRequestsController < ApplicationController
   
   def logout
     session_remove
-    @current_state = nil
+    session_update(:current_state, nil)
     redirect_to root_path
   end
   
