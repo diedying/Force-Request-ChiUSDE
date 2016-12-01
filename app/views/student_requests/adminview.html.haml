@@ -32,12 +32,12 @@
             %th Major
             %th Class
             %th Minor
-            %th Course ID
             %th Section ID
             %th Expected Graduation
             %th Request Semester
             %th State
             %th Priority
+            %th Creation date
             %th Email
       
         %tbody
@@ -54,12 +54,12 @@
               %td= record.major
               %td= record.classification
               %td= record.minor
-              %td= record.course_id
               %td= record.section_id
               %td= record.expected_graduation
               %td= record.request_semester
               %td= record.state
               %td= record.priority
+              %td= record.creation_date.strftime("%B %d, %Y %H:%M:%S")
               %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
             
           %table{ :class => "multiUpdate" }
