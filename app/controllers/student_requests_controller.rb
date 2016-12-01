@@ -230,4 +230,14 @@ class StudentRequestsController < ApplicationController
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
     @student_by_id =  StudentRequest.where(request_id: params[:id])
   end
+  
+  def deleteall
+    @student_requests = StudentRequest.all.as_json
+    @student_requests.each do |record|
+      record.delete('id')
+      StudentRequestArchival.create!(record)
+    end
+    StudentRequest.delete_all
+    redirect_to student_requests_adminview_path
+  end
 end

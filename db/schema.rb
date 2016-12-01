@@ -57,6 +57,28 @@ ActiveRecord::Schema.define(version: 20161109212823) do
     t.text     "notes_to_student"
     t.text     "admin_notes"
   end
+  
+  create_table "student_request_archivals", force: :cascade do |t|
+    t.string   "request_id"
+    t.string   "uin"
+    t.string   "full_name"
+    t.string   "major"
+    t.string   "classification"
+    t.string   "minor"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "expected_graduation"
+    t.string   "request_semester"
+    t.string   "course_id"
+    t.string   "section_id"
+    t.text     "notes"
+    t.string   "state"
+    t.string   "priority"
+    t.datetime "creation_date", :default => DateTime.now
+    t.datetime "last_updated", :default => DateTime.now
+    t.text     "notes_to_student"
+    t.text     "admin_notes"
+  end
 
   add_index "student_requests", ["course_id"], name: "index_student_requests_on_course_id"
   add_index "student_requests", ["request_id"], name: "index_student_requests_on_request_id", unique: true
