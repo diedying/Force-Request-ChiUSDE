@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'student_requests/id/:id' => 'student_requests#getStudentInformationById'
   get 'student_requests/adminprivileges' => 'student_requests#adminprivileges'
   post 'student_requests/addadmin' => 'student_requests#addadmin'
+  delete 'student_requests/deleteall' => 'student_requests#deleteall'
   get 'student_requests/homeRedirect' => 'student_requests#homeRedirect'
   
   post 'student_requests/logout' => 'student_requests#logout'
