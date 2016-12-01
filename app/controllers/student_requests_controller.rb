@@ -147,12 +147,15 @@ class StudentRequestsController < ApplicationController
   end
 
   def login
+    session_update(:current_state, nil)
     if params[:session][:uin] =~ /^\d+$/
       session_update(:uin, params[:session][:uin])
       
       if Admin.exists?(:uin => session_get(:uin))
+        session_update(:current_state, "admin")
         redirect_to student_requests_adminview_path
       else
+        session_update(:current_state, "student")
         redirect_to student_requests_path
       end
     else
@@ -161,8 +164,20 @@ class StudentRequestsController < ApplicationController
     end
   end
   
+  def homeRedirect
+    @currentstate = session_get(:current_state)
+    if @currentstate == "admin"
+      redirect_to student_requests_adminview_path
+    elsif @currentstate == "student"
+      redirect_to student_requests_path
+    else
+      redirect_to root_path
+    end
+  end
+  
   def logout
     session_remove
+    session_update(:current_state, nil)
     redirect_to root_path
   end
   
