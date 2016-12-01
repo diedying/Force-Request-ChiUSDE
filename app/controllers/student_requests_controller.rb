@@ -125,22 +125,31 @@ class StudentRequestsController < ApplicationController
   end
   
   def updaterequestbyadmin
+    isUpdated = false 
     @student_request = StudentRequest.find params[:id]
-    if([StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE].include? params[:state] or
-      [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY].include? params[:priority])
-      if(params[:state] != "Select State")
-        @student_request.state = params[:state]
-      end
-      if(params[:priority] != "Select Priority")
-         @student_request.priority = params[:priority]
-      end
+    if(StudentRequest::STATES_AVAILABLE_TO_ADMIN.include? params[:state])
+      @student_request.state = params[:state]
+      isUpdated = true
+    end
+    if(StudentRequest::PRIORITY_LIST.include? params[:priority])
+       @student_request.priority = params[:priority]
+       isUpdated = true
+    end
       
+    unless params[:notes_for_myself].nil?
       @student_request.admin_notes = params[:notes_for_myself]
+      isUpdated = true
+    end
+    unless params[:notes_for_student].nil?
       @student_request.notes_to_student = params[:notes_for_student]
+      isUpdated = true
+    end
+    
+    if(isUpdated)
       @student_request.save!
-      flash[:notice] = "The request was successfully updated to " + @student_request.state + " " + @student_request.priority
+      flash[:notice] = "The " + @student_request.request_id + " request was successfully updated"
     else 
-      flash[:notice] = "Please Select Appropriate action " 
+      flash[:warning] = "Please Select Appropriate action " 
     end
    
     redirect_to student_requests_adminview_path
