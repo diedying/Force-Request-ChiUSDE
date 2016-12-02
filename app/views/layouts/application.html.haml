@@ -15,7 +15,7 @@
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
-      - elsif flash[:warning]
+      - if flash[:warning]
         #warning.message= flash[:warning]
 
       = yield
