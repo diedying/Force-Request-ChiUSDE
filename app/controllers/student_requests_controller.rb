@@ -127,29 +127,33 @@ class StudentRequestsController < ApplicationController
   def updaterequestbyadmin
     isUpdated = false 
     @student_request = StudentRequest.find params[:id]
-    if(StudentRequest::STATES_AVAILABLE_TO_ADMIN.include? params[:state])
-      @student_request.state = params[:state]
-      isUpdated = true
-    end
-    if(StudentRequest::PRIORITY_LIST.include? params[:priority])
-       @student_request.priority = params[:priority]
-       isUpdated = true
-    end
+    if(@student_request.state == StudentRequest::WITHDRAWN_STATE)
+      flash[:warning] = "Request has been already been withdrawn by student. Please refresh your Page."
+    else
+      if(StudentRequest::STATES_AVAILABLE_TO_ADMIN.include? params[:state])
+        @student_request.state = params[:state]
+        isUpdated = true
+      end
+      if(StudentRequest::PRIORITY_LIST.include? params[:priority])
+         @student_request.priority = params[:priority]
+         isUpdated = true
+      end
+        
+      unless params[:notes_for_myself].nil?
+        @student_request.admin_notes = params[:notes_for_myself]
+        isUpdated = true
+      end
+      unless params[:notes_for_student].nil?
+        @student_request.notes_to_student = params[:notes_for_student]
+        isUpdated = true
+      end
       
-    unless params[:notes_for_myself].nil?
-      @student_request.admin_notes = params[:notes_for_myself]
-      isUpdated = true
-    end
-    unless params[:notes_for_student].nil?
-      @student_request.notes_to_student = params[:notes_for_student]
-      isUpdated = true
-    end
-    
-    if(isUpdated)
-      @student_request.save!
-      flash[:notice] = "The " + @student_request.request_id + " request was successfully updated"
-    else 
-      flash[:warning] = "Please Select Appropriate action " 
+      if(isUpdated)
+        @student_request.save!
+        flash[:notice] = "The " + @student_request.request_id + " request was successfully updated"
+      else 
+        flash[:warning] = "Please Select Appropriate action " 
+      end
     end
    
     redirect_to student_requests_adminview_path
@@ -213,21 +217,31 @@ class StudentRequestsController < ApplicationController
       isUpdate = false
       params[:request_ids].each { |id|
         @student_request = StudentRequest.find id
-        if(params[:multi_state_sel] != "Select State")
-          isUpdate = true
-          @student_request.state = params[:multi_state_sel]
-          @student_request.save!
-        end
-        if(params[:multi_priority_sel] != "Select Priority")
-          isUpdate = true
-          @student_request.priority = params[:multi_priority_sel]
-          @student_request.save!
+        if(@student_request.state == StudentRequest::WITHDRAWN_STATE)
+          flash[:warning] = "Student has already withdraw his request"
+        else
+          if(params[:multi_state_sel] != "Select State")
+            isUpdate = true
+            @student_request.state = params[:multi_state_sel]
+            @student_request.save!
+          end
+          if(params[:multi_priority_sel] != "Select Priority")
+            isUpdate = true
+            @student_request.priority = params[:multi_priority_sel]
+            @student_request.save!
+          end
         end
       }
       if(isUpdate)
-        flash[:notice] = "Requests has been updated"
+        if(flash[:warning].nil?)
+          flash[:notice] = "Requests have been updated"
+        else
+          flash[:notice] = "Some Requests have been updated"
+        end
       else
-        flash[:warning] = "No State or Priority Selected"
+        if(flash[:warning].nil?)
+          flash[:warning] = "No State or Priority Selected"
+        end
       end
     else
       flash[:warning] = "Nothing has been selected for Update"
