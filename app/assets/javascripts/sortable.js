@@ -103,7 +103,7 @@ function ts_resortTable(lnk, clid) {
 	if (itm == "") return;
 	sortfn = ts_sort_caseinsensitive;
 	if (itm.match(/^\d\d[\/\.-][a-zA-z][a-zA-Z][a-zA-Z][\/\.-]\d\d\d\d$/)) sortfn = ts_sort_date;
-	if (itm.match(/^\d\d[\/\.-]\d\d[\/\.-]\d\d\d{2}?$/)) sortfn = ts_sort_date;
+	if (itm.match(/^\d\d\d\d[\/\.-]\d\d[\/\.-]\d\d\s\d\d:\d\d:\d\d?$/)) sortfn = custom_sort_date;
 	if (itm.match(/^-?[£$€Û¢´]\d/)) sortfn = ts_sort_numeric;
 	if (itm.match(/^-?(\d+[,\.]?)+(E[-+][\d]+)?%?$/)) sortfn = ts_sort_numeric;
 	if (itm.match(/\b(^High$|^Low$|^Very High$|^Very Low$|^Normal$)\b/)) sortfn = ts_sort_priority;
@@ -222,6 +222,20 @@ function sort_date(date) {
 	return dt;
 }
 
+function custom_sort_date(a, b) {
+	a = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]);
+	b = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]);
+	a = a.toString().replace(/ /g,"T");
+	b = b.toString().replace(/ /g,"T");
+	var d1 = new Date(a);
+	var d2 = new Date(b);
+	
+	if(d1.getTime() == d2.getTime())
+		return 0;
+	else if(d1.getTime() < d2.getTime())
+		return -1;
+	return 1;
+}
 function ts_sort_date(a,b) {
 	dt1 = sort_date(ts_getInnerText(a.cells[SORT_COLUMN_INDEX]));
 	dt2 = sort_date(ts_getInnerText(b.cells[SORT_COLUMN_INDEX]));

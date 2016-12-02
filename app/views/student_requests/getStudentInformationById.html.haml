@@ -33,11 +33,14 @@
       %th State
       %td= record.state
     %tr  
-      %th Student Notes
+      %th Notes by Student
       %td= record.notes
     %tr  
-      %th Admin Notes
+      %th Notes by Admin for Student
       %td= record.notes_to_student
+    %tr  
+      %th Notes by Admin for tracking
+      %td= record.admin_notes
     %tr  
       %th{ :class => "update_admin" } Action
       %td

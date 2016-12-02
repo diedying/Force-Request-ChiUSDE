@@ -62,7 +62,7 @@
               %td= record.request_semester
               %td= record.state
               %td= record.priority
-              %td= record.creation_date.strftime("%B %d, %Y %H:%M:%S")
+              %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
               %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
             
           %table{ :class => "multiUpdate" }
