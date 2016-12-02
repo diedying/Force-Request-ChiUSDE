@@ -121,6 +121,7 @@ class StudentRequestsController < ApplicationController
         @students = @students.reject{ |s| @priority_selected[s.priority] == false}
         @coursestudentlist[course] = @students
       end
+      @allcourses = @allcourses.sort
     end
   end
   
