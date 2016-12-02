@@ -6,5 +6,6 @@ john_doe:
     major: CSCE
     classification: G7
     email: johndoe@tamu.edu
-    request_semester: Fall
+    request_semester: 2016 Fall
     course_id: 606
+    section_id: 600
