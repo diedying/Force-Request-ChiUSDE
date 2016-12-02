@@ -107,6 +107,7 @@ function ts_resortTable(lnk, clid) {
 	if (itm.match(/^-?[£$€Û¢´]\d/)) sortfn = ts_sort_numeric;
 	if (itm.match(/^-?(\d+[,\.]?)+(E[-+][\d]+)?%?$/)) sortfn = ts_sort_numeric;
 	if (itm.match(/\b(^High$|^Low$|^Very High$|^Very Low$|^Normal$)\b/)) sortfn = ts_sort_priority;
+	if (itm.match(/\b(^U0|^U1$|^U2$|^U3$|^U4$|^U5$|^G6$|^G7$|^G8$|^G9$)\b/)) sortfn = ts_sort_classification;
 	SORT_COLUMN_INDEX = column;
 	var firstRow = new Array();
 	var newRows = new Array();
@@ -268,6 +269,31 @@ function ts_sort_priority(a,b) {
 	dict['Normal'] = 3;
 	dict['Low'] = 4;
 	dict['Very Low'] = 5;
+	aa = dict[aa];
+	bb = dict[bb];
+	if (aa==bb) {
+		return 0;
+	}
+	if (aa<bb) {
+		return -1;
+	}
+	return 1;
+}
+function ts_sort_classification(a,b) {
+	aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]);
+	bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]);
+	var dict = {};
+
+	dict['G9'] = 1;
+	dict['G8'] = 2;
+	dict['G7'] = 3;
+	dict['G6'] = 4;
+	dict['U5'] = 5;
+	dict['U4'] = 6;
+	dict['U3'] = 7;
+	dict['U2'] = 8;
+	dict['U1'] = 9;
+	dict['U0'] = 10;
 	aa = dict[aa];
 	bb = dict[bb];
 	if (aa==bb) {
