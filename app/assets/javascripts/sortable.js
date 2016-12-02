@@ -103,7 +103,7 @@ function ts_resortTable(lnk, clid) {
 	if (itm == "") return;
 	sortfn = ts_sort_caseinsensitive;
 	if (itm.match(/^\d\d[\/\.-][a-zA-z][a-zA-Z][a-zA-Z][\/\.-]\d\d\d\d$/)) sortfn = ts_sort_date;
-	if (itm.match(/^\d\d[\/\.-]\d\d[\/\.-]\d\d\d{2}?$/)) sortfn = ts_sort_date;
+	if (itm.match(/^\d\d[\/\.-]\d\d[\/\.-]\d\d\d\d\s\d\d:\d\d:\d\d?$/)) sortfn = ts_sort_date;
 	if (itm.match(/^-?[£$€Û¢´]\d/)) sortfn = ts_sort_numeric;
 	if (itm.match(/^-?(\d+[,\.]?)+(E[-+][\d]+)?%?$/)) sortfn = ts_sort_numeric;
 	if (itm.match(/\b(^High$|^Low$|^Very High$|^Very Low$|^Normal$)\b/)) sortfn = ts_sort_priority;
