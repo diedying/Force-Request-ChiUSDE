@@ -243,7 +243,9 @@ class StudentRequestsController < ApplicationController
   end
   
   def adminprivileges
-    
+    if session_get(:uin) == nil
+      redirect_to root_path
+    end
   end
   
   def addadmin
