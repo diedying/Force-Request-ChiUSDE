@@ -3,6 +3,14 @@ Given(/^I am on the Student Dashboard Page$/) do
   visit('/')
   fill_in('Enter your UIN', :with => "1234312")
   click_button('Login')
+  majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {:major_id => 'ELEN'}, {:major_id => 'APMS'},
+            {:major_id => 'CPSL'}, {:major_id => 'CECL'}, {:major_id => 'CEEL'}, {:major_id => 'Others'}]
+  existingMajors = Major.all
+  if existingMajors.blank?
+    majors.each do |record|
+      Major.create!(record)
+    end
+  end
 end
 
 When(/^I click on New Force Request/) do
