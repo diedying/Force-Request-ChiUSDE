@@ -140,11 +140,11 @@ class StudentRequestsController < ApplicationController
          isUpdated = true
       end
         
-      unless params[:notes_for_myself].nil?
+      unless params[:notes_for_myself].nil? or params[:notes_for_myself].empty?
         @student_request.admin_notes = params[:notes_for_myself]
         isUpdated = true
       end
-      unless params[:notes_for_student].nil?
+      unless params[:notes_for_student].nil? or params[:notes_for_student].empty?
         @student_request.notes_to_student = params[:notes_for_student]
         isUpdated = true
       end
