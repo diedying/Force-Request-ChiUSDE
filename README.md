@@ -28,4 +28,3 @@ Steps to start the Force Request System:-
     - Starts the rails application
 
 For seeing the admin view, simply give admin UIN. For testing purpose, UIN are mentioned in seeds.rb. All other UINs are by default considered for students.
-
