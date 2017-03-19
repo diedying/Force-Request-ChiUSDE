@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   #root 'movies#index'
-  root 'student_requests#student_init'
+  # root 'student_requests#student_init'
+  root 'users#user_init'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -71,4 +74,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  resources :users
+  post 'users/signup' => 'users/signup'
+  # get 'student_requests/adminview' => 'student_requests#adminview'
+  # post 'student_requests/login' => 'student_requests#login'
 end

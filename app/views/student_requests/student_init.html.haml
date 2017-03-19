@@ -7,6 +7,11 @@
           = label :session, :uin, 'Enter your UIN'
         %td
           = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]+", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
+      %tr
+        %td
+          = label :session, :password, 'Enter your password'
+        %td
+          = text_field(:session, :password, class: 'input-field')
     %br
     %br
     = submit_tag 'Login'

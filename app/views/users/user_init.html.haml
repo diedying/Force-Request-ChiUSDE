@@ -1,0 +1,17 @@
+%h1 Sign Up Page
+.signuppage
+  =  form_tag('/users/signup', method: :post) do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :session, :name, 'Enter your name'
+        %td
+          = text_field(:session, :name, class: 'input-field')
+      %tr
+        %td
+          = label :session, :email, 'Enter your email'
+        %td
+          = text_field(:session, :email, class: 'input-field')
+    %br
+    %br
+    = submit_tag 'Signup'

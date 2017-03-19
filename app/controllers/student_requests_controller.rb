@@ -165,6 +165,8 @@ class StudentRequestsController < ApplicationController
     if params[:session][:uin] =~ /^\d+$/
       session_update(:uin, params[:session][:uin])
       
+      session_update(:password, params[:session][:password])
+      
       if Admin.exists?(:uin => session_get(:uin))
         session_update(:current_state, "admin")
         redirect_to student_requests_adminview_path
