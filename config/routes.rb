@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   
   resources :users
   post 'users/signup' => 'users/signup'
+  
   # get 'student_requests/adminview' => 'student_requests#adminview'
   # post 'student_requests/login' => 'student_requests#login'
 end

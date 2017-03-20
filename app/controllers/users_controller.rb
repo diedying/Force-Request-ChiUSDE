@@ -23,8 +23,11 @@ class UsersController < ApplicationController
   def login
     @cur_user = User.where("name ='#{params[:session][:name]}' and password ='#{params[:session][:password]}'")
     if @cur_user[0].nil?
-      # flash[:notice] = "Your record is already there"
-      redirect_to new_user_path
+      flash[:warning] = "Wrong password or user name"
+      # redirect_to root_path
+      # redirect_to user_init_path
+      # redirect_to new_user_path
+      redirect_to '/'
     else
       redirect_to users_path
     end
