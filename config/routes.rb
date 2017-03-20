@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/new'
-
+  # get 'users/new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,7 +66,12 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-
+  
+  resources :users
+  post 'users/login' => 'users#login'
+  post 'users/signup' => 'users#signup'
+  get 'users/new' => 'users#signupPage'
+  
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

@@ -14,8 +14,10 @@
       %tr
         %th Name
         %th Email
+        %th Password
     %tbody
       - @users.each do |record|
         %tr
           %td= record.name 
           %td= record.email
+          %td= record.password

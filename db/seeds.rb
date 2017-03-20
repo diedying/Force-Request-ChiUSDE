@@ -57,7 +57,7 @@ majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {
             
 admins = [{:uin => '123'}, {:uin => '123456789'}, {:uin => '456789123'}, {:uin => '987654321'}]
 
-users = [{:name => 'shuocun', :email => 'ginolee@tamu.edu'}]
+users = [{:name => 'shuocun', :email => 'ginolee@tamu.edu', :password => 'Shuo0727~~'}]
 
 student_requests.each do |record|
   StudentRequest.create!(record)
