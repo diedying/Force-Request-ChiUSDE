@@ -99,14 +99,8 @@ ActiveRecord::Schema.define(version: 20170319213912) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-<<<<<<< HEAD
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-=======
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
->>>>>>> master
   end
 
 end
