@@ -4,14 +4,15 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :session, :name, 'Enter your name'
+          = label :session, :uin, 'Enter your uin'
         %td
-          = text_field(:session, :name, class: 'input-field')
+          = text_field(:session, :uin, class: 'input-field')
       %tr
         %td
           = label :session, :password, 'Enter your password'
         %td
-          = text_field(:session, :password, class: 'input-field')
+          // = text_field(:session, :password, class: 'input-field')
+          = password_field(:session, :password, class: 'input-field')
     %br
     %br
     = submit_tag 'Login'

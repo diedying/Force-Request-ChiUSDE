@@ -21,16 +21,34 @@ class UsersController < ApplicationController
   end
   
   def login
-    @cur_user = User.where("name ='#{params[:session][:name]}' and password ='#{params[:session][:password]}'")
-    if @cur_user[0].nil?
-      flash[:warning] = "Wrong password or user name"
-      # redirect_to root_path
-      # redirect_to user_init_path
-      # redirect_to new_user_path
-      redirect_to '/'
+    
+    session_update(:current_state, nil)
+    #first, check if the input uin is valid
+    if params[:session][:uin] =~ /^\d+$/
+      @cur_user = User.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
+      @cur_admin = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
+      
+      session_update(:password, params[:session][:password])
+      session_update(:uin, params[:session][:uin])
+      #check if this uin is admin or student
+      # if Admin.exists?(:uin => session_get(:uin))
+      if @cur_admin[0].nil? and @cur_user[0].nil?
+        flash[:notice] = "Your UIN or Password is WRONG!"
+        redirect_to root_path
+      #then, check if it is admin
+      elsif @cur_user[0].nil?
+        session_update(:name, @cur_admin[0][:name])
+        session_update(:current_state, "admin")
+        redirect_to student_requests_adminview_path
+      #if not, it must be a student
+      else
+        session_update(:name, @cur_user[0][:name])
+        session_update(:current_state, "student")
+        redirect_to student_requests_path
+      end
     else
-      redirect_to users_path
+      flash[:warning] = "Invalid UIN format"
+      redirect_to root_path
     end
   end
-  
 end

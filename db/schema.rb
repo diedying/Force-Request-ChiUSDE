@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20170319213912) do
 
   create_table "admins", force: :cascade do |t|
     t.string "uin"
+    t.string "name"
+    t.string "password"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -97,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170319213912) do
   add_index "student_requests", ["state"], name: "index_student_requests_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "uin"
     t.string   "name"
     t.string   "email"
     t.string   "password"
