@@ -58,14 +58,14 @@ majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {
 # admins = [{:uin => '123'}, {:uin => '123456789'}, {:uin => '456789123'}, {:uin => '987654321'}]
 admins = [{:uin => '123', :name => 'admin', :password => '123'}]
 
-users = [{:uin => '111', :name => 'shuocun', :email => 'ginolee@tamu.edu', :password => 'Shuo0727~~'},
-         {:uin => '222', :name => 'Mo Li', :email => 'king_lm@tamu.edu', :password => '123'}]
-students = [{:uin => '126003824', :password => '123123', :name => 'Mo Li', :email => 'king_lm@tamu.edu'},
+students = [{:uin => '222222222', :name => 'shuocun', :email => 'ginolee@tamu.edu', :password => 'Shuo0727~~'},
+            {:uin => '126003824', :password => '123123', :name => 'Mo Li', :email => 'king_lm@tamu.edu'},
             {:uin => '111111111', :password => '123456', :name => 'ROBOT', :email => 'robot@tamu.edu'}
             ]
 students.each do |student|
    Student.create!(student) 
 end
+
 student_requests.each do |record|
   StudentRequest.create!(record)
 end
@@ -76,8 +76,4 @@ end
 
 admins.each do |record|
   Admin.create!(record)
-end
-
-users.each do |record|
-  User.create!(record)
 end

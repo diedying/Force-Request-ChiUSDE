@@ -1,12 +1,17 @@
 %h1 Signup Page
 .signuppage
-  =  form_tag('/users/signup', method: :post) do
+  =  form_tag('/students/create', method: :post) do
     %table{:border => "0"}
       %tr
         %td
           = label :session, :name, 'Enter your name'
         %td
           = text_field(:session, :name, class: 'input-field')
+      %tr
+        %td
+          = label :session, :uin, 'Enter your UIN'
+        %td
+          = text_field(:session, :uin, class: 'input-field')
       %tr
         %td
           = label :session, :email, 'Enter your email'

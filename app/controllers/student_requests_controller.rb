@@ -160,26 +160,6 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_adminview_path
   end
 
-  # def login
-  #   session_update(:current_state, nil)
-  #   if params[:session][:uin] =~ /^\d+$/
-  #     session_update(:uin, params[:session][:uin])
-      
-  #     session_update(:password, params[:session][:password])
-      
-  #     if Admin.exists?(:uin => session_get(:uin))
-  #       session_update(:current_state, "admin")
-  #       redirect_to student_requests_adminview_path
-  #     else
-  #       session_update(:current_state, "student")
-  #       redirect_to student_requests_path
-  #     end
-  #   else
-  #     flash[:warning] = "Invalid UIN format"
-  #     redirect_to root_path
-  #   end
-  # end
-  
   #login for students and admin
   def login
     session_update(:current_state, nil)
@@ -189,21 +169,26 @@ class StudentRequestsController < ApplicationController
       if params[:session][:user] == 'admin'
         @cur_user = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
         if @cur_user[0].nil?
-          flash[:notice] = "Your UIN or Password is WRONG!"
+          flash[:warning] = "Your UIN or Password is WRONG!"
           redirect_to root_path
         else
+          #update the session value which could be used in other pages
           session_update(:name, @cur_user[0][:name])
+          #:current_state could indicate the current user is admin or student
           session_update(:current_state, "admin")
+          session_update(:uin, @cur_user[0][:uin])
           redirect_to student_requests_adminview_path
         end
       elsif params[:session][:user] == 'student'
         @cur_user = Student.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
         if @cur_user[0].nil?
-          flash[:notice] = "Your UIN or Password is WRONG!"
+          flash[:warning] = "Your UIN or Password is WRONG!"
           redirect_to root_path
         else
+          #update the session value which could be used in other pages
           session_update(:name, @cur_user[0][:name])
           session_update(:current_state, "student")
+          session_update(:uin, @cur_user[0][:uin])
           redirect_to student_requests_path
         end
       end
