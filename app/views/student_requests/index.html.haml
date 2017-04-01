@@ -8,6 +8,7 @@
 - else
   %h2= "Howdy! Welcome back #{@student_requests[0].full_name} "
 
+
 = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
 
 - if @student_requests[0] != nil

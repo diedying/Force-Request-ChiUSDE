@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170331030535) do
   create_table "students", force: :cascade do |t|
     t.string   "uin"
     t.string   "password"
+    t.string   "major"
+    t.string   "classification"
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"

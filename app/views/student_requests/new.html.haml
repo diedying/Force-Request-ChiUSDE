@@ -9,17 +9,17 @@
           %td
             = label :student_request, :full_name, 'Full Name*'
           %td  
-            = text_field :student_request, 'full_name', class: 'input-field', :required => true
+            = @students[0].uin
         %tr
           %td  
             = label :student_request, :major, 'Major*'
           %td  
-            = select :student_request, 'major', @majorList, :required => true
+            = @students[0].major
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
-            = select :student_request, 'classification', @classificationList, :required => true
+            = @students[0].classification
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
@@ -30,7 +30,7 @@
           %td 
             = label :student_request, :email, 'Email*'
           %td  
-            = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
+            = @students[0].email
         %tr
           %td   
             = label :student_request, :phone, 'Phone*'

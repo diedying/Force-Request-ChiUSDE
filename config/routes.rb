@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :student_requests
   
-  get 'students/signup' => 'students#signup'
-  post 'students/create' => 'students#create'
+  get 'students/signup' => 'students#signup'  
+  post 'students/create' => 'students#create' 
 
 end

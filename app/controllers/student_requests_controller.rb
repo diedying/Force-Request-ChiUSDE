@@ -21,11 +21,12 @@ class StudentRequestsController < ApplicationController
 
   def new
     # default: render 'new' template
+    @students = Student.where(:uin => session_get(:uin))
     initForNewForceRequest
     render :new
   end
 
-  def create
+  def create  #create force requests
     student_request_params_with_uin = {:uin => session[:uin]}
     student_request_params_with_uin.merge!(student_request_params)
     @student_request = StudentRequest.new(student_request_params_with_uin)
@@ -164,7 +165,7 @@ class StudentRequestsController < ApplicationController
   def login
     session_update(:current_state, nil)
     #first, check if the input uin is valid
-    if params[:session][:uin] =~ /^\d+$/
+    if params[:session][:uin] =~ /^\d{9}$/
       #second,check the current user is admin or student
       if params[:session][:user] == 'admin'
         @cur_user = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
@@ -193,7 +194,7 @@ class StudentRequestsController < ApplicationController
         end
       end
     else
-      flash[:warning] = "Invalid UIN format"
+      flash[:warning] = "Invalid UIN format!"
       redirect_to root_path
     end
   end

@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
         #get the search url of specific searchKey
         urlSearch = 'https://services.tamu.edu/directory-search/?branch=people&cn=' + searchKey
         page = Nokogiri::HTML(open(urlSearch))
+        
         table = page.css('table#resultsTable')
         urlPersons = table.css('a')#store the all searched results url
         #check all searched records to find out the one we need
@@ -49,12 +50,22 @@ class StudentsController < ApplicationController
         @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
         if @student[0].nil?
             record = scrape_info(params[:session][:name], params[:session][:email])
-            @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
             
-            # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
-            flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+            if record.nil?
+                flash[:notice] = "Your information is incorrect!"
+                flash[:notice] = "Please use your TAMU email to register!"
+                flash[:notice] = "Use your name as which is on your Student ID!"
+                redirect_to students_signup_path
+                # redirect_to :back
+                return
+            else
+                @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                            :major => record['Major'], :classification => record['Classification'])
+                # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
+                flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+            end
         else
-            flash[:notice] = "Your record is already there"
+            flash[:notice] = "Your record is already there!"
         end
         redirect_to root_path
     end
