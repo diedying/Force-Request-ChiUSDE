@@ -1,5 +1,6 @@
 %h1 Login Page
 .Loginpage
+    
   =  form_tag('/student_requests/login', method: :post) do
     %table{:border => "0"}
       %tr
@@ -17,13 +18,16 @@
         %td
           = label :session, :user, 'Login as'
         %td 
-          = radio_button(:session, :user, "admin", :checked => true)
+          = radio_button(:session, :user, "admin")
           admin
-          = radio_button(:session, :user, "student")
+          = radio_button(:session, :user, "student", :checked => true)
           student
     %br
     %br
     = submit_tag 'Login'
     
   =  form_tag('/students/signup', method: :get) do
-    = submit_tag 'Student Sign Up'
+    = submit_tag 'Sign Up'
+    
+  =  form_tag('/students/signup', method: :get) do
+    = submit_tag 'Forget Password'

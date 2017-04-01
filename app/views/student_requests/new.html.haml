@@ -65,3 +65,6 @@
       %br
       %br
       = submit_tag 'Save Request'
+      
+    =  form_tag(student_requests_path, method: :get) do
+      = submit_tag 'Cancel'

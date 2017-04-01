@@ -46,7 +46,7 @@ table th {
   background-color: #d55d5d;
 }
 table th, table td {
-  padding: 4px;
+  padding: 10px;
   text-align: left;
   word-wrap: break-word;
 }

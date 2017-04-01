@@ -46,17 +46,31 @@ class StudentsController < ApplicationController
     end
     #create a new student record
     def create
-        @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
-        if @student[0].nil?
-            record = scrape_info(params[:session][:name], params[:session][:email])
-            @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
+        if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
+            @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
+            if @student[0].nil?
+                if scrape_info(params[:session][:name], params[:session][:email]) != {}
+                    record = scrape_info(params[:session][:name], params[:session][:email]) 
+                    @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
             
             # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
-            flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                    flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                    redirect_to root_path
+                else
+                    flash[:notice] = "Please sign up with your TAMU Email!"
+                    redirect_to students_signup_path
+                    
+                end
+            else
+                flash[:notice] = "Your record is already there"
+                redirect_to root_path
+            end
+             
         else
-            flash[:notice] = "Your record is already there"
+            flash[:notice] = "Your UIN or password is not same!"
+            redirect_to students_signup_path
         end
-        redirect_to root_path
+        
     end
     
 end

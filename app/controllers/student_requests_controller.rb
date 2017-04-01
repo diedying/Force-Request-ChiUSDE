@@ -312,4 +312,6 @@ class StudentRequestsController < ApplicationController
     StudentRequest.delete_all
     redirect_to student_requests_adminview_path
   end
+  def cancel
+  end
 end

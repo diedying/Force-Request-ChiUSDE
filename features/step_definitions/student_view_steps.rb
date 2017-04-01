@@ -1,16 +1,57 @@
 # features/step_definitions/contact_form_steps.rb
-Given(/^I am on the Student Dashboard Page$/) do
+Given(/^I am on the Login Page$/) do
   visit('/')
-  fill_in('Enter your UIN', :with => "1234312")
+  # fill_in('Enter your Name', :with => "1234312")
+  # click_button('Sign Up')
+  # majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {:major_id => 'ELEN'}, {:major_id => 'APMS'},
+  #           {:major_id => 'CPSL'}, {:major_id => 'CECL'}, {:major_id => 'CEEL'}, {:major_id => 'Others'}]
+  # existingMajors = Major.all
+  # if existingMajors.blank?
+  #   majors.each do |record|
+  #     Major.create!(record)
+  #   end
+  # end
+  
+  page.has_content?("Login Page")
+end
+
+When(/^I click on Sign Up$/) do
+  click_button('Sign Up')
+
+end
+
+Then(/^I am on the Signup Page$/) do
+  page.has_content?("Signup Page")
+end
+
+When(/^I fill in the form, and then click Signup$/) do 
+  @user_info = {:name => "mo li", :email => "moli@gmail.com", :password => "12345"}
+  fill_in('Enter your name', :with => @user_info[:name])
+  fill_in('Enter your email', :with => @user_info[:email])
+  fill_in('Enter your password', :with => @user_info[:password])
+  click_button('Signup')
+end
+
+Then(/^I should see my infomation on Student Dashboard Page$/) do
+  page.has_content?("mo li") 
+end
+
+#...........2nd Senario........#
+
+Given(/^I am on the Login Page again$/) do
+  visit('/')
+  page.has_content?("Login Page")
+end
+
+When(/^I fill in the form with correct info, and then click login/) do
+  @user_info = {:name => "shuocun",  :password => "Shuo0727~~"}
+  fill_in('Enter your name', :with => @user_info[:name])
+  fill_in('Enter your password', :with => @user_info[:password])
   click_button('Login')
-  majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {:major_id => 'ELEN'}, {:major_id => 'APMS'},
-            {:major_id => 'CPSL'}, {:major_id => 'CECL'}, {:major_id => 'CEEL'}, {:major_id => 'Others'}]
-  existingMajors = Major.all
-  if existingMajors.blank?
-    majors.each do |record|
-      Major.create!(record)
-    end
-  end
+end
+
+Then(/^I should see my request on Student Dashboard Page/) do
+  page.has_content?("New Force Request")
 end
 
 When(/^I click on New Force Request/) do
@@ -28,8 +69,8 @@ When(/^I click on New Force Request/) do
   click_button('Save Request')
 end
 
-Then(/^I should see my request on Student Dashboard Page$/) do
-  page.has_content?("Students Dashboard Page") and page.has_content?("Dummy")
+Then(/^I should see my info$/) do
+  page.has_content?("Students Dashboard Page")
 end
 
 When(/^I click on Withdraw$/) do
