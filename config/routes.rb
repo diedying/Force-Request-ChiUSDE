@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
   post 'student_requests/index' => 'student_requests#cancel'
+  get 'students/forgetPW' => 'students#forgetPW'
+  post 'students/updatePW' => 'students#updatePW'
+  
 end

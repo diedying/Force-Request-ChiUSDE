@@ -1,4 +1,9 @@
 class StudentsController < ApplicationController
+    
+    def student_params
+        params.require(:student).permit(:uin, :password)
+    end
+    
     def scrape_info(searchKey, realEmail)
         require 'rubygems'
         require 'nokogiri'
@@ -77,4 +82,15 @@ class StudentsController < ApplicationController
             redirect_to students_signup_path
         end
     end
+    
+    def updatePW
+    
+        @resetStudent = Student.where("name ='#{params[:session][:uin]}'")
+        # once i know how to update on the console, then can finish this part
+        
+        # @resetStudent.update_attributes!(:password => "#{params[:session][:password]}")
+        # @resetStudent.state = params[:state]
+        # redirect_to root_path
+    end
+    
 end

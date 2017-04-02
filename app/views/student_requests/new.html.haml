@@ -10,19 +10,24 @@
             = label :student_request, :full_name, 'Full Name*'
           %td  
             // = @students[0].name
-            = text_field :student_request, 'full_name', class: 'input-field', :required => true
+            // = label :student_request, 'full_name', @students[0].name
+            = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true
         %tr
           %td  
             = label :student_request, :major, 'Major*'
           %td  
             // = @students[0].major
-            = select :student_request, 'major', @majorList, :required => true
+            // = label :student_request, :major, @students[0].major
+            // = select :student_request, 'major', @majorList, :required => true
+            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
             // = @students[0].classification
-            = select :student_request, 'classification', @classificationList, :required => true
+            // = label :student_request, :classification, @students[0].classification
+            // = select :student_request, 'classification', @classificationList, :required => true
+            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
@@ -34,7 +39,8 @@
             = label :student_request, :email, 'Email*'
           %td  
             // = @students[0].email
-            = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
+            // = label :student_request, :email, @students[0].email
+            = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true
         %tr
           %td   
             = label :student_request, :phone, 'Phone*'

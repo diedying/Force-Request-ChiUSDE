@@ -27,6 +27,7 @@ class StudentRequestsController < ApplicationController
   end
 
   def create  #create force requests
+    @students = Student.where(:uin => session_get(:uin))
     student_request_params_with_uin = {:uin => session[:uin]}
     student_request_params_with_uin.merge!(student_request_params)
     @student_request = StudentRequest.new(student_request_params_with_uin)
