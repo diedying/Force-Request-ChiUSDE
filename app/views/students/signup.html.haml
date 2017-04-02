@@ -11,12 +11,14 @@
         %td
           = label :session, :uin, 'Enter your UIN'
         %td
-          = text_field(:session, :uin, class: 'input-field')
+          // = text_field(:session, :uin, class: 'input-field')
+          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
       %tr
         %td
           = label :session, :email, 'Enter your email'
         %td
-          = text_field(:session, :email, class: 'input-field')
+          // = text_field(:session, :email, class: 'input-field')
+          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9_]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
       %tr
         %td
           = label :session, :password, 'Enter your password'
