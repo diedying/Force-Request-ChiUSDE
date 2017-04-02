@@ -3,6 +3,7 @@
 %body{:onload => "pageinit()"}
   %h1 Making New Request
   .form_new_request
+    #this is student_request new view with submit to student_request create action
     = form_tag student_requests_path, :id => 'new_request' do
       %table{:border => "0"}
         %tr
@@ -10,24 +11,22 @@
             = label :student_request, :full_name, 'Full Name*'
           %td  
             // = @students[0].name
-            // = label :student_request, 'full_name', @students[0].name
+            // = text_field :student_request, 'full_name', class: 'input-field', :required => true
             = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true, :readonly => true
         %tr
           %td  
             = label :student_request, :major, 'Major*'
           %td  
             // = @students[0].major
-            // = label :student_request, :major, @students[0].major
-            // = select :student_request, 'major', @majorList, :required => true
-            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
+            = select :student_request, 'major', @majorList, :required => true
+            // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
             // = @students[0].classification
-            // = label :student_request, :classification, @students[0].classification
-            // = select :student_request, 'classification', @classificationList, :required => true
-            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true, :readonly => true
+            = select :student_request, 'classification', @classificationList, :required => true
+            // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true, :readonly => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
@@ -39,7 +38,7 @@
             = label :student_request, :email, 'Email*'
           %td  
             // = @students[0].email
-            // = label :student_request, :email, @students[0].email
+            // = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
             = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true, :readonly => true
         %tr
           %td   
@@ -71,10 +70,9 @@
             = label :student_request, :notes, 'Notes '
           %td  
             = text_area :student_request, 'notes', class: 'notes'
-    
       %br
       %br
       = submit_tag 'Save Request'
       
-    =  form_tag(student_requests_path, method: :get) do
+    =  form_tag(students_show_path, method: :get) do
       = submit_tag 'Cancel'

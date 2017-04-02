@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'student_requests/adminview' => 'student_requests#adminview'
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   put 'student_requests/multiupdate' => 'student_requests#multiupdate'
+  #for login
   post 'student_requests/login' => 'student_requests#login'
   get 'student_requests/getSpreadsheet' => 'student_requests#getSpreadsheet'
   get 'student_requests/getSpreadsheetAllCourses' => 'student_requests#getSpreadsheetAllCourses'
@@ -21,8 +22,15 @@ Rails.application.routes.draw do
   
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
-  post 'student_requests/index' => 'student_requests#cancel'
-  get 'students/forgetPW' => 'students#forgetPW'
-  post 'students/updatePW' => 'students#updatePW'
+  #show the student dashboard
+  get 'students/show' => 'students#show'
+  #show the student profile
+  get 'students/profile' => 'students#profile'
+  #after login then change password
+  get 'students/edit_password' => 'students#edit_password'
+  post 'students/update_password' => 'students#update_password'
+  #before login forget password, then change password
+  get 'students/forget_password' => 'students#forget_password'
+  post 'students/update_forgotten_password' => 'students#update_forgotten_password'
   
 end

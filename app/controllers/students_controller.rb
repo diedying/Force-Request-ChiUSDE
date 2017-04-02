@@ -1,8 +1,5 @@
 class StudentsController < ApplicationController
-    
-    def student_params
-        params.require(:student).permit(:uin, :password)
-    end
+    include SessionHelper
     
     def scrape_info(searchKey, realEmail)
         require 'rubygems'
@@ -40,6 +37,7 @@ class StudentsController < ApplicationController
 	        
 	        #if the Email matches the realEmail, output the result and break the loop
     	    if record['Email Address'] == realEmail
+    	       # preprocess the scraped name in format of last name and first name
     	        if record['Name'].include?(',')
     	            split_name = record['Name'].split(/, */)
     	            record['Last Name'] = split_name[0]
@@ -55,6 +53,14 @@ class StudentsController < ApplicationController
         record = {}
         return record
     end
+    #show the student dashboard page
+    def show
+        if session_get(:uin) == nil
+            redirect_to root_path
+        else
+            @student_requests = StudentRequest.where(:uin => session_get(:uin))
+        end 
+    end
     
     def signup
     end
@@ -68,10 +74,6 @@ class StudentsController < ApplicationController
                 #check if the input information matched to the information scraped
                 if scrape_info(params[:session][:name], params[:session][:email]) != {}
                     record = scrape_info(params[:session][:name], params[:session][:email]) 
-                    # @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
-                    # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
-                    # @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-                    #                          :major => record['Major'], :classification => record['Classification'])
                     @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
                                               :major => record['Major'], :classification => record['Classification'])
                     flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
@@ -88,19 +90,51 @@ class StudentsController < ApplicationController
             end
              
         else
-            flash[:notice] = "Your UIN or password is not same!"
+            flash[:notice] = "The twice entered UIN and password must be same!"
             redirect_to students_signup_path
         end
     end
-    
-    def updatePW
-    
-        @resetStudent = Student.where("name ='#{params[:session][:uin]}'")
-        # once i know how to update on the console, then can finish this part
-        
-        # @resetStudent.update_attributes!(:password => "#{params[:session][:password]}")
-        # @resetStudent.state = params[:state]
-        # redirect_to root_path
+    #after login to update the password(create new password)
+    def update_password
+        @student = Student.where(:uin => session_get(:uin))
+        if @student[0].password == params[:session][:oldPassword]
+            if params[:session][:password] == params[:session][:password2]
+                @student[0].update_attribute(:password, params[:session][:password])
+                flash[:notice] = "Your password has been changed!"
+                redirect_to students_show_path
+            else
+                flash[:warning] = "The twice entered new password must be same!"
+                redirect_to students_edit_password_path 
+            end
+        else
+            flash[:warning] = "The old password you enter is wrong!"
+            redirect_to students_edit_password_path 
+        end
+    end
+    #before login(forget the password) to update the password(create password)
+    def update_forgotten_password
+        if params[:session][:uin] == params[:session][:uin2]
+            @student = Student.where("uin ='#{params[:session][:uin]}'")
+            if @student[0].nil?
+                flash[:warning] = "The student of UIN doesn't sign up"
+                redirect_to '/students/forget_password'  
+            else
+                   if params[:session][:password] == params[:session][:password2]
+                       @student[0].update_attribute(:password, params[:session][:password])
+                       flash[:notice] = "Your password has been changed!"
+                       redirect_to root_path 
+                   else
+                       flash[:warning] = "The twice entered new password must be same!"
+                       redirect_to '/students/forget_password' 
+                   end
+            end
+        elsif 
+            flash[:warning] = "The twice entered UIN must be same!"
+            redirect_to '/students/forget_password'
+        end
     end
     
+    def profile
+        @students = Student.where(:uin => session_get(:uin))
+    end
 end

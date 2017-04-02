@@ -12,11 +12,6 @@ class StudentRequestsController < ApplicationController
   end
 
   def index
-    if session_get(:uin) == nil
-      redirect_to root_path
-    else
-      @student_requests = StudentRequest.where(:uin => session_get(:uin))
-    end
   end
 
   def new
@@ -35,7 +30,7 @@ class StudentRequestsController < ApplicationController
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
     if @student_request.save
       flash[:notice] = "Student Request was successfully created."
-      redirect_to student_requests_path
+      redirect_to students_show_path
     else
       flash[:warning] = @student_request.errors.full_messages.join(", ")
       initForNewForceRequest
@@ -53,7 +48,7 @@ class StudentRequestsController < ApplicationController
       else
         flash[:warning] = "Student Request cannot be withdrawn."
       end
-      redirect_to student_requests_path
+      redirect_to students_show_path
     end
   end
   
@@ -197,7 +192,7 @@ class StudentRequestsController < ApplicationController
           session_update(:name, @cur_user[0][:name])
           session_update(:current_state, "student")
           session_update(:uin, @cur_user[0][:uin])
-          redirect_to student_requests_path
+          redirect_to students_show_path
         end
       else
         flash[:warning] = "Your student UIN is invalid format!"
