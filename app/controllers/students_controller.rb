@@ -40,6 +40,14 @@ class StudentsController < ApplicationController
 	        
 	        #if the Email matches the realEmail, output the result and break the loop
     	    if record['Email Address'] == realEmail
+    	        if record['Name'].include?(',')
+    	            split_name = record['Name'].split(/, */)
+    	            record['Last Name'] = split_name[0]
+    	            record['First Name'] = split_name[1]
+    	        else
+    	            record['Last Name'] = record['Name'].split.last
+    	            record['First Name'] = record['Name'].split.first
+    	        end
     	        return record
     	    end
         end
@@ -62,8 +70,10 @@ class StudentsController < ApplicationController
                     record = scrape_info(params[:session][:name], params[:session][:email]) 
                     # @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
                     # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
-                    @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-                                             :major => record['Major'], :classification => record['Classification'])
+                    # @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                    #                          :major => record['Major'], :classification => record['Classification'])
+                    @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                              :major => record['Major'], :classification => record['Classification'])
                     flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
                     redirect_to root_path
                 else
