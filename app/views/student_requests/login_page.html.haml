@@ -1,5 +1,6 @@
 %h1 Login Page
 .Loginpage
+    
   =  form_tag('/student_requests/login', method: :post) do
     %table{:border => "0"}
       %tr
@@ -7,6 +8,7 @@
           = label :session, :uin, 'Enter your uin'
         %td
           = text_field(:session, :uin, class: 'input-field')
+          // = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
       %tr
         %td
           = label :session, :password, 'Enter your password'
@@ -26,4 +28,7 @@
     = submit_tag 'Login'
     
   =  form_tag('/students/signup', method: :get) do
-    = submit_tag 'Student Sign Up'
+    = submit_tag 'Sign Up'
+    
+  =  form_tag('/students/signup', method: :get) do
+    = submit_tag 'Forget Password'

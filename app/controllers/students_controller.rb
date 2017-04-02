@@ -47,27 +47,34 @@ class StudentsController < ApplicationController
     end
     #create a new student record
     def create
-        @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
-        if @student[0].nil?
-            record = scrape_info(params[:session][:name], params[:session][:email])
-            
-            if record.nil?
-                flash[:notice] = "Your information is incorrect!"
-                flash[:notice] = "Please use your TAMU email to register!"
-                flash[:notice] = "Use your name as which is on your Student ID!"
-                redirect_to students_signup_path
-                # redirect_to :back
-                return
+        #check the reenter uin and email is same
+        if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
+            @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
+            #check if the student has signed up before
+            if @student[0].nil?
+                #check if the input information matched to the information scraped
+                if scrape_info(params[:session][:name], params[:session][:email]) != {}
+                    record = scrape_info(params[:session][:name], params[:session][:email]) 
+                    # @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password] )
+                    # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
+                    @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                             :major => record['Major'], :classification => record['Classification'])
+                    flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                    redirect_to root_path
+                else
+                    flash[:notice] = "Your information is incorrect!"
+                    flash[:notice] = "Please use your TAMU email to register!"
+                    flash[:notice] = "Use your name as which is on your Student ID!"
+                    redirect_to students_signup_path
+                end
             else
-                @newStudent = Student.create!(:name => record['Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-                                            :major => record['Major'], :classification => record['Classification'])
-                # @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password] )
-                flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                flash[:notice] = "Your record is already there"
+                redirect_to root_path
             end
+             
         else
-            flash[:notice] = "Your record is already there!"
+            flash[:notice] = "Your UIN or password is not same!"
+            redirect_to students_signup_path
         end
-        redirect_to root_path
     end
-    
 end

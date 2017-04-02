@@ -164,23 +164,29 @@ class StudentRequestsController < ApplicationController
   #login for students and admin
   def login
     session_update(:current_state, nil)
-    #first, check if the input uin is valid
-    if params[:session][:uin] =~ /^\d{9}$/
-      #second,check the current user is admin or student
-      if params[:session][:user] == 'admin'
-        @cur_user = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
-        if @cur_user[0].nil?
-          flash[:warning] = "Your UIN or Password is WRONG!"
-          redirect_to root_path
+    #first, check the current user is student or admin
+    if params[:session][:user] == 'admin'
+        #check if the uin of admin is valid
+        if params[:session][:uin] =~ /^\d+$/
+          @cur_user = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
+          if @cur_user[0].nil?
+            flash[:warning] = "Your UIN or Password is WRONG!"
+            redirect_to root_path
+          else
+            #update the session value which could be used in other pages
+            session_update(:name, @cur_user[0][:name])
+            #:current_state could indicate the current user is admin or student
+            session_update(:current_state, "admin")
+            session_update(:uin, @cur_user[0][:uin])
+            redirect_to student_requests_adminview_path
+          end
         else
-          #update the session value which could be used in other pages
-          session_update(:name, @cur_user[0][:name])
-          #:current_state could indicate the current user is admin or student
-          session_update(:current_state, "admin")
-          session_update(:uin, @cur_user[0][:uin])
-          redirect_to student_requests_adminview_path
+          flash[:warning] = "Your admin UIN is invalid format!"
+          redirect_to root_path
         end
-      elsif params[:session][:user] == 'student'
+    elsif params[:session][:user] == 'student'
+      #check if the uin of student is valid
+      if params[:session][:uin] =~ /^\d{9}$/
         @cur_user = Student.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
         if @cur_user[0].nil?
           flash[:warning] = "Your UIN or Password is WRONG!"
@@ -192,10 +198,10 @@ class StudentRequestsController < ApplicationController
           session_update(:uin, @cur_user[0][:uin])
           redirect_to student_requests_path
         end
+      else
+        flash[:warning] = "Your student UIN is invalid format!"
+        redirect_to root_path
       end
-    else
-      flash[:warning] = "Invalid UIN format!"
-      redirect_to root_path
     end
   end
   
@@ -312,5 +318,7 @@ class StudentRequestsController < ApplicationController
     end
     StudentRequest.delete_all
     redirect_to student_requests_adminview_path
+  end
+  def cancel
   end
 end

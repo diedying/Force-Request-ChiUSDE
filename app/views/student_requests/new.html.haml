@@ -9,17 +9,20 @@
           %td
             = label :student_request, :full_name, 'Full Name*'
           %td  
-            = @students[0].uin
+            // = @students[0].name
+            = text_field :student_request, 'full_name', class: 'input-field', :required => true
         %tr
           %td  
             = label :student_request, :major, 'Major*'
           %td  
-            = @students[0].major
+            // = @students[0].major
+            = select :student_request, 'major', @majorList, :required => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
-            = @students[0].classification
+            // = @students[0].classification
+            = select :student_request, 'classification', @classificationList, :required => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
@@ -30,7 +33,8 @@
           %td 
             = label :student_request, :email, 'Email*'
           %td  
-            = @students[0].email
+            // = @students[0].email
+            = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
         %tr
           %td   
             = label :student_request, :phone, 'Phone*'
@@ -65,3 +69,6 @@
       %br
       %br
       = submit_tag 'Save Request'
+      
+    =  form_tag(student_requests_path, method: :get) do
+      = submit_tag 'Cancel'
