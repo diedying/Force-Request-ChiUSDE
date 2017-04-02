@@ -15,6 +15,7 @@
         %td
           // = text_field(:session, :password, class: 'input-field')
           = password_field(:session, :password, class: 'input-field')
+          = link_to "(forgot password)", '/students/forgetPW'
       %tr
         %td
           = label :session, :user, 'Login as'
@@ -30,5 +31,5 @@
   =  form_tag('/students/signup', method: :get) do
     = submit_tag 'Sign Up'
     
-  =  form_tag('/students/forgetPW', method: :get) do
-    = submit_tag 'Forget Password'
+  // =  form_tag('/students/forgetPW', method: :get) do
+  //   = submit_tag 'Forget Password'

@@ -11,7 +11,7 @@
           %td  
             // = @students[0].name
             // = label :student_request, 'full_name', @students[0].name
-            = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true
+            = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true, :readonly => true
         %tr
           %td  
             = label :student_request, :major, 'Major*'
@@ -19,7 +19,7 @@
             // = @students[0].major
             // = label :student_request, :major, @students[0].major
             // = select :student_request, 'major', @majorList, :required => true
-            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true
+            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
@@ -27,7 +27,7 @@
             // = @students[0].classification
             // = label :student_request, :classification, @students[0].classification
             // = select :student_request, 'classification', @classificationList, :required => true
-            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true
+            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true, :readonly => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
@@ -40,7 +40,7 @@
           %td  
             // = @students[0].email
             // = label :student_request, :email, @students[0].email
-            = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true
+            = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true, :readonly => true
         %tr
           %td   
             = label :student_request, :phone, 'Phone*'
