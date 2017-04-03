@@ -17,16 +17,14 @@
           %td  
             = label :student_request, :major, 'Major*'
           %td  
-            // = @students[0].major
             = select :student_request, 'major', @majorList, :required => true
             // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
-            // = @students[0].classification
             = select :student_request, 'classification', @classificationList, :required => true
-            // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification[0..1], :required => true, :readonly => true
+            // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :required => true, :readonly => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'

@@ -61,7 +61,7 @@ class StudentsController < ApplicationController
         #check the reenter uin and email is same
         if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
             #use the uin and email to check if the student has signed up
-            @student = Student.where("uin = '#{params[:session][:uin]}' and email = '#{params[:session][:email]}'")
+            @student = Student.where("uin = '#{params[:session][:uin]}'")
             #check if the student has signed up before
             if @student[0].nil?
                 #check if the input information matched to the information scraped
