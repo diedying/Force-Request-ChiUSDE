@@ -3,7 +3,7 @@
 %body{:onload => "pageinit()"}
   %h1 Making New Request
   .form_new_request
-    #this is student_request new view with submit to student_request create action
+    // this is student_request new view with submit to student_request create action
     = form_tag student_requests_path, :id => 'new_request' do
       %table{:border => "0"}
         %tr
@@ -17,14 +17,14 @@
           %td  
             = label :student_request, :major, 'Major*'
           %td  
-            = select :student_request, 'major', @majorList, :required => true
-            // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
+            // = select :student_request, 'major', @majorList, :required => true
+            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
         %tr
           %td   
             = label :student_request, :classification, 'Classification*'
           %td  
-            = select :student_request, 'classification', @classificationList, :required => true
-            // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :required => true, :readonly => true
+            // = select :student_request, 'classification', @classificationList, :required => true
+            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :required => true, :readonly => true
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
