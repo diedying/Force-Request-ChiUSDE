@@ -104,8 +104,11 @@ td {
 }
 .input-field {
 	background-color :Lightgray;
-	border: 1px #008000; /*remove soild*/
+	border: 1px solid #008000; /*remove soild*/
 	width: 230px;
+	
+	border-radius: 5px;
+  padding: 5px;
 }
 
 .input-field-admin {
