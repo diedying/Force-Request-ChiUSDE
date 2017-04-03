@@ -4,17 +4,20 @@
       %td
         = label :student_request, :full_name, 'Full Name'
       %td  
-        = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :readonly => true
+        = @students[0].name
+        // = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :readonly => true
     %tr
       %td  
         = label :student_request, :major, 'Major'
       %td  
-        = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :readonly => true
+        = @students[0].major
+        // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :readonly => true
     %tr
       %td   
         = label :student_request, :classification, 'Classification'
       %td  
-        = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :readonly => true
+        = @students[0].classification
+        // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :readonly => true
         // %tr
         //   %td    
         //     = label :student_request, :minor, 'Minor'
@@ -25,7 +28,8 @@
       %td 
         = label :student_request, :email, 'Email'
       %td  
-        = text_field :student_request, 'email', class: 'input-field', value: @students[0].email,  :readonly => true
+        = @students[0].email
+        // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email,  :readonly => true
         // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :readonly => true
         // %tr
         //   %td   

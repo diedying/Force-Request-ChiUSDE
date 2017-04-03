@@ -104,7 +104,7 @@ td {
 }
 .input-field {
 	background-color :Lightgray;
-	border: 1px solid #008000;
+	border: 1px #008000; /*remove soild*/
 	width: 230px;
 }
 
