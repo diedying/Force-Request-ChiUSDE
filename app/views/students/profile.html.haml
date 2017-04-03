@@ -25,7 +25,8 @@
       %td 
         = label :student_request, :email, 'Email'
       %td  
-        = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :readonly => true
+        = text_field :student_request, 'email', class: 'input-field', value: @students[0].email,  :readonly => true
+        // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :readonly => true
         // %tr
         //   %td   
         //     = label :student_request, :phone, 'Phone'
@@ -39,3 +40,5 @@
   %br
   %br
   = submit_tag 'OK'
+= form_tag(students_show_path, method: :get) do
+  = submit_tag  "cancel"

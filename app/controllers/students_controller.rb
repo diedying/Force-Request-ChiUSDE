@@ -5,14 +5,6 @@ class StudentsController < ApplicationController
         require 'rubygems'
         require 'nokogiri'
         require 'open-uri' 
-        #the user input (name and email) we could get from the sign up page
-        ###################################
-        #There is tricky case: some person has change his email address, but the search database doesn't change
-        #searchKey = 'haoran+wang'
-        #realEmail = 'haoranwang@tamu.edu'
-        ###################################
-        #pre-proccessing the searchKey, there seems no need to do pre-proccessing
-        #because even if there is whitespace, we could also use the searchKey to the url
 
         #get the search url of specific searchKey
         urlSearch = 'https://services.tamu.edu/directory-search/?branch=people&cn=' + searchKey
@@ -68,7 +60,8 @@ class StudentsController < ApplicationController
     def create
         #check the reenter uin and email is same
         if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
-            @student = Student.where("name ='#{params[:session][:name]}' and email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
+            #use the uin and email to check if the student has signed up
+            @student = Student.where("uin = '#{params[:session][:uin]}' and email = '#{params[:session][:email]}'")
             #check if the student has signed up before
             if @student[0].nil?
                 #check if the input information matched to the information scraped
