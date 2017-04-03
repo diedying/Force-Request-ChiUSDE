@@ -1,16 +1,16 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
-%h1 Students Dashboard Page new
+%h1 Students Dashboard
 
 - if @student_requests[0].nil?
   %h2= "Howdy! #{session_get(:name)}(#{session_get(:uin)})"
-  %h2= "You have not created any requests till now" 
+  %h2= "You have not created any requests till now!" 
 - else
   %h2= "Howdy! Welcome back #{@student_requests[0].full_name} "
 
 
 = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
-= link_to '<button type="button" class="regularbutton">Your Profile</button>'.html_safe, students_profile_path
+= link_to '<button type="button" class="regularbutton">View Your Profile</button>'.html_safe, students_profile_path
 = link_to '<button type="button" class="regularbutton">Change Your Password</button>'.html_safe, students_edit_password_path
 
 - if @student_requests[0] != nil
