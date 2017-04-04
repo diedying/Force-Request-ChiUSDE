@@ -67,8 +67,8 @@ class StudentRequest < ActiveRecord::Base
     
     self.primary_key = "request_id"
     validates :uin, presence: true
-    validates :full_name, presence: true
-    validates_format_of :full_name, :with => /^[^0-9`!@#\$%\^&*+_=]+$/, :multiline => true
+    validates :name, presence: true
+    validates_format_of :name, :with => /^[^0-9`!@#\$%\^&*+_=]+$/, :multiline => true
     validates :major, presence: true
     validates :classification, presence: true
     validates :email, presence: true

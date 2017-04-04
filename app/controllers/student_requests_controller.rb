@@ -8,7 +8,7 @@ class StudentRequestsController < ApplicationController
   # before_filter CASClient::Frameworks::Rails::Filter
   
   def student_request_params
-    params.require(:student_request).permit(:request_id, :uin, :full_name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
+    params.require(:student_request).permit(:request_id, :uin, :name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
   end
 
   def index
@@ -23,7 +23,7 @@ class StudentRequestsController < ApplicationController
 
   def create  #create force requests
     @students = Student.where(:uin => session_get(:uin))
-    student_request_params_with_uin = {:uin => session[:uin], :full_name  => @students[0].full_name, :major => @students[0].major, 
+    student_request_params_with_uin = {:uin => session[:uin], :name  => @students[0].name, :major => @students[0].major, 
                                         :email => @students[0].email, :classification => @students[0].classification}
     student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
     @student_request = StudentRequest.new(student_request_params_with_uin)
@@ -289,7 +289,9 @@ class StudentRequestsController < ApplicationController
   end
   
   def addadmin
-    admin_request_params = {:uin => params[:admin_request][:uin]}
+    admin_request_params = {:uin => params[:admin_request][:uin],
+                            :name => params[:admin_request][:name],
+                            :password => params[:admin_request][:password]}
     @admin_request = Admin.new(admin_request_params)
     if @admin_request.save
       flash[:notice] = "Admin was successfully created."

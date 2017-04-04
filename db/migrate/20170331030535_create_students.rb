@@ -36,7 +36,7 @@ class CreateStudents < ActiveRecord::Migration
   create_table "student_request_archivals", force: :cascade do |t|
     t.string   "request_id"
     t.string   "uin"
-    t.string   "full_name"
+    t.string   "name"
     t.string   "major"
     t.string   "classification"
     t.string   "minor"
@@ -58,7 +58,7 @@ class CreateStudents < ActiveRecord::Migration
   create_table "student_requests", force: :cascade do |t|
     t.string   "request_id"
     t.string   "uin"
-    t.string   "full_name"
+    t.string   "name"
     t.string   "major"
     t.string   "classification"
     t.string   "minor"
@@ -87,7 +87,7 @@ class CreateStudents < ActiveRecord::Migration
     t.string   "password"
     t.string   "major"
     t.string   "classification"
-    t.string   "full_name"
+    t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

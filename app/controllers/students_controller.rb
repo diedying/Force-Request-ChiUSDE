@@ -65,18 +65,16 @@ class StudentsController < ApplicationController
             #check if the student has signed up before
             if @student[0].nil?
                 #check if the input information matched to the information scraped
-                if scrape_info(params[:session][:full_name], params[:session][:email]) != {}
-                    record = scrape_info(params[:session][:full_name], params[:session][:email])
+                if scrape_info(params[:session][:name], params[:session][:email]) != {}
+                    record = scrape_info(params[:session][:name], params[:session][:email])
                     
                     #update records to standard format
-                    @newStudent = Student.create!(:full_name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                    @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
                                               :major => record['Major'], :classification => record['Classification'])
-                    flash[:notice] = "#{@newStudent.full_name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                    flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.name} signed up successfully."
                     redirect_to root_path
                 else
-                    flash[:notice] = "Your information is incorrect!"
-                    flash[:notice] = "Please use your TAMU email to register!"
-                    flash[:notice] = "Use your name as which is on your Student ID!"
+                    flash[:notice] = "Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
                     redirect_to students_signup_path
                 end
             else

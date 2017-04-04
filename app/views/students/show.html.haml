@@ -3,10 +3,10 @@
 %h1 Students Dashboard
 
 - if @student_requests[0].nil?
-  %h2= "Howdy! #{session_get(:full_name)}(#{session_get(:uin)})"
+  %h2= "Howdy! #{session_get(:name)}(#{session_get(:uin)})"
   %h2= "You have not created any requests till now!" 
 - else
-  %h2= "Howdy! Welcome back #{@student_requests[0].full_name} "
+  %h2= "Howdy! Welcome back #{@student_requests[0].name} "
 
 
 = link_to '<button type="button" class="regularbutton">New Force Request</button>'.html_safe, new_student_request_path
@@ -32,7 +32,7 @@
       - @student_requests.each do |record|
         %tr
           %td= record.uin 
-          %td= record.full_name
+          %td= record.name
           %td= record.major
           %td= record.classification
           %td= record.minor
