@@ -65,13 +65,13 @@ class StudentsController < ApplicationController
             #check if the student has signed up before
             if @student[0].nil?
                 #check if the input information matched to the information scraped
-                if scrape_info(params[:session][:name], params[:session][:email]) != {}
-                    record = scrape_info(params[:session][:name], params[:session][:email])
+                if scrape_info(params[:session][:full_name], params[:session][:email]) != {}
+                    record = scrape_info(params[:session][:full_name], params[:session][:email])
                     
                     #update records to standard format
-                    @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                    @newStudent = Student.create!(:full_name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
                                               :major => record['Major'], :classification => record['Classification'])
-                    flash[:notice] = "#{@newStudent.name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
+                    flash[:notice] = "#{@newStudent.full_name} #{@newStudent.email} #{@newStudent.uin} signed up successfully."
                     redirect_to root_path
                 else
                     flash[:notice] = "Your information is incorrect!"

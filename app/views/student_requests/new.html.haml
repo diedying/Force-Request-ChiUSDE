@@ -8,41 +8,42 @@
       %table{:border => "0"}
         %tr
           %td
-            = label :student_request, :full_name, 'Full Name*'
+            = label :student_request, :full_name, 'Full Name'
           %td  
-            // = @students[0].name
-            // = text_field :student_request, 'full_name', class: 'input-field', :required => true
-            = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true, :readonly => true
+            = @students[0].full_name
+            // = text_field :student_request, 'full_name', class: 'input-field', value: @students[0].name, :required => true, :readonly => true
         %tr
           %td  
-            = label :student_request, :major, 'Major*'
-          %td  
+            = label :student_request, :major, 'Major'
+          %td
+            = @students[0].major
             // = select :student_request, 'major', @majorList, :required => true
-            = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
+            // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :required => true, :readonly => true
         %tr
           %td   
-            = label :student_request, :classification, 'Classification*'
-          %td  
+            = label :student_request, :classification, 'Classification'
+          %td
+            = @students[0].classification
             // = select :student_request, 'classification', @classificationList, :required => true
-            = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :required => true, :readonly => true
+            // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :required => true, :readonly => true
+        %tr
+          %td 
+            = label :student_request, :email, 'Email'
+          %td  
+            = @students[0].email
+            // = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
+            // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true, :readonly => true
+        // %tr
+        //   %td   
+        //     = label :student_request, :phone, 'Phone*'
+        //   %td  
+        //     = text_field :student_request, 'phone', class: 'input-field'
         %tr
           %td    
             = label :student_request, :minor, 'Minor'
           %td  
             = text_field :student_request, 'minor', class: 'input-field', :onfocus => "formtooltip('minor_tip',1)", :onblur => "formtooltip('minor_tip',0)", :size => "6", :type => "text"
             %span#minor_tip.form-help Enter the 4-letter code for your minor, if any
-        %tr
-          %td 
-            = label :student_request, :email, 'Email*'
-          %td  
-            // = @students[0].email
-            // = text_field :student_request, 'email', class: 'input-field', :type => 'email', :required => true
-            = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :required => true, :readonly => true
-        %tr
-          %td   
-            = label :student_request, :phone, 'Phone*'
-          %td  
-            = text_field :student_request, 'phone', class: 'input-field'
         %tr
           %td   
             = label :student_request, :expected_graduation, 'Expected Graduation*'

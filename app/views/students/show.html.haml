@@ -3,7 +3,7 @@
 %h1 Students Dashboard
 
 - if @student_requests[0].nil?
-  %h2= "Howdy! #{session_get(:name)}(#{session_get(:uin)})"
+  %h2= "Howdy! #{session_get(:full_name)}(#{session_get(:uin)})"
   %h2= "You have not created any requests till now!" 
 - else
   %h2= "Howdy! Welcome back #{@student_requests[0].full_name} "

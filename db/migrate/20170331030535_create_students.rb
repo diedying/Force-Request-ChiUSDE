@@ -87,7 +87,7 @@ class CreateStudents < ActiveRecord::Migration
     t.string   "password"
     t.string   "major"
     t.string   "classification"
-    t.string   "name"
+    t.string   "full_name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

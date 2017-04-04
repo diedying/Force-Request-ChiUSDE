@@ -23,8 +23,9 @@ class StudentRequestsController < ApplicationController
 
   def create  #create force requests
     @students = Student.where(:uin => session_get(:uin))
-    student_request_params_with_uin = {:uin => session[:uin]}
-    student_request_params_with_uin.merge!(student_request_params)
+    student_request_params_with_uin = {:uin => session[:uin], :full_name  => @students[0].full_name, :major => @students[0].major, 
+                                        :email => @students[0].email, :classification => @students[0].classification}
+    student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
     @student_request = StudentRequest.new(student_request_params_with_uin)
     @student_request.state = StudentRequest::ACTIVE_STATE
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
