@@ -15,7 +15,8 @@
           = label :session, :password, 'Enter your password'
         %td
           = password_field(:session, :password, class: 'input-field')
-          = link_to "(forgot password)", '/students/forget_password'
+          = "(forgot password)"
+          // = link_to "(forgot password)", '/students/forget_password'
       %tr
         %td
           = label :session, :user, 'Login as'
