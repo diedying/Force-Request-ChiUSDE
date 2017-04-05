@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
                     #update records to standard format
                     @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
                                               :major => record['Major'], :classification => record['Classification'])
-                    flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.name} signed up successfully."
+                    flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
                     redirect_to root_path
                 else
                     flash[:notice] = "Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"

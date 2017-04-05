@@ -21,7 +21,10 @@ class StudentRequest < ActiveRecord::Base
     #Classification
     CLASSIFICATION_LIST = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
     
-    time = Time.new
+    # time = Time.new
+    Time.zone = 'Central Time (US & Canada)'
+    time = Time.zone.now()
+    
     # List Year and Semester
     CURRENT_YEAR = time.strftime("%Y")
     current_year = CURRENT_YEAR.to_i
@@ -89,11 +92,15 @@ class StudentRequest < ActiveRecord::Base
     before_create :set_creation_date
   
     def set_creation_date
-      self.creation_date = DateTime.now()
+      # self.creation_date = DateTime.now()
+      Time.zone = 'Central Time (US & Canada)'
+      self.creation_date = Time.zone.now()
     end
 
     def update_time
-      self.last_updated = DateTime.now()
+      # self.last_updated = DateTime.now()
+      Time.zone = 'Central Time (US & Canada)'
+      self.last_updated = Time.zone.now()
     end
     
     def create_request_id

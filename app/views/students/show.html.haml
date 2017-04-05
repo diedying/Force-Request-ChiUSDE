@@ -24,6 +24,7 @@
         %th Minor
         %th Course ID
         %th Section ID
+        %th Request Time
         %th State
         %th Notes By Me
         %th Notes By Admin
@@ -38,6 +39,7 @@
           %td= record.minor
           %td= record.course_id
           %td= record.section_id
+          %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
           %td= record.state
           %td= record.notes
           %td= record.notes_to_student
