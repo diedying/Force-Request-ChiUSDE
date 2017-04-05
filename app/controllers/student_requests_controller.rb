@@ -1,7 +1,7 @@
 class StudentRequestsController < ApplicationController
   
   include SessionHelper
-  
+  include ScrapeHelper
   ###The following line is commented right now because the service is not registered with CAS.
   ### Once our service will be registered with CAS, we will uncomment this and handle session.
   
@@ -20,8 +20,31 @@ class StudentRequestsController < ApplicationController
     initForNewForceRequest
     render :new
   end
+  
+  def add_force_request #create force requests by admin
+    @students = Student.where(:uin => params[:admin_request][:uin])
+    if @students[0].nil?
+      flash[:warning] = 'Student of UIN doesn\'t exist in system, please add him first!'
+      redirect_to student_requests_adminprivileges_path
+    else
+      student_request_params_with_uin = {:uin => params[:admin_request][:uin], :name  => @students[0].name, :major => @students[0].major, 
+                                        :email => @students[0].email, :classification => @students[0].classification}
+      student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
+      @student_request = StudentRequest.new(student_request_params_with_uin)
+      @student_request.state = StudentRequest::ACTIVE_STATE
+      @student_request.priority = StudentRequest::NORMAL_PRIORITY
+      if @student_request.save
+        flash[:notice] = "Student Request was successfully created."
+        redirect_to student_requests_adminprivileges_path
+      else
+        flash[:warning] = @student_request.errors.full_messages.join(", ")
+        initForNewForceRequest
+        redirect_to student_requests_adminprivileges_path
+      end
+    end
+  end
 
-  def create  #create force requests
+  def create  #create force requests by student
     @students = Student.where(:uin => session_get(:uin))
     student_request_params_with_uin = {:uin => session[:uin], :name  => @students[0].name, :major => @students[0].major, 
                                         :email => @students[0].email, :classification => @students[0].classification}
@@ -286,6 +309,7 @@ class StudentRequestsController < ApplicationController
     if session_get(:uin) == nil
       redirect_to root_path
     end
+    initForNewForceRequest
   end
   
   def addadmin
@@ -300,8 +324,32 @@ class StudentRequestsController < ApplicationController
       flash[:warning] = @admin_request.errors.full_messages.join(",")
       redirect_to student_requests_adminview_path
     end
-      
   end
+  
+  def add_student
+    if params[:session][:uin2] == params[:session][:uin]
+      @students = Student.where("uin = '#{params[:session][:uin]}'")
+      if @students[0].nil?
+        if scrape_info(params[:session][:name], params[:session][:email]) != {}
+          record = scrape_info(params[:session][:name], params[:session][:email])
+          @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                              :major => record['Major'], :classification => record['Classification'])
+          flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.name} signed up successfully."
+          redirect_to student_requests_adminprivileges_path
+        else
+          flash[:notice] = "Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!"
+          redirect_to student_requests_adminprivileges_path
+        end
+      else
+        flash[:notice] = "Student record is already there"
+        redirect_to student_requests_adminprivileges_path
+      end
+    else
+      flash[:notice] = "The twice entered UIN must be same!"
+      redirect_to student_requests_adminprivileges_path
+    end
+  end
+  
   
   def getStudentInformationById
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
