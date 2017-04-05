@@ -30,22 +30,22 @@
         %td
           = label :session, :name, 'full name of student:'
         %td
-          = text_field(:session, :name, class: 'input-field')
+          = text_field(:session, :name, class: 'input-field',:required => true)
       %tr
         %td
           = label :session, :uin, 'UIN of Student:'
         %td
-          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')",:required => true)
       %tr
         %td
           = label :session, :uin2, 're-enter UIN of student:'
         %td
-          = text_field(:session, :uin2, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :uin2, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')", :required => true)
       %tr
         %td
           = label :session, :email, 'email of student:(Please enter the tamu email)'
         %td
-          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')",:required => true)
       %tr
         %td
           = label :session, :major, 'Major of student:'

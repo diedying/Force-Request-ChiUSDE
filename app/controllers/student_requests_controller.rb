@@ -327,8 +327,8 @@ class StudentRequestsController < ApplicationController
   end
   
   def add_student
-    @classificationList = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
-    @majorList = ['CPSC', 'CECN', 'CEEN','ELEN','APMS','CPSL','CECL','CEEL','Others']
+    @classificationList = StudentRequest::CLASSIFICATION_LIST
+    @majorList = Major.pluck(:major_id)
     if params[:session][:uin2] == params[:session][:uin]
       @students = Student.where("uin = '#{params[:session][:uin]}'")
       if @students[0].nil?
