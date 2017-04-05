@@ -15,6 +15,8 @@ class StudentsController < ApplicationController
     end
     #create a new student record
     def create
+        @classificationList = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
+        @majorList = ['CPSC', 'CECN', 'CEEN','ELEN','APMS','CPSL','CECL','CEEL','Others']
         #check the reenter uin and email is same
         if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
             #use the uin and email to check if the student has signed up

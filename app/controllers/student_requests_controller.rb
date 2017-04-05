@@ -327,19 +327,21 @@ class StudentRequestsController < ApplicationController
   end
   
   def add_student
+    @classificationList = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
+    @majorList = ['CPSC', 'CECN', 'CEEN','ELEN','APMS','CPSL','CECL','CEEL','Others']
     if params[:session][:uin2] == params[:session][:uin]
       @students = Student.where("uin = '#{params[:session][:uin]}'")
       if @students[0].nil?
-        if scrape_info(params[:session][:name], params[:session][:email]) != {}
-          record = scrape_info(params[:session][:name], params[:session][:email])
-          @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-                                              :major => record['Major'], :classification => record['Classification'])
-          flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.name} signed up successfully."
+        #if scrape_info(params[:session][:name], params[:session][:email]) != {}
+          # record = scrape_info(params[:session][:name], params[:session][:email])
+          @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password],
+                                              :major => params[:session][:major], :classification => params[:session][:classification])
+          flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
           redirect_to student_requests_adminprivileges_path
-        else
-          flash[:notice] = "Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!"
-          redirect_to student_requests_adminprivileges_path
-        end
+        #else
+          #flash[:notice] = "Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!"
+          #redirect_to student_requests_adminprivileges_path
+        #end
       else
         flash[:notice] = "Student record is already there"
         redirect_to student_requests_adminprivileges_path
