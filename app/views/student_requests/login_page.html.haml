@@ -27,10 +27,10 @@
           student
     %br
     %br
-    = submit_tag 'Login'
+    = submit_tag 'Login', :id => 'form_left'
     
   =  form_tag('/students/signup', method: :get) do
-    = submit_tag 'Sign Up'
+    = submit_tag 'Sign Up', :id => 'form_right'
 
 
 <span style="float:right;">

@@ -8,7 +8,10 @@
 
   %body
     /%h1.title= link_to '<button type="button" class="mainbutton">CSE Force Request System</button>'.html_safe, student_requests_homeRedirect_path
-    %h1.title CSE Force Request System 
+    // %h1.title CSE Force Request System 
+    %h1.title
+      = link_to ("CSE Force Request System"), root_path, :class => "title_click"
+      
     = render 'layouts/header'
     
    

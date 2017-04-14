@@ -37,6 +37,6 @@
           = password_field(:session, :password2, class: 'input-field')
     %br
     %br
-    = submit_tag 'Signup'
+    = submit_tag 'Signup', :id => 'form_left'
   = form_tag(root_path, method: :get) do
-    = submit_tag  "cancel"
+    = submit_tag  "cancel", :id => 'form_right'

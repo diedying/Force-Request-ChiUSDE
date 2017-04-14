@@ -33,6 +33,21 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
+.title_click {
+  color: white;
+  text-decoration: none;
+}
+.title_click :hover {
+  transform: scale(1.2);
+}
+#form_left {
+  float: left;
+  width:45%;
+}
+#form_right {
+  float: right;
+  width: 45%;
+}
 table {
   margin: 10px;
   border-collapse: collapse;

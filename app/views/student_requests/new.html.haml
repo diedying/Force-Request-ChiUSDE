@@ -71,7 +71,7 @@
             = text_area :student_request, 'notes', class: 'notes'
       %br
       %br
-      = submit_tag 'Save Request'
+      = submit_tag 'Save Request', :id => 'form_left'
       
     =  form_tag(students_show_path, method: :get) do
-      = submit_tag 'Cancel'
+      = submit_tag 'Cancel', :id => 'form_right'
