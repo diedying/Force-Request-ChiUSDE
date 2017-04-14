@@ -58,8 +58,8 @@ majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {
 # admins = [{:uin => '123'}, {:uin => '123456789'}, {:uin => '456789123'}, {:uin => '987654321'}]
 admins = [{:uin => '123', :name => 'admin', :password => '123'}]
 
-students = [{uin: "126003824", password: "123123", major: "Computer Engineering - CEEN", classification: "G7-Graduate, Master's Level", name: "Mo Li", email: "king_lm@tamu.edu"}]
-
+# students = [{uin: "126003824", password: "123123", major: "Computer Engineering - CEEN", classification: "G7-Graduate, Master's Level", name: "Mo Li", email: "king_lm@tamu.edu"}]
+students = []
 students.each do |student|
    Student.create!(student) 
 end

@@ -212,11 +212,16 @@ class StudentRequestsController < ApplicationController
           flash[:warning] = "Your UIN or Password is WRONG!"
           redirect_to root_path
         else
-          #update the session value which could be used in other pages
-          session_update(:name, @cur_user[0][:name])
-          session_update(:current_state, "student")
-          session_update(:uin, @cur_user[0][:uin])
-          redirect_to students_show_path
+          #check if the current student activate his account
+          if @cur_user[0].email_confirmed
+            #update the session value which could be used in other pages
+            session_update(:name, @cur_user[0][:name])
+            session_update(:current_state, "student")
+            session_update(:uin, @cur_user[0][:uin])
+            redirect_to students_show_path, notice:"your are logged in!"
+          else
+            flash[:warning] = "Please activate your account!"
+          end
         end
       else
         flash[:warning] = "Your student UIN is invalid format!"

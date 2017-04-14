@@ -24,6 +24,12 @@ Rails.application.routes.draw do
 
   resources :student_requests
   
+  # resources :students do
+  #   member do
+  #     get :confirm_email
+  #   end
+  # end
+  get 'students/confirm_email/:id' => 'students#confirm_email', as: 'confirm_email'
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
   #show the student dashboard
@@ -35,6 +41,7 @@ Rails.application.routes.draw do
   post 'students/update_password' => 'students#update_password'
   #before login forget password, then change password
   get 'students/forget_password' => 'students#forget_password'
-  post 'students/update_forgotten_password' => 'students#update_forgotten_password'
-  
+  post 'students/sent_reset_password_mail' => 'students#sent_reset_password_mail'
+  get 'students/reset_password/:id' => 'students#reset_password', as: 'reset_password'
+  post 'students/update_reset_password' => 'students#update_reset_password'
 end
