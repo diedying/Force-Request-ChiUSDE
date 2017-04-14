@@ -1,0 +1,6 @@
+Hi <%= @student.name %>,
+
+Thanks for registering to Force Request System! To confirm your registration click the URL below.
+
+<%= confirm_email_url(@student.confirm_token) %>
+

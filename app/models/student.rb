@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+    before_create :confirmation_token
+    
     validates :name, presence: true
     validates :email, presence: true
     validates :password, presence: true
@@ -6,4 +8,27 @@ class Student < ActiveRecord::Base
     # validates_format_of :email, :with => /\A(\w+)@(tamu.edu)\z/i
     validates_format_of :name, :with => /\w+/, :multiline => true
     # # attr_accessor :name, :email
+    def email_activate
+        self.email_confirmed = true
+        self.confirm_token = nil
+        # save!(:validate => false)
+        save!()
+    end
+    def password_reset_done
+        self.reset_password_confirm_token = nil
+        save!()
+    end
+    def reset_password_confirmation_token
+        if self.reset_password_confirm_token.blank?
+            self.reset_password_confirm_token = SecureRandom.urlsafe_base64.to_s
+            save!()
+        end
+    end
+
+    private
+    def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
 end
