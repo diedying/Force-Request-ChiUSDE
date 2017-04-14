@@ -58,17 +58,10 @@ majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {
 admins = [{:uin => '123456789', :name => 'admin', :password => 'tamu2017'}]
 
 # students = [{uin: "126003824", password: "123123", major: "Computer Engineering - CEEN", classification: "G7-Graduate, Master's Level", name: "Mo Li", email: "king_lm@tamu.edu"}]
-<<<<<<< HEAD
-
-# students.each do |student|
-#   Student.create!(student) 
-# end
-=======
 students = []
 students.each do |student|
    Student.create!(student) 
 end
->>>>>>> email_comfirm
 
 # student_requests.each do |record|
 #   StudentRequest.create!(record)
