@@ -13,61 +13,47 @@ class StudentsController < ApplicationController
     
     def signup
     end
-    #create a new student record
-    # def create
-    #     @classificationList = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
-    #     @majorList = ['CPSC', 'CECN', 'CEEN','ELEN','APMS','CPSL','CECL','CEEL','Others']
-    #     #check the reenter uin and email is same
-    #     if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
-    #         #use the uin and email to check if the student has signed up
-    #         @student = Student.where("uin = '#{params[:session][:uin]}'")
-    #         #check if the student has signed up before
-    #         if @student[0].nil?
-    #             #check if the input information matched to the information scraped
-    #             if scrape_info(params[:session][:name], params[:session][:email]) != {}
-    #                 record = scrape_info(params[:session][:name], params[:session][:email])
-    #                 @newStudent = Student.new(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-    #                                           :major => record['Major'], :classification => record['Classification'])
-    #                 if @newStudent.save
-    #                     StudentMailer.registration_confirmation(@newStudent).deliver
-    #                     flash[:notice] = "Please confirm your email address to continue"
-    #                     redirect_to root_path
-    #                 else
-    #                     flash[:error] = "Ooooppss, something went wrong!"
-    #                     # render 'new'
-    #                     redirect_to root_path
-    #                 end
-    #                 # #update records to standard format
-    #                 # @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-    #                 #                           :major => record['Major'], :classification => record['Classification'])
-    #                 # flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
-    #                 # redirect_to root_path
-                    
-    #             else
-    #                 flash[:notice] = "Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
-    #                 redirect_to students_signup_path
-    #             end
-    #         else
-    #             flash[:notice] = "Your record is already there"
-    #             redirect_to root_path
-    #         end
-             
-    #     else
-    #         flash[:notice] = "The twice entered UIN and password must be same!"
-    #         redirect_to students_signup_path
-    #     end
-    # end
+    # create a new student
     def create
-        @newStudent = Student.new(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], 
-        :password => params[:session][:password])
-        if @newStudent.save
-            StudentMailer.registration_confirmation(@newStudent).deliver
-            flash[:notice] = "Please confirm your email address to continue"
-            redirect_to root_path
+        @classificationList = StudentRequest::CLASSIFICATION_LIST
+        @majorList = Major.pluck(:major_id)
+        #check the reenter uin and email is same
+        if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
+            #use the uin and email to check if the student has signed up
+            @student = Student.where("uin = '#{params[:session][:uin]}'")
+            #check if the student has signed up before
+            if @student[0].nil?
+                #check if the input information matched to the information scraped
+                if scrape_info(params[:session][:name], params[:session][:email]) != {}
+                    record = scrape_info(params[:session][:name], params[:session][:email])
+                    # sign up email confirm feature
+                    # @newStudent = Student.new(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                    #                           :major => record['Major'], :classification => record['Classification'])
+                    # if @newStudent.save
+                    #     StudentMailer.registration_confirmation(@newStudent).deliver
+                    #     flash[:notice] = "Please confirm your email address to continue"
+                    #     redirect_to root_path
+                    # else
+                    #     flash[:error] = "Ooooppss, something went wrong!"
+                    #     # render 'new'
+                    #     redirect_to root_path
+                    # end
+                    #update records to standard format
+                    @newStudent = Student.create!(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                              :major => record['Major'], :classification => record['Classification'])
+                    flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
+                    redirect_to root_path
+                else
+                    flash[:notice] = "Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
+                    redirect_to students_signup_path
+                end
+            else
+                flash[:notice] = "Your record is already there"
+                redirect_to root_path
+            end
         else
-            flash[:error] = "Ooooppss, something went wrong!"
-            # render 'new'
-            redirect_to root_path
+            flash[:notice] = "The twice entered UIN and password must be same!"
+            redirect_to students_signup_path
         end
     end
     
@@ -78,7 +64,7 @@ class StudentsController < ApplicationController
             flash[:notice] = "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
             redirect_to root_path
         else
-            flash[:warning] = "Sorry. User does not exist"
+            flash[:warning] = "Sorry. The link is expired!"
             redirect_to root_path
         end
     end
@@ -121,7 +107,7 @@ class StudentsController < ApplicationController
             session_update(:uin, @student[0][:uin])
             #if this update take conflict with other users?
         else
-            flash[:warning] = "Sorry. User does not exist"
+            flash[:warning] = "Sorry. The link is expired!"
             redirect_to root_path
         end
  

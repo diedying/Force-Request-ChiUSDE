@@ -71,8 +71,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'gmail.com',
-    user_name:            'limo9373@gmail.com',
-    password:             'moking199373',
+    user_name:            'ForceRequestSystem@gmail.com',
+    password:             'TAMU2017',
     authentication:       'plain',
     enable_starttls_auto: true  }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
