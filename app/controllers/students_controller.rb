@@ -12,7 +12,9 @@ class StudentsController < ApplicationController
     end
     
     def signup
+        @student = Student.new
     end
+    
     #create a new student record
     def create
         @classificationList = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
@@ -33,16 +35,16 @@ class StudentsController < ApplicationController
                     flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
                     redirect_to root_path
                 else
-                    flash[:notice] = "Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
+                    flash[:warning] = "Warning: Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
                     redirect_to students_signup_path
                 end
             else
-                flash[:notice] = "Your record is already there"
+                flash[:warning] = "Warning: Your record is already there"
                 redirect_to root_path
             end
              
         else
-            flash[:notice] = "The twice entered UIN and password must be same!"
+            flash[:warning] = "Warning: The twice entered UIN and password must be same!"
             redirect_to students_signup_path
         end
     end
