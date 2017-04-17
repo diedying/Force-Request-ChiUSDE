@@ -13,7 +13,7 @@
         %td
           // = text_field(:session, :uin, class: 'input-field')
           = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
-      %tr
+      %trf
         %td
           = label :session, :uin2, 'ReEnter your UIN'
         %td
@@ -38,6 +38,6 @@
           = password_field(:session, :password2, class: 'input-field')
     %br
     %br
-    = submit_tag 'Signup'
+    = submit_tag 'Signup', :id => 'form_left'
   = form_tag(root_path, method: :get) do
-    = submit_tag  "cancel"
+    = submit_tag  "Cancel", :id => 'form_right'

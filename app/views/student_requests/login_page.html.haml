@@ -26,13 +26,15 @@
           student
     %br
     %br
-    = submit_tag 'Login'
+    = submit_tag 'Login', :id => 'form_left'
     
   =  form_tag('/students/signup', method: :get) do
-    = submit_tag 'Sign Up'
+    = submit_tag 'Sign Up', :id => 'form_right'
 
 
-<span style="float:right;">
-= mail_to 'cse.frs.feedback@gmail.com', "cse.frs.feedback@gmail.com", :title => 'cse.frs.feedback@gmail.com', subject: "FeedBack: " 
-</span>
-<span style="float:right;">If you encounter any problem with using this system, please email to &nbsp</span>
+
+
+
+%span 
+  If you encounter any problem with using this system, please email to 
+  = mail_to 'cse.frs.feedback@gmail.com', "cse.frs.feedback@gmail.com", :title => 'cse.frs.feedback@gmail.com', subject: "FeedBack: "
