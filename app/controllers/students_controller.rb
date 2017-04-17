@@ -124,7 +124,7 @@ class StudentsController < ApplicationController
             redirect_to students_show_path
         else
             flash[:warning] = "The twice entered new password must be same!"
-            redirect_to reset_password_path(@student[0]..reset_password_confirm_token)
+            redirect_to reset_password_url(@student[0].reset_password_confirm_token)
         end
     end
     
