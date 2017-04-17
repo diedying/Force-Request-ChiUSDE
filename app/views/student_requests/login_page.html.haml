@@ -24,8 +24,8 @@
           admin
           = radio_button(:session, :user, "student", :checked => true)
           student
-    %br
-    %br
+    
+    
     = submit_tag 'Login', :id => 'form_left'
     
   =  form_tag('/students/signup', method: :get) do
