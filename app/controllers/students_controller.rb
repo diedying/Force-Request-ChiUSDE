@@ -110,13 +110,16 @@ class StudentsController < ApplicationController
             flash[:warning] = "Sorry. The link is expired!"
             redirect_to root_path
         end
- 
     end
+    
     def update_reset_password
         @student = Student.where(:uin => session_get(:uin))
         if params[:session][:password] == params[:session][:password2]
             @student[0].update_attribute(:password, params[:session][:password])
             @student[0].password_reset_done#finish the reset password
+            session_update(:name, @student[0][:name])
+            session_update(:current_state, "student")
+            session_update(:uin, @student[0][:uin])
             flash[:notice] = "Your password has been changed!"
             redirect_to students_show_path
         else
