@@ -29,9 +29,10 @@ Rails.application.routes.draw do
   #     get :confirm_email
   #   end
   # end
-  get 'students/confirm_email/:id' => 'students#confirm_email', as: 'confirm_email'
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
+  #activate the account
+  get 'students/confirm_email/:id' => 'students#confirm_email', as: 'confirm_email'
   #show the student dashboard
   get 'students/show' => 'students#show'
   #show the student profile

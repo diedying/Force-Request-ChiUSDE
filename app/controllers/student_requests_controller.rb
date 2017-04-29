@@ -207,21 +207,28 @@ class StudentRequestsController < ApplicationController
     elsif params[:session][:user] == 'student'
       #check if the uin of student is valid
       if params[:session][:uin] =~ /^\d{9}$/
+        @user = Student.where("uin = '#{params[:session][:uin]}'")
+        if @user[0].nil?#the user doesn't sign up
+            flash[:warning] = "Please sign up first!"
+            redirect_to root_path
+            return#tricky
+        end
         @cur_user = Student.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
-        if @cur_user[0].nil?
+        if @cur_user[0].nil?#the UIN or Password don't match
           flash[:warning] = "Your UIN or Password is WRONG!"
           redirect_to root_path
         else
-          #check if the current student activate his account
-          # if @cur_user[0].email_confirmed
+          # check if the current student activate his account
+          if @cur_user[0].email_confirmed
             #update the session value which could be used in other pages
             session_update(:name, @cur_user[0][:name])
             session_update(:current_state, "student")
             session_update(:uin, @cur_user[0][:uin])
             redirect_to students_show_path, notice:"your are logged in!"
-          # else
-            # flash[:warning] = "Please activate your account!"
-          # end
+          else
+            flash[:warning] = "Please activate your account!"
+            redirect_to root_path
+          end
         end
       else
         flash[:warning] = "Your student UIN is invalid format!"
