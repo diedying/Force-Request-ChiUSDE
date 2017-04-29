@@ -90,11 +90,11 @@ class StudentsController < ApplicationController
     #sent the reset forgotten password mail to student email
     def sent_reset_password_mail
         @student = Student.where("uin ='#{params[:session][:uin]}'")
-        if @student[0].nil?
+        if @student[0].nil?#case : the UIN is not signed up
             flash[:warning] = "The student of UIN doesn't sign up"
             redirect_to '/students/forget_password'  
         else
-            @student[0].reset_password_confirmation_token#create the reset password confirmation token
+            @student[0].reset_password_confirmation_token#create the reset password confirmation token and the reset email sent time
             StudentMailer.reset_password(@student[0]).deliver
             flash[:notice] = "Please check your tamu email to reset your password!"
             redirect_to root_path
@@ -103,12 +103,11 @@ class StudentsController < ApplicationController
     #before login(forget the password) to update the password(create password)
     def reset_password 
         @student = Student.where("reset_password_confirm_token = '#{params[:id]}'")
-        if @student[0]
+        if @student[0] and !(@student[0].password_reset_expired?)
             session_update(:name, @student[0][:name])
             session_update(:current_state, "student")
             session_update(:uin, @student[0][:uin])
-            #if this update take conflict with other users?
-        else
+        else#case 1. the link expire; case 2. the link has been used
             flash[:warning] = "Sorry. The link is expired!"
             redirect_to root_path
         end

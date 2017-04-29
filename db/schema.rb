@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.boolean  "email_confirmed",              default: false
     t.string   "confirm_token"
     t.string   "reset_password_confirm_token"
+    t.datetime "reset_sent_at"
   end
 
 end
