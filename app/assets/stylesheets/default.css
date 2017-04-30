@@ -51,32 +51,45 @@ span {
   /*position: relative;*/
   /*left: 50%;*/
 }
-#form_left {
+#forget_password {
+  text-decoration: none;
+}
+#forget_password:hover {
+  text-decoration: underline;
+}
+#email_format {
+  text-decoration: none;
+}
+#email_format:hover {
+  text-decoration: underline;
+}
+#form_login {
   float: left;
-  margin-left: 13%;
+  margin-left: 35%;
   width: 8%;
   height: 3%;
   color: #E0E0E0;
   font-size: 18px;
-  font-weight: bold;
-  font-family: "Times New Roman";
+  /*font-weight: bold;*/
+  /*font-family: "Times New Roman";*/
 }
-#form_left:hover {
+#form_login:hover {
   color: white;
   background-color: maroon;
 }
-#form_right {
+#form_signup {
   float: right;
-  margin-right: 60%;
+  /*margin-right: 60%;*/
   width: 8%;
-  color: #E0E0E0;
+  color: maroon;
   font-size: 18px;
-  font-weight: bold;
-  font-family: "Times New Roman";
+  text-decoration: none;
+  margin: 20px 48% 10px 10px;
+  /*font-weight: bold;*/
+  /*font-family: "Times New Roman";*/
 }
-#form_right:hover {
-  color: white;
-  background-color: maroon;
+#form_signup:hover {
+  text-decoration: underline;
 }
 table {
   margin: 10px;
@@ -128,7 +141,6 @@ caption {
 }
 
 th {
-	
 	color: #4f6b72;
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
@@ -176,11 +188,11 @@ input[type=submit] {
 input[type= submit].logout-class
 {
   width: 10%;
-  margin-left: 85%;
+  margin-left: 90%;
   color: #E0E0E0;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: "Times New Roman";
+  font-size: 18px;
+  /*font-weight: bold;*/
+  /*font-family: "Times New Roman";*/
 }
 input[type= submit].logout-class:hover {
   color: white;
@@ -214,7 +226,7 @@ input[type= submit].logout-class:hover {
 
 .filter_form1 {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #E0E0E0;
     /*padding: 2px;*/
     width: 50%;
     float: left;
@@ -222,7 +234,7 @@ input[type= submit].logout-class:hover {
 
 .filter_form2 {
     /*border-radius: 5px;*/
-    background-color: #f2f2f2;
+    background-color: #E0E0E0;
     /*padding: 20px;*/
     margin-left: 50%;
 }
@@ -252,7 +264,6 @@ input[type= submit].logout-class:hover {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
 .update_admin {
   width: 25%;
 }
@@ -276,9 +287,11 @@ input[type= submit].logout-class:hover {
 }
 
 input[type=submit].filter {
+    font-size: 15px;
     width: 20%;
-    background-color: maroon;
-    color: white;
+    background-color: brown;
+    /*color: white;*/
+    color: #E0E0E0;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -286,6 +299,10 @@ input[type=submit].filter {
     cursor: pointer;
 }
 
+input[type=submit].filter:hover {
+  color: white;
+  background-color: maroon;
+}  
 label {
   font-size: 17px;
 }
@@ -350,7 +367,14 @@ table.sortableadmin thead {
     table-layout: fixed;
     width: 100%;
 }
-
+#download_table {
+    font-size: 15px;
+    color: brown;
+    text-decoration: none;
+}
+#download_table:hover {
+    text-decoration: underline;
+}
 select 
 {
     height:45px;
@@ -389,4 +413,16 @@ select
   font-size: 1em;
   font-style: normal;
   border: none;
+}
+#button_confirm {
+  /*float: left;*/
+  margin-left: 48%;
+  width: 8%;
+  /*height: 3%;*/
+  color: #E0E0E0;
+  font-size: 18px;
+}
+#button_confirm:hover {
+  color: white;
+  background-color: maroon;
 }

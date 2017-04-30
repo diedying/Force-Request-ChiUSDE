@@ -133,4 +133,41 @@ class StudentsController < ApplicationController
     def profile
         @students = Student.where(:uin => session_get(:uin))
     end
+    
+    def initForNewForceRequest
+        @classificationList = StudentRequest::CLASSIFICATION_LIST
+        @YearSemester = StudentRequest::YEAR_SEMESTER
+        @requestSemester = StudentRequest::REQUEST_SEMESTER
+        @majorList = Major.pluck(:major_id)
+    end
+    
+    def add_new_student
+        initForNewForceRequest
+    end
+    
+    def add_student
+        @classificationList = StudentRequest::CLASSIFICATION_LIST
+        @majorList = Major.pluck(:major_id)
+        if params[:session][:uin2] == params[:session][:uin]
+          @students = Student.where("uin = '#{params[:session][:uin]}'")
+          if @students[0].nil?
+            #if scrape_info(params[:session][:name], params[:session][:email]) != {}
+              # record = scrape_info(params[:session][:name], params[:session][:email])
+              @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password],
+                                                  :major => params[:session][:major], :classification => params[:session][:classification])
+              flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
+              redirect_to student_requests_adminprivileges_path
+            #else
+              #flash[:notice] = "Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!"
+              #redirect_to student_requests_adminprivileges_path
+            #end
+          else
+            flash[:notice] = "Student record is already there"
+            redirect_to student_requests_adminprivileges_path
+          end
+        else
+          flash[:notice] = "The twice entered UIN must be same!"
+          redirect_to student_requests_adminprivileges_path
+        end
+    end
 end
