@@ -10,15 +10,17 @@
         %td
           = label :uin, 'UIN of new Admin'
         %td 
-          = text_field :admin_request, 'uin', class: 'input-field-admin', :required => true
+          = text_field :admin_request, 'uin', class: 'input-field', :required => true
       %tr
         %td
           = label :name, 'Name of new Admin'
         %td
-          = text_field :admin_request, 'name', class: 'input-field-admin', :required => true
+          = text_field :admin_request, 'name', class: 'input-field', :required => true
       %tr
         %td
           = label :uin, 'Password of new Admin'
         %td
-          = password_field :admin_request, 'password', class: 'input-field-admin', :required => true
+          = password_field :admin_request, 'password', class: 'input-field', :required => true
+      
+      
     = submit_tag 'Comfirm', :id => 'button_confirm'

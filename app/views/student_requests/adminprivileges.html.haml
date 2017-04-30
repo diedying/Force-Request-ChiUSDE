@@ -4,8 +4,8 @@
 = link_to '<button type="button" class="regularbutton">Add New Force Admin</button>'.html_safe, admins_add_new_admin_path
 = link_to '<button type="button" class="regularbutton">Add New Student to System</button>'.html_safe, students_add_new_student_path
 = link_to '<button type="button" class="regularbutton">Add New Force Request to System</button>'.html_safe, student_requests_add_new_force_request_path
-= link_to '<button type="button" class="regularbutton">Archive All Force Request Data to Archival Database</button>'.html_safe, students_edit_password_path
-
+= link_to '<button type="button" class="regularbutton">Archive All Force Request Data to Archival Database</button>'.html_safe, student_requests_deleteall_path, :data => { confirm: 'Are you sure to archive?'}
+= link_to '<button type="button" class="regularbutton">Cancel</button>'.html_safe, student_requests_adminview_path
 // %h1 
 //   Add New Admin
 //   .form_new_request
@@ -106,9 +106,9 @@
 //         %td  
 //           = text_area :student_request, 'notes', class: 'notes'
 //     = submit_tag 'Comfirm'
-%h1    
-  Archive All Force Request Data to Archival Database
-  = form_tag('/student_requests/deleteall', method: "delete") do
-    = submit_tag 'Archive All Data', :data => { confirm: 'Are you sure?', disable_with: 'loading...' }
-  = form_tag('/student_requests/adminview', method: :get) do
-    = submit_tag 'Cancel'
+// %h1    
+//   Archive All Force Request Data to Archival Database
+//   = form_tag('/student_requests/deleteall', method: "delete") do
+//     = submit_tag 'Archive All Data', :data => { confirm: 'Are you sure?', disable_with: 'loading...' }
+//   = form_tag('/student_requests/adminview', method: :get) do
+//     = submit_tag 'Cancel'

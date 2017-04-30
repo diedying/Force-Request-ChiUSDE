@@ -69,9 +69,8 @@
             = label :student_request, :notes, 'Notes '
           %td  
             = text_area :student_request, 'notes', class: 'notes'
-      %br
-      %br
-      = submit_tag 'Save', :id => 'form_left'
+      
+      = submit_tag 'Save', :id => 'request_button_left'
       
     =  form_tag(students_show_path, method: :get) do
-      = submit_tag 'Cancel', :id => 'form_right'
+      = submit_tag 'Cancel', :id => 'request_button_right'
