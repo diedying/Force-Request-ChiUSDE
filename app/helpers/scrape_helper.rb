@@ -12,7 +12,9 @@ module ScrapeHelper
         urlPersons = table.css('a')#store the all searched results url
         #check all searched records to find out the one we need
         #use the realEmail to match
+        count = 0#set the threshold for search results
         urlPersons.each do |url|
+            count += 1
             urlPerson =  'https://services.tamu.edu' + url['href']
 	        personPage = Nokogiri::HTML(open(urlPerson))
 
@@ -38,6 +40,9 @@ module ScrapeHelper
     	        end
     	        return record
     	    end
+    	    if count > 30
+    	        break
+    	    end 
         end
         #if there is not matched record return nil
         record = {}

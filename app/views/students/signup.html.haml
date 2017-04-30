@@ -6,36 +6,36 @@
         %td
           = label :session, :name, 'Enter your full name'
         %td
-          = text_field(:session, :name, class: 'input-field')
+          = text_field(:session, :name, class: 'input-field', :pattern => "[a-zA-ZüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+", :oninvalid => "this.setCustomValidity('Please enter your Full Name')", :oninput => "this.setCustomValidity('')", :required => true)
       %tr
         %td
           = label :session, :uin, 'Enter your UIN'
         %td
           // = text_field(:session, :uin, class: 'input-field')
-          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Please enter 9 numbers of UIN')", :oninput => "this.setCustomValidity('')", :required => true)
       %trf
         %td
           = label :session, :uin2, 'ReEnter your UIN'
         %td
           // = text_field(:session, :uin2, class: 'input-field')
-          = text_field(:session, :uin2, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :uin2, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Please enter 9 numbers of UIN')", :oninput => "this.setCustomValidity('')", :required => true)
       %tr
         %td
           = label :session, :email, 'Enter your email (Please enter your tamu email)'
         %td
           // = text_field(:session, :email, class: 'input-field')
-          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
+          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Please enter TAMU Email Address')", :oninput => "this.setCustomValidity('')", :required => true)
           // = text_field(:session, :email, class: 'input-field', :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
       %tr
         %td
           = label :session, :password, 'Enter your password'
         %td
-          = password_field(:session, :password, class: 'input-field')
+          = password_field(:session, :password, class: 'input-field', :pattern => "[a-zA-Z0-9_]{6,20}", :oninvalid => "this.setCustomValidity('At least 6 and at most 20 of any letter, number, underscore')", :oninput => "this.setCustomValidity('')", :required => true)
       %tr
         %td
           = label :session, :password2, 'ReEnter your password'
         %td
-          = password_field(:session, :password2, class: 'input-field')
+          = password_field(:session, :password2, class: 'input-field', :required => true)
     %br
     %br
     = submit_tag 'Signup', :id => 'form_left'
