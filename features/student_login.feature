@@ -1,6 +1,6 @@
 Feature: students SignUp and login
   As a student
-  So that I can submit the force request
+  So that my information is protected
   I want to login to the force request system with password
   
   
@@ -16,20 +16,18 @@ Then I should see my account create successfully
 
 Given the following students exist:
   | name          |       uin    | password     |   email                |
+  | Mo Li         |   126003824  |  123123      |   king_lm@tamu.edu     |
   | Mian Qin      |   123123123  |    321       |   celery1124@tamu.edu  |
   | Jiechen Zhong |   222111333  |    zxc       |   chen0209app@tamu.edu |
 
 
-Scenario: Add new request
+Scenario: Student Login
 When I am on the Login Page again
 And I fill in the form with correct info, and then click login
 And I should be on Student Dashboard Page and click profile
 Then I should see my personal information
 And I click OK
 Then I should go back to dashboard
-When I click on New Force Request, I should see my profile auto-filled, and fill in the form, and then click Save Request 
-Then I should see my info
-When I click on Withdraw
-Then I should not see that request on Student Dashboard Page
+
 
 
