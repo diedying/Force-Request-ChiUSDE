@@ -56,14 +56,19 @@
             = select :student_request, 'request_semester', @requestSemester, :required => true
         %tr
           %td   
-            = label :student_request, :course_id, 'Course Id*'
+            = label :student_request, :course_id, 'Course Number*'
           %td  
             = text_field :student_request, 'course_id', class: 'input-field', :required => true
         %tr
           %td   
-            = label :student_request, :section_id, 'Section Id*'
+            = label :student_request, :section_id, 'Section Number*'
           %td  
             = text_field :student_request, 'section_id', class: 'input-field', :required => true
+        %tr
+          %td
+            = label 'Sample'
+          %td
+            = label
         %tr
           %td   
             = label :student_request, :notes, 'Notes '
