@@ -38,6 +38,6 @@
           = password_field(:session, :password2, class: 'input-field', :required => true)
     
     
-    = submit_tag 'Signup', :id => 'signup_button_left', :data => { confirm: 'An email will be sent to you!'}
+    = submit_tag 'Signup', :id => 'signup_button_left'
   = form_tag(root_path, method: :get) do
     = submit_tag  "Cancel", :id => 'signup_button_right'
