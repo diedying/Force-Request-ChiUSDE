@@ -1,0 +1,44 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
+  
+%h1  
+  Add new Student to system
+  .form_new_request
+  = form_tag students_add_new_student_path, :id => 'new_request' do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :session, :name, 'full name of student:'
+        %td
+          = text_field(:session, :name, class: 'input-field',:required => true)
+      %tr
+        %td
+          = label :session, :uin, 'UIN of Student:'
+        %td
+          = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')",:required => true)
+      %tr
+        %td
+          = label :session, :uin2, 're-enter UIN of student:'
+        %td
+          = text_field(:session, :uin2, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')", :required => true)
+      %tr
+        %td
+          = label :session, :email, 'email of student:(Please enter the tamu email)'
+        %td
+          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')",:required => true)
+      %tr
+        %td
+          = label :session, :major, 'Major of student:'
+        %td
+          = select :session, 'major', @majorList, :required => true
+      %tr
+        %td
+          = label :session, :classification, 'Classification of student (U1,U3,G7,G8,etc):'
+        %td
+          = select :session, 'classification', @classificationList, :required => true
+      %tr
+        %td
+          = label :session, :password, 'the initial password:'
+        %td
+          = text_field(:session, :password, class: 'input-field', value: '123456')
+    = submit_tag 'Comfirm', :id => 'button_confirm'

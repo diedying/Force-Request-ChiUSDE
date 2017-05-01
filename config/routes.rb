@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   get 'student_requests/adminprivileges' => 'student_requests#adminprivileges'
   post 'student_requests/addadmin' => 'student_requests#addadmin'
   post 'student_requests/add_student' => 'student_requests#add_student'
-  post 'student_requests/add_force_request' => 'student_requests#add_force_request' 
+  get 'student_requests/add_new_force_request' => 'student_requests#add_new_force_request'
+  post 'student_requests/add_new_force_request' => 'student_requests#add_force_request' 
+  
   
   delete 'student_requests/deleteall' => 'student_requests#deleteall'
   get 'student_requests/homeRedirect' => 'student_requests#homeRedirect'
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   post 'student_requests/logout' => 'student_requests#logout'
 
   resources :student_requests
+  
   
   # resources :students do
   #   member do
@@ -45,4 +48,12 @@ Rails.application.routes.draw do
   post 'students/sent_reset_password_mail' => 'students#sent_reset_password_mail'
   get 'students/reset_password/:id' => 'students#reset_password', as: 'reset_password'
   post 'students/update_reset_password' => 'students#update_reset_password'
+  get 'students/add_new_student' => 'students#add_new_student'
+  post 'students/add_new_student' => 'students#add_student'
+  
+  
+  # Admin
+  get 'admins/add_new_admin' => 'admins#add_new_admin'
+  post 'admins/add_new_admin' => 'admins#addAdmin'
+  
 end

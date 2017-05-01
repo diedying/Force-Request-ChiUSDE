@@ -1,0 +1,37 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
+  Add new Force Request to system 
+  .form_new_request
+  = form_tag student_requests_add_new_force_request_path, :id => 'new_request' do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :admin_request, :uin, 'UIN of student*'
+        %td 
+          = text_field :admin_request, 'uin', class: 'input-field', :required => true, :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')"
+      %tr
+        %td   
+          = label :student_request, :expected_graduation, 'Expected Graduation*'
+        %td 
+          = select :student_request, 'expected_graduation', @YearSemester
+      %tr
+        %td   
+          = label :student_request, :request_semester, 'Request Semester*'
+        %td  
+          = select :student_request, 'request_semester', @requestSemester, :required => true
+      %tr
+        %td   
+          = label :student_request, :course_id, 'Course Id*'
+        %td  
+          = text_field :student_request, 'course_id', class: 'input-field', :required => true
+      %tr
+        %td   
+          = label :student_request, :section_id, 'Section Id*'
+        %td  
+          = text_field :student_request, 'section_id', class: 'input-field', :required => true
+      %tr
+        %td   
+          = label :student_request, :notes, 'Notes '
+        %td  
+          = text_area :student_request, 'notes', class: 'notes'
+    = submit_tag 'Comfirm', :id => 'button_confirm'

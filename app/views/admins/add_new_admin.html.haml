@@ -1,0 +1,26 @@
+- unless session[:uin].nil?
+  = render 'layouts/login'
+
+%h1 
+  Add New Admin
+  .form_new_request
+  = form_tag admins_add_new_admin_path, :id => 'new_request' do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :uin, 'UIN of new Admin'
+        %td 
+          = text_field :admin_request, 'uin', class: 'input-field', :required => true
+      %tr
+        %td
+          = label :name, 'Name of new Admin'
+        %td
+          = text_field :admin_request, 'name', class: 'input-field', :required => true
+      %tr
+        %td
+          = label :uin, 'Password of new Admin'
+        %td
+          = password_field :admin_request, 'password', class: 'input-field', :required => true
+      
+      
+    = submit_tag 'Comfirm', :id => 'button_confirm'

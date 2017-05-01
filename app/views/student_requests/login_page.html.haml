@@ -15,7 +15,7 @@
           = label :session, :password, 'Enter your password'
         %td
           = password_field(:session, :password, class: 'input-field')
-          = link_to "(forgot password)", '/students/forget_password'
+          = link_to "Forgot password", '/students/forget_password', :id => 'forget_password'
       %tr
         %td
           = label :session, :user, 'Login as'
@@ -26,15 +26,13 @@
           student
     
     
-    = submit_tag 'Login', :id => 'form_left'
+    = submit_tag 'Login', :id => 'form_login'
     
-  =  form_tag('/students/signup', method: :get) do
-    = submit_tag 'Sign Up', :id => 'form_right'
-
-
-
+  = link_to "Sign Up", '/students/signup', :id => 'form_signup'
+  // =  form_tag('/students/signup', method: :get) do
+  //   = submit_tag 'Sign Up', :id => 'form_signup'
 
 
 %span 
   If you encounter any problem with using this system, please email to 
-  = mail_to 'cse.frs.feedback@gmail.com', "cse.frs.feedback@gmail.com", :title => 'cse.frs.feedback@gmail.com', subject: "FeedBack: "
+  = mail_to 'cse.frs.feedback@gmail.com', "cse.frs.feedback@gmail.com", :title => 'cse.frs.feedback@gmail.com', subject: "FeedBack: ", :id => 'email_format'

@@ -41,8 +41,7 @@
         //     = label :student_request, :expected_graduation, 'Expected Graduation*'
         //   %td 
         //     = select :student_request, 'expected_graduation', @YearSemester
-  %br
-  %br
-  = submit_tag 'Confirm', :id => "form_left"
+  
+  = submit_tag 'Confirm', :id => "profile_button_left"
 = form_tag(students_show_path, method: :get) do
-  = submit_tag  "Cancel", :id => "form_right"
+  = submit_tag  "Cancel", :id => "profile_button_right"

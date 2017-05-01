@@ -258,6 +258,7 @@ input[type= submit].logout-class:hover {
 }
 
 .regularbutton {
+  width: 22%;
   background-color:brown;
 	border:1px solid brown;
 	border-radius: 10px;
@@ -269,6 +270,7 @@ input[type= submit].logout-class:hover {
 	padding:16px 31px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2f6627;
+	margin: 5px 5px 5px 5px;
 }
 .regularbutton:hover {
   color: white;
@@ -389,4 +391,7 @@ select
   font-size: 1em;
   font-style: normal;
   border: none;
+}
+#adminprivileges {
+  
 }
