@@ -1,10 +1,14 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
-
+#adminprivileges
 = link_to '<button type="button" class="regularbutton">Add New Force Admin</button>'.html_safe, admins_add_new_admin_path
+%br
 = link_to '<button type="button" class="regularbutton">Add New Student to System</button>'.html_safe, students_add_new_student_path
+%br
 = link_to '<button type="button" class="regularbutton">Add New Force Request to System</button>'.html_safe, student_requests_add_new_force_request_path
-= link_to '<button type="button" class="regularbutton">Archive All Force Request Data to Archival Database</button>'.html_safe, student_requests_deleteall_path, :data => { confirm: 'Are you sure to archive?'}
+%br
+= link_to '<button type="button" class="regularbutton">Archive All Force Request</button>'.html_safe, student_requests_deleteall_path, :data => { confirm: 'Are you sure to archive?'}
+%br
 = link_to '<button type="button" class="regularbutton">Cancel</button>'.html_safe, student_requests_adminview_path
 // %h1 
 //   Add New Admin
