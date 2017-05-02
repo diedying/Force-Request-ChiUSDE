@@ -1,5 +1,7 @@
 - unless session[:uin].nil?
   = render 'layouts/login'
+
+%h1  
   Add new Force Request to system 
   .form_new_request
   = form_tag student_requests_add_new_force_request_path, :id => 'new_request' do
@@ -21,12 +23,12 @@
           = select :student_request, 'request_semester', @requestSemester, :required => true
       %tr
         %td   
-          = label :student_request, :course_id, 'Course Id*'
+          = label :student_request, :course_id, 'Course Number* (Eg: 629 for CSCE 629-600)'
         %td  
           = text_field :student_request, 'course_id', class: 'input-field', :required => true
       %tr
         %td   
-          = label :student_request, :section_id, 'Section Id*'
+          = label :student_request, :section_id, 'Section Number* (Eg: 600 for CSCE 629-600)'
         %td  
           = text_field :student_request, 'section_id', class: 'input-field', :required => true
       %tr
