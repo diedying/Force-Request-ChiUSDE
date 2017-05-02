@@ -358,6 +358,8 @@ input[type= submit].logout-class:hover {
 }
 
 .regularbutton {
+  width: 20%;
+  margin: 10px 10px 10px 10px;
   background-color:brown;
 	border:1px solid brown;
 	border-radius: 10px;
