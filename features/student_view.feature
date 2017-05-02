@@ -22,6 +22,13 @@ When I am on the Login Page again
 And I fill in the form with correct info, and then click login
 And I click change password button
 Then I should be on change password page and fill it up
+And I click change password button
+When I fill the old password wrongly
+Then I stay on the page on recieve warining
+When I fill the new password wrongly
+Then I stay on the page on recieve another warining
+When I withdraw this request
+Then I will back to student dashboard
 
 Scenario: Student Logout
 When I am on the Login Page again

@@ -8,6 +8,9 @@ Scenario: Student SignUp
 Given I am a student have not registered on the Login Page
 When I click on Sign Up
 Then I will be on the Sign Up page
+When I sign up wirh existed uin
+Then I should recieve the warning massage
+When I click on Sign Up
 When I fill in the form wongly, and then click SignUp
 Then I should stay on the same page and recieve a warning massage
 When I fill in the form correctly, and then click SignUp

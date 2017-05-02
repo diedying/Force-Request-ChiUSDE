@@ -29,6 +29,26 @@ Then(/^I will be on the Sign Up page$/) do
   page.should have_content("ReEnter your password")  
 end
 
+When(/^I sign up wirh existed uin$/) do
+  @user_info = {:name => "jiechen zhong", :email => "chen0209app@tamu.edu", :password => "321", :UIN => "123123123"}
+  fill_in('Enter your full name', :with => @user_info[:name])
+  fill_in('ReEnter your UIN', :with => @user_info[:UIN])
+  fill_in('Enter your UIN', :with => @user_info[:UIN])
+  fill_in('Enter your email', :with => @user_info[:email])
+  fill_in('Enter your password', :with => @user_info[:password])
+  fill_in('ReEnter your password', :with => @user_info[:password])
+  click_button('Signup')
+end
+  
+Then(/^I should recieve the warning massage$/) do
+  if page.respond_to? :should
+    page.should have_content("Warning: Your record is already there")
+  else
+    assert page.should have_content("Warning: Your record is already there")
+  end
+end
+
+
 When(/^I fill in the form wongly, and then click SignUp$/) do 
   @user_info = {:name => "shuocun li", :email => "ginolee@tamu.edu", :password => "321", :UIN => "789789789"}
   fill_in('Enter your full name', :with => @user_info[:name])
@@ -106,6 +126,7 @@ And(/^I should be on Student Dashboard Page and click profile$/) do
   # visit('/students/show')
 end
 
+
 Then(/^I should see my personal information$/) do
   page.should have_content("Full Name")
   page.should have_content("Major")
@@ -156,19 +177,55 @@ end
 
 
 And(/^I click change password button$/) do
-  click_button('Change Your Password')
+  click_link('Change Your Password')
 end
 
 Then(/^I should be on change password page and fill it up$/) do
   page.has_content?("Enter your new password")
   
   @user_info = {:old => "321",  :new => "qwe"}
-  # fill_in('Enter your old password', :with => @user_info[:old])
-  # fill_in('Enter your new password', :with => @user_info[:new])
-  # fill_in('session[password2]', :with => @user_info[:new])
+  fill_in('Enter your old password', :with => @user_info[:old])
+  fill_in('Enter your new password', :with => @user_info[:new])
+  fill_in('session[password2]', :with => @user_info[:new])
   
-  # click_button('form_left')
+  click_button('Confirm')
 end
+
+When(/^I fill the old password wrongly$/) do
+  @user_info = {:old => "qwe",  :new => "qwe"}
+  fill_in('Enter your old password', :with => @user_info[:old])
+  fill_in('Enter your new password', :with => @user_info[:new])
+  fill_in('session[password2]', :with => @user_info[:new])
+  
+  click_button('Confirm')
+end
+  
+Then(/^I stay on the page on recieve warining$/) do
+  page.has_content?("The old password you enter is wrong!")
+end
+
+When(/^I fill the new password wrongly$/) do
+  @user_info = {:old => "321",  :new => "qwe"}
+  fill_in('Enter your old password', :with => @user_info[:old])
+  fill_in('Enter your new password', :with => @user_info[:new])
+  fill_in('session[password2]', :with => 'xxx')
+  
+  click_button('Confirm')
+end
+  
+Then(/^I stay on the page on recieve another warining$/) do
+  page.has_content?("The twice entered new password must be same!")
+end
+
+When(/^I withdraw this request$/) do
+  # page.should have_content("Cancel")
+  click_button('Cancel')
+end
+
+Then(/^I will back to student dashboard$/) do
+  page.should have_content("View Your Profile")
+end
+
 
 And(/^I click logout button$/) do
   click_button('Logout')
