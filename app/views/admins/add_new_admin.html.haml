@@ -23,4 +23,7 @@
           = password_field :admin_request, 'password', class: 'input-field', :required => true
       
       
-    = submit_tag 'Comfirm', :id => 'button_confirm'
+    = submit_tag 'Comfirm', :id => 'request_button_left'
+    
+  = form_tag(student_requests_adminprivileges_path, method: :get) do
+    = submit_tag 'Cancel', :id => 'request_button_right'
