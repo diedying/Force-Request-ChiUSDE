@@ -25,7 +25,7 @@
         %td
           = label :session, :email, 'email of student:(Please enter the tamu email)'
         %td
-          = text_field(:session, :email, class: 'input-field', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')",:required => true)
+          = text_field(:session, :email, class: 'input-field', placeholder: 'xxx@tamu.edu', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')",:required => true)
       %tr
         %td
           = label :session, :major, 'Major of student:'
