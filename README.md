@@ -9,38 +9,44 @@ The Department of Computer Science and Engineering(CSE) at Texas A&M University 
 
 Developers
 -------------
+Leyi Hu,
+Mo Li,
+Minrui Wang,
+Shuocun Li,
+Ying Wang,
+Jiechen Zhong
 
-Adil Hamid Malla 
-Aditya Nanjangud 
-Bhavik Ameta 
-Navneet Gupta 
-Shubham Jain
+#### <i class="icon-file"></i> Steps to start the Force Request System:
 
-#### <i class="icon-file"></i> Steps to start the Force Request System:-
-
-bundle install
+$ bundle install
 :   Install the dependencies specified in your Gemfile
 
-sudo service postgresql start
+$ sudo service postgresql start
 :   Start the postgres server
 
-psql
+$ psql
 
 :   Connect to the postgres service                        
-:    \password ubuntu ---> Set password for 'ubuntu' user to 'ubuntu'
+:    \password 
+:   ubuntu (---> Set password for 'ubuntu' user to 'ubuntu')
 
-rake db:setup
+$ rake db:setup
 :   Creates all the tables i.e. runs the /db/schema.rb file
 
-rake db:seed
+$ rake db:seed
 :   Add the dummy data to the database
 
-rails s \-p \$PORT -b $IP
+$ rails s \-p \$PORT -b $IP
 :   Starts the rails application
 
 
+#### <i class="icon-folder-open"></i> Student Information Retrieval
 
+When a new student signup into FRS, the information of this user like major, email and classification are retrived from https://services.tamu.edu/directory-search/.
+The searching is based on student name, and only the retrived email mathced with student input email address, the account will be successfully created.
 
 #### <i class="icon-folder-open"></i> Note
 
-For seeing the admin view, simply give admin UIN. For testing purpose, UIN are mentioned in seeds.rb. All other UINs are by default considered for students.
+The admin account is stored in seeds.rb. In final release, all students accounts and requests are removed from seeds.rb.
+In development mode, please also use thise seeds.rb to setup dummy data.
+
