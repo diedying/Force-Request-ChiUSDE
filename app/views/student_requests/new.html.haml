@@ -58,12 +58,12 @@
           %td   
             = label :student_request, :course_id, 'Course Id*'
           %td  
-            = text_field :student_request, 'course_id', class: 'input-field', :required => true, placeholder: '629 for CSCE 629-600'
+            = text_field :student_request, 'course_id', class: 'input-field', :required => true, placeholder: 'i.e. to choose course CSCE 629-600, enter 629', :pattern => "[0-9]{3}", :oninvalid => "this.setCustomValidity('Please enter 3 numbers of Course ID')", :oninput => "this.setCustomValidity('')", :required => true
         %tr
           %td   
             = label :student_request, :section_id, 'Section Id*'
           %td  
-            = text_field :student_request, 'section_id', class: 'input-field', :required => true, placeholder: '600 for CSCE 629-600'
+            = text_field :student_request, 'section_id', class: 'input-field', :required => true, placeholder: 'i.e. to choose course CSCE 629-600, enter 600', :pattern => "[0-9]{3}", :oninvalid => "this.setCustomValidity('Please enter 3 numbers of Section ID')", :oninput => "this.setCustomValidity('')", :required => true
         %tr
           %td   
             = label :student_request, :notes, 'Notes '
