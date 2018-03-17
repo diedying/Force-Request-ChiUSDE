@@ -45,8 +45,6 @@ group :development, :test do
   gem 'guard-rspec'
 
   
-  # Use postgres as the database for Active Record
-  gem 'pg'
   
   # Access an IRB console on exception pages or by using <%= console %> in views
   #gem 'web-console', '~> 2.0'
@@ -54,13 +52,12 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   
-  gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
 end
 
 group :production do
   gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
-  gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
+  gem 'pg', '0.21.0'
 end
 
 # Gemfile
