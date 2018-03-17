@@ -43,7 +43,7 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'guard-rspec'
-
+  gem 'tzinfo-data'
   
   
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -57,7 +57,7 @@ end
 group :production do
   gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
   gem 'rails_12factor'
-  gem 'pg', '0.21.0'
+  gem 'pg', '~>0.21.0'
 end
 
 # Gemfile
