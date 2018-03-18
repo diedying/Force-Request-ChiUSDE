@@ -1,15 +1,67 @@
 module ScrapeHelper
-    def scrape_info(searchKey, realEmail)
+    def scrape_info(name, major, realEmail)
         require 'rubygems'
         require 'nokogiri'
         require 'open-uri' 
 
-        #get the search url of specific searchKey
-        urlSearch = 'https://services.tamu.edu/directory-search/?branch=people&cn=' + searchKey
+        split_name = name.split(/, */)
+        lastName = split_name[0]
+        firstName = split_name[1]
+
+        # Old pattern for name in signup.html.haml: :pattern => "[a-zA-ZüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,}"
+
+        #get the search url of specific name / major
+        urlSearch = 'https://services.tamu.edu/directory-search/?branch=people&givenName=' + firstName + '&sn=' + lastName + '&tamuEduPersonMajor=' + major + '#adv-search'
         page = Nokogiri::HTML(open(urlSearch))
         
-        table = page.css('table#resultsTable')
-        urlPersons = table.css('a')#store the all searched results url
+        # https://stackoverflow.com/questions/4232345/get-div-nested-in-div-element-using-nokogiri
+        results = page.css('div.floating-form.u-radiusTop--0')
+        record = {}
+        
+        if results.nil?
+            puts('=============Empty Record')
+            return record
+            
+        # Iterate through results matching the person's name
+        # If we find a result with a matching email, return that record
+        # Otherwise, return a blank result.
+        else
+            puts('=============Not Empty Record.')
+            results.each do |result|
+                profileLink = result.css('li.view-profile a[href]').attr('href')
+                urlPerson =  'https://services.tamu.edu' + profileLink
+                puts('URL: ', urlPerson)
+                # Only open the page if it's a student (ignore faculty for now).
+                # TODO: result['class'] returns floating-form.u-radiusTop--0
+                #if result['class'] == '.result-listing student'
+                    puts('=============Opening Page: ', urlPerson)
+                    personPage = Nokogiri::HTML(open(urlPerson))
+                    puts('=============Opened Page: ', urlPerson)
+                    # Get the classification from the directory's person page
+                    additionalInfo = personPage.css('.additional-info').css('ul')
+                    classification = additionalInfo.css('li')[0].text
+                    puts('=============Got Classification: ', classification)
+                    # Get the email address from the directory's person page
+                    contactInfo = personPage.css('.contact-info')
+                    pageEmail = contactInfo.css('a').text
+                    puts('=============Got Email: ', pageEmail)
+                    # Compare the page's email to the entered email
+                    if pageEmail == realEmail
+                        record['First Name'] = firstName
+                        record['Last Name'] = lastName
+                        record['Email Address'] = realEmail
+                        record['Major'] = major
+                        record['Classification'] = classification
+                        break
+                    end
+                #end
+            end
+            return record
+        end
+    end
+end
+=begin
+        urlPersons = result.css('a')#store the all searched results url
         #check all searched records to find out the one we need
         #use the realEmail to match
         count = 0#set the threshold for search results
@@ -49,3 +101,4 @@ module ScrapeHelper
         return record
     end
 end
+=end

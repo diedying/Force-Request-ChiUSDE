@@ -1,5 +1,5 @@
 class StudentMailer < ActionMailer::Base
-    default :from => 'ForceRequestSystem@gmail.com'
+    default :from => 'force.request@gmail.com'
 
     def registration_confirmation(student)
         @student = student

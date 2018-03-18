@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
             #use the uin and email to check if the student has signed up
             @student = Student.where("uin = '#{params[:session][:uin]}'")
             if @student[0].nil?#the student hasn't signed up before
-                record = scrape_info(params[:session][:name], params[:session][:email])
+                record = scrape_info(params[:session][:name], params[:session][:major], params[:session][:email])
                 if  record.length() != 0#scrape the record
                     # sign up email confirm feature
                     @newStudent = Student.new(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
