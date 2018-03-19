@@ -57,7 +57,7 @@ end
 group :production do
   gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
   gem 'rails_12factor'
-  gem 'pg', '~>0.21.0'
+  gem 'pg', '0.21.0'
 end
 
 # Gemfile
