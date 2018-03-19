@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
         #check the reenter uin and email is same
         if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
             #use the uin and email to check if the student has signed up
-            @student = Student.where("uin = '#{params[:session][:uin]}'")
+            @student = Student.where("uin = ? OR email = ?", "#{params[:session][:uin]}", "#{params[:session][:email]}")
             if @student[0].nil?#the student hasn't signed up before
                 record = scrape_info(params[:session][:name], params[:session][:major], params[:session][:email])
                 if  record.length() != 0#scrape the record
@@ -75,7 +75,7 @@ class StudentsController < ApplicationController
                 redirect_to students_edit_password_path 
             end
         else
-            flash[:warning] = "The old password you enter is wrong!"
+            flash[:warning] = "The old password you entered is wrong!"
             redirect_to students_edit_password_path 
         end
     end
@@ -83,7 +83,7 @@ class StudentsController < ApplicationController
     def sent_reset_password_mail
         @student = Student.where("uin ='#{params[:session][:uin]}'")
         if @student[0].nil?#case : the UIN is not signed up
-            flash[:warning] = "The student of UIN doesn't sign up"
+            flash[:warning] = "There is no account associated with the given UIN."
             redirect_to '/students/forget_password'  
         else
             @student[0].reset_password_confirmation_token#create the reset password confirmation token and the reset email sent time

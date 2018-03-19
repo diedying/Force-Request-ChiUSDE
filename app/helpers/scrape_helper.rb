@@ -19,14 +19,12 @@ module ScrapeHelper
         record = {}
         
         if results.nil?
-            puts('=============Empty Record')
             return record
             
         # Iterate through results matching the person's name
         # If we find a result with a matching email, return that record
         # Otherwise, return a blank result.
         else
-            puts('=============Not Empty Record.')
             results.each do |result|
                 profileLink = result.css('li.view-profile a[href]').attr('href')
                 urlPerson =  'https://services.tamu.edu' + profileLink
@@ -34,17 +32,13 @@ module ScrapeHelper
                 # Only open the page if it's a student (ignore faculty for now).
                 # TODO: result['class'] returns floating-form.u-radiusTop--0
                 #if result['class'] == '.result-listing student'
-                    puts('=============Opening Page: ', urlPerson)
                     personPage = Nokogiri::HTML(open(urlPerson))
-                    puts('=============Opened Page: ', urlPerson)
                     # Get the classification from the directory's person page
                     additionalInfo = personPage.css('.additional-info').css('ul')
                     classification = additionalInfo.css('li')[0].text
-                    puts('=============Got Classification: ', classification)
                     # Get the email address from the directory's person page
                     contactInfo = personPage.css('.contact-info')
                     pageEmail = contactInfo.css('a').text
-                    puts('=============Got Email: ', pageEmail)
                     # Compare the page's email to the entered email
                     if pageEmail == realEmail
                         record['First Name'] = firstName
