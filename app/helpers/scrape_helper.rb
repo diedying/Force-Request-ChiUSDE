@@ -18,23 +18,18 @@ module ScrapeHelper
             
         results = page.css('div.floating-form.u-radiusTop--0')
         record = {}
-            
-        if not results[0].at_css('alert__alert').nil?
+           
+           
+        temp = results[0].css('p.alert__title')
+        if temp.text == "No search results were found."
             return record
         end
-        # if results.nil?
-            # return record
         
         # Iterate through results matching the person's name
         # If we find a result with a matching email, return that record
         # Otherwise, return a blank result.
-        # else
             
-        
         results.each do |result|
-            if result.nil?
-                return record
-            end
             profileLink = result.css('li.view-profile a[href]').attr('href')
             urlPerson =  'https://services.tamu.edu' + profileLink
             puts('URL: ', urlPerson)

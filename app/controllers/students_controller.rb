@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
                         redirect_to root_path
                     end
                 else#can't scrape the record
-                    flash[:warning] = "Warning: Your information is incorrect!\nPlease use your TAMU email to register!\nUse your name as which is on your Student ID!"
+                    flash[:warning] = "Warning: Your information is incorrect!\nPlease use your TAMU email to register!\nUse the name that appears on your Student ID!"
                     redirect_to students_signup_path
                 end
             else#the student has signed up
