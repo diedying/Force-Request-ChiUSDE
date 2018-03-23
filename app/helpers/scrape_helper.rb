@@ -19,7 +19,7 @@ module ScrapeHelper
         results = page.css('div.floating-form.u-radiusTop--0')
         record = {}
             
-        if results[0].at_css('alert__alert').nil?
+        if not results[0].at_css('alert__alert').nil?
             return record
         end
         # if results.nil?
@@ -31,35 +31,35 @@ module ScrapeHelper
         # else
             
         
-            results.each do |result|
-                if result.nil?
-                    return record
-                end
-                profileLink = result.css('li.view-profile a[href]').attr('href')
-                urlPerson =  'https://services.tamu.edu' + profileLink
-                puts('URL: ', urlPerson)
-                # Only open the page if it's a student (ignore faculty for now).
-                # TODO: result['class'] returns floating-form.u-radiusTop--0
-                #if result['class'] == '.result-listing student'
-                    personPage = Nokogiri::HTML(open(urlPerson))
-                    # Get the classification from the directory's person page
-                    additionalInfo = personPage.css('.additional-info').css('ul')
-                    classification = additionalInfo.css('li')[0].text
-                    # Get the email address from the directory's person page
-                    contactInfo = personPage.css('.contact-info')
-                    pageEmail = contactInfo.css('a').text
-                    # Compare the page's email to the entered email
-                    if pageEmail == realEmail
-                        record['First Name'] = firstName
-                        record['Last Name'] = lastName
-                        record['Email Address'] = realEmail
-                        record['Major'] = major
-                        record['Classification'] = classification
-                        break
-                    end
-                #end
+        results.each do |result|
+            if result.nil?
+                return record
             end
-            return record
+            profileLink = result.css('li.view-profile a[href]').attr('href')
+            urlPerson =  'https://services.tamu.edu' + profileLink
+            puts('URL: ', urlPerson)
+            # Only open the page if it's a student (ignore faculty for now).
+            # TODO: result['class'] returns floating-form.u-radiusTop--0
+            #if result['class'] == '.result-listing student'
+            personPage = Nokogiri::HTML(open(urlPerson))
+            # Get the classification from the directory's person page
+            additionalInfo = personPage.css('.additional-info').css('ul')
+            classification = additionalInfo.css('li')[0].text
+            # Get the email address from the directory's person page
+            contactInfo = personPage.css('.contact-info')
+            pageEmail = contactInfo.css('a').text
+            # Compare the page's email to the entered email
+            if pageEmail == realEmail
+                record['First Name'] = firstName
+                record['Last Name'] = lastName
+                record['Email Address'] = realEmail
+                record['Major'] = major
+                record['Classification'] = classification
+                break
+            end
+            #end
+        end
+        return record
         # end
     end
 end
