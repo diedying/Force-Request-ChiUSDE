@@ -19,7 +19,7 @@ class StudentRequest < ActiveRecord::Base
     PRIORITY_LIST = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
     
     #Classification
-    CLASSIFICATION_LIST = ['U0', 'U1', 'U2', 'U3', 'U4', 'U5', 'G6', 'G7', 'G8', 'G9']
+    CLASSIFICATION_LIST = ['U1', 'U2', 'U3', 'U4', 'G']
     
     # time = Time.new
     Time.zone = 'Central Time (US & Canada)'

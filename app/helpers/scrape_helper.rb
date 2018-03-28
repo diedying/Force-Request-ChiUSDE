@@ -1,12 +1,12 @@
 module ScrapeHelper
-    def scrape_info(name, major, realEmail)
+    def scrape_info(lastName, firstName, major, realEmail)
         require 'rubygems'
         require 'nokogiri'
         require 'open-uri' 
 
-        split_name = name.split(/, */)
-        lastName = split_name[0]
-        firstName = split_name[1]
+        #split_name = name.split(/, */)
+        #lastName = split_name[0]
+        #firstName = split_name[1]
 
         # Old pattern for name in signup.html.haml: :pattern => "[a-zA-ZüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,}"
 

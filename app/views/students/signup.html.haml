@@ -4,9 +4,16 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :session, :name, 'Enter LastName, FirstName'
+          = label :session, :name, 'Enter LastName'
         %td
-          = text_field(:session, :name, class: 'input-field', :pattern => "([A-Za-z]+),\\s+([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter LastName, FirstName')", :oninput => "this.setCustomValidity('')", :required => true)
+          = text_field(:session, :lastname, class: 'input-field', :pattern => "([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter Your LastName')", :oninput => "this.setCustomValidity('')", :required => true)
+      %tr
+        %td
+          = label :session, :name, 'Enter FirstName'
+        %td
+          = text_field(:session, :firstname, class: 'input-field', :pattern => "([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter Your FirstName')", :oninput => "this.setCustomValidity('')", :required => true)
+            
+      
       %tr
         %td
           = label :session, :uin, 'Enter your UIN'
@@ -26,11 +33,24 @@
           // = text_field(:session, :email, class: 'input-field')
           = text_field(:session, :email, class: 'input-field', placeholder: 'xxx@tamu.edu', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Please enter TAMU Email Address')", :oninput => "this.setCustomValidity('')", :required => true)
           // = text_field(:session, :email, class: 'input-field', :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
+   
+      
+      
+      
+      
       %tr
         %td
-          = label :session, :major, 'Enter your Major'
+          = label :session, :major, 'Select your Major'
         %td
-          = text_field(:session, :major, class: 'input-field', :pattern => "([a-zA-Z]+) ([a-zA-Z]+)", :oninvalid => "this.setCustomValidity('Please enter your Major')", :oninput => "this.setCustomValidity('')", :required => true)
+          = select :session, 'major', @majorList, :required => true
+      %tr
+        %td
+          = label :session, :classification, 'Select your classification'
+        %td
+          = select :session, 'classification', @classificationList, :required => true
+
+
+          
       %tr
         %td
           = label :session, :password, 'Enter your password'
