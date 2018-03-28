@@ -54,6 +54,8 @@ class StudentRequestsController < ApplicationController
     @student_request.priority = StudentRequest::NORMAL_PRIORITY
     if @student_request.save
       flash[:notice] = "Student Request was successfully created."
+      # This is where an email will be sent to comfirm the force request.
+      StudentMailer.confirm_force_request(@students[0], @student_request).deliver
       redirect_to students_show_path
     else
       flash[:warning] = @student_request.errors.full_messages.join(", ")

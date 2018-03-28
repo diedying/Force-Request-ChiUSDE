@@ -7,6 +7,12 @@ class StudentMailer < ActionMailer::Base
         mail(:to => @student.email, :subject => "Registration Confirmation")
     end
     
+    def confirm_force_request(student, req)
+        @student = student
+        @req = req
+        mail(:to => @student.email, :subject => "Request Confirmation")
+    end
+    
     def reset_password(student)
         @student = student
         mail(:to => @student.email, :subject => "Reset Your Password")
