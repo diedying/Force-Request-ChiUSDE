@@ -61,6 +61,12 @@
           = label :session, :password2, 'ReEnter your password'
         %td
           = password_field(:session, :password2, class: 'input-field', :required => true)
+      %tr
+        %td
+          = label :session, :note, 'Notes'
+        %td
+          = label :session, :note, 'XXXXXXXXXXXXXXXXXXX'  
+      
     
     
     = submit_tag 'Signup', :id => 'signup_button_left'
