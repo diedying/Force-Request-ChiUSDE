@@ -146,7 +146,7 @@ end
 
 When(/^I click on New Force Request, I should see my profile auto-filled, and fill in the form, and then click Save Request$/) do
   click_link('New Force Request')
-  @student_request = {:minor=>"None", :expected_graduation=>"2018 Fall", :request_semester=>"2017 Fall", :course_id=>"629", :Section_id => "600"}
+  @student_request = {:minor=>"None", :expected_graduation=>"2018 Fall", :request_semester=>"2018 Fall", :course_id=>"629", :section_id => "600"}
   page.has_content?("123123123")
   # fill_in('UIN', :with => @student_request[:uin])
   # fill_in('Full Name*', :with => @student_request[:full_name])
@@ -156,7 +156,7 @@ When(/^I click on New Force Request, I should see my profile auto-filled, and fi
   select(@student_request[:request_semester], from:'Request Semester*')
   fill_in('Minor', :with => @student_request[:minor])
   fill_in('Course Id*', :with => @student_request[:course_id])
-  fill_in('Section Id*', :with => @student_request[:Section_id]) 
+  fill_in('Section Id*', :with => @student_request[:section_id]) 
   click_button('Save')
 end
 
