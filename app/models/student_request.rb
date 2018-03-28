@@ -32,7 +32,7 @@ class StudentRequest < ActiveRecord::Base
     current_month = CURRENT_MONTH.to_i
     
     LIST_YEAR = []
-    for i in current_year..current_year+10
+    for i in current_year-100..current_year+100
       LIST_YEAR << i.to_s
     end
     
