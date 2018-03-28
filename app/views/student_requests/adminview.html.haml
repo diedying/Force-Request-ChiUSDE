@@ -62,7 +62,7 @@
                 %td= record.section_id
                 %td= record.expected_graduation
                 %td= record.request_semester
-                %td= record.state
+                %td= select_tag("multi_state_sel", options_for_select(@allAdminStates))
                 %td= record.priority
                 %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
                 %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
