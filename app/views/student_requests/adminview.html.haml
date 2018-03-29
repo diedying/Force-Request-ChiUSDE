@@ -50,7 +50,7 @@
           %tbody
             - @coursestudentlist[course].each do |record|
               %tr{:class => "#{cycle('oddrow', 'evenrow')}"}
-                %td=~ check_box_tag "request_ids[]", record.request_id, false, data: { "mail" => "#{record.email}"}, "sub" => course 
+                %td= check_box_tag "request_ids[]", record.request_id, false, data: { "mail" => "#{record.email}"}, "sub" => course 
                 // %td %a{:onclick => "return getDetailsById('#{record.request_id}')"} #{record.request_id}
                 %td
                   %a{:onclick => "return buttonclick(#{record.uin});"} #{record.uin}
@@ -61,7 +61,7 @@
                 %td= record.section_id
                 %td= record.expected_graduation
                 // %td= record.request_semester
-                %td= select_tag("multi_state_sel", options_for_select(@allViewAdminStates))
+                %td= select_tag("state_sel", options_for_select(@allViewAdminStates))
                 // %td= record.priority
                 %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
                 %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
