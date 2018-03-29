@@ -156,10 +156,6 @@ When(/^I click on New Force Request, I should see my profile auto-filled, and fi
   click_link('New Force Request')
   @student_request = {:minor=>"None", :expected_graduation=>"2018 Fall", :request_semester=>"2018 Fall", :course_id=>"629", :section_id => "600"}
   page.has_content?("123123123")
-  # fill_in('UIN', :with => @student_request[:uin])
-  # fill_in('Full Name*', :with => @student_request[:full_name])
-  # select('CPSC', :from => 'Major*')
-  # select('G7', :from => 'Classification')
   select(@student_request[:expected_graduation], from:'Expected Graduation*')
   select(@student_request[:request_semester], from:'Request Semester*')
   fill_in('Minor', :with => @student_request[:minor])
@@ -185,13 +181,11 @@ end
 
 
 And(/^I click change password button$/) do
-  click_link('Change Your Password')
+  click_button('Change Your Password')
 end
 
 Then(/^I should be on change password page and fill it up$/) do
-  page.has_content?("Enter your new password")
-  
-  @user_info = {:old => "321",  :new => "qwe"}
+  @user_info = {:old => "456789",  :new => "qwerty"}
   fill_in('Enter your old password', :with => @user_info[:old])
   fill_in('Enter your new password', :with => @user_info[:new])
   fill_in('session[password2]', :with => @user_info[:new])
@@ -213,7 +207,7 @@ Then(/^I stay on the page on recieve warining$/) do
 end
 
 When(/^I fill the new password wrongly$/) do
-  @user_info = {:old => "321",  :new => "qwe"}
+  @user_info = {:old => "456789",  :new => "qwerty"}
   fill_in('Enter your old password', :with => @user_info[:old])
   fill_in('Enter your new password', :with => @user_info[:new])
   fill_in('session[password2]', :with => 'xxx')
@@ -236,7 +230,7 @@ end
 
 
 And(/^I click logout button$/) do
-  click_link('Logout')
+  click_button('Logout')
 end
 
 Then(/^I should be on root page$/) do
