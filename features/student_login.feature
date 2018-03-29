@@ -12,7 +12,7 @@ Given the following students exist:
 
 Scenario: Student Login
 When I am on the Login Page
-And I fill in the form with correct info
+And I fill in correct login info
 And I click login
 And I should be on Student Dashboard Page and click profile
 Then I should see my personal information
