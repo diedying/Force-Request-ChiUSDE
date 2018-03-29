@@ -21,17 +21,22 @@ When(/^I click on Sign Up$/) do
 end
 
 Then(/^I will be on the Sign Up page$/) do
-  page.should have_content("Enter your full name")
+  page.should have_content("Enter LastName")
+  page.should have_content("Enter FirstName")
   page.should have_content("Enter your UIN")
   page.should have_content("ReEnter your UIN")
+  page.should have_content("Select your Major")
+  page.should have_content("Select your classification")
   page.should have_content("Enter your email")
   page.should have_content("Enter your password")
   page.should have_content("ReEnter your password")  
 end
 
-When(/^I sign up wirh existed uin$/) do
-  @user_info = {:name => "jiechen zhong", :email => "chen0209app@tamu.edu", :password => "321", :UIN => "123123123"}
-  fill_in('Enter your full name', :with => @user_info[:name])
+When(/^I sign up with existed uin$/) do
+  @user_info = {:first => "Andrew", :last => "Bregger", :email => "adb3649@tamu.edu", :password => "654321", :UIN => "123123123"}
+  
+  fill_in('Enter LastName', :with => @user_info[:last])
+  fill_in('Enter FirstName', :with => @user_info[:first])
   fill_in('ReEnter your UIN', :with => @user_info[:UIN])
   fill_in('Enter your UIN', :with => @user_info[:UIN])
   fill_in('Enter your email', :with => @user_info[:email])
@@ -49,9 +54,10 @@ Then(/^I should recieve the warning massage$/) do
 end
 
 
-When(/^I fill in the form wongly, and then click SignUp$/) do 
+When(/^I fill in the form incorrectly, and then click SignUp$/) do 
   @user_info = {:name => "shuocun li", :email => "ginolee@tamu.edu", :password => "321", :UIN => "789789789"}
-  fill_in('Enter your full name', :with => @user_info[:name])
+  fill_in('Enter LastName', :with => @user_info[:last])
+  fill_in('Enter FirstName', :with => @user_info[:first])
   fill_in('ReEnter your UIN', :with => "000000000")
   fill_in('Enter your UIN', :with => @user_info[:UIN])
   fill_in('Enter your email', :with => @user_info[:email])
@@ -70,8 +76,9 @@ Then(/^I should stay on the same page and recieve a warning massage$/) do
 end
 
 When(/^I fill in the form correctly, and then click SignUp$/) do 
-  @user_info = {:name => "shuocun li", :email => "ginolee@tamu.edu", :password => "321", :UIN => "789789789"}
-  fill_in('Enter your full name', :with => @user_info[:name])
+  @user_info = {:first => "Andrew", :last => "Bregger", :email => "adb3649@tamu.edu", :password => "654321", :UIN => "123123123"}
+  fill_in('Enter LastName', :with => @user_info[:last])
+  fill_in('Enter FirstName', :with => @user_info[:first])
   fill_in('ReEnter your UIN', :with => @user_info[:UIN])
   fill_in('Enter your UIN', :with => @user_info[:UIN])
   fill_in('Enter your email', :with => @user_info[:email])
@@ -228,7 +235,7 @@ end
 
 
 And(/^I click logout button$/) do
-  click_button('Logout')
+  click_link('Logout')
 end
 
 Then(/^I should be on root page$/) do
