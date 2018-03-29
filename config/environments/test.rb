@@ -44,5 +44,17 @@ Rails.application.configure do
   # config.gem "rspec-rails", :lib => false, :version => ">=1.2.2"
   # config.gem "webrat", :lib => false, :version => ">=0.4.3"
   # config.gem "cucumber", :lib => false, :version => ">=0.2.2"
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'cryptic-journey-58743.herokuapp.com'}#for heroku
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            'force.request@gmail.com',
+    password:             'echocode123',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
   
 end
