@@ -23,8 +23,7 @@ And I click SignUp
 Then I recieve another warning massage
 Then I click on Sign Up
 Then I will be on the Sign Up page
-When I fill in the form correctly 
-And I click SignUp
+When I fill in the form correctly then SignUp
 Then I should see my account create successfully
 
 

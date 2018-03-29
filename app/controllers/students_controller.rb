@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
     end
     
     def signup
-        @majorList = Major.pluck(:major_id)
+        @majorList = StudentRequest::MAJOR_LIST
         @classificationList = StudentRequest::CLASSIFICATION_LIST
         @student = Student.new
     end

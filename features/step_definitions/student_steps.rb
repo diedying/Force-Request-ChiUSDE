@@ -50,7 +50,7 @@ When(/^I fill in with exsiting account information$/) do
   fill_in('ReEnter your password', :with => @user_info[:password])
 end
 
-When(/^I fill in the form correctly$/) do 
+When(/^I fill in the form correctly then SignUp$/) do 
   @user_info = {:lastname => "yang", :firstname =>"junqi", :email => "junqiyang@tamu.edu", :major => "Computer Science", :classification => "G", :password => "321312", :UIN => "789789789"}
   fill_in('Enter LastName', :with => @user_info[:last])
   fill_in('Enter FirstName', :with => @user_info[:first])
@@ -61,7 +61,8 @@ When(/^I fill in the form correctly$/) do
   select "Computer Science", :from => "Select your Major"#something wrong here, maybe we just make major a list???
   fill_in('Enter your password', :with => @user_info[:password])
   fill_in('ReEnter your password', :with => @user_info[:password])
-end
+  click_button('Signup')
+ end
 
 And(/^I click SignUp$/) do
   click_button('Signup')
