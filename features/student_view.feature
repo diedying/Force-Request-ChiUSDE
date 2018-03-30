@@ -27,19 +27,29 @@ When I click on Withdraw
 Then I should not see that request on Student Dashboard Page
 
 
-Scenario: Student change password
+Scenario: Student change password with right information
 When I am on the Login Page
 And I fill in correct login info
 And I click login
 And I click change password button
-Then I should be on change password page and fill it up
+Then I should be on change password page
+When I fill the form and confirm
+Then I should read a successful message
+
+
+Scenario: Student change password with wrong information
+When I am on the Login Page
+And I fill in correct login info
+And I click login
 And I click change password button
+Then I should be on change password page
 When I fill the old password wrongly
 Then I stay on the page on recieve warining
 When I fill the new password wrongly
 Then I stay on the page on recieve another warining
 When I withdraw this request
 Then I will back to student dashboard
+
 
 Scenario: Student Logout
 When I am on the Login Page
@@ -53,4 +63,4 @@ When I am on the Login Page
 And I click forget password
 Then I should be on reset password page
 When I input my uin and click reset
-Then I should be on root page
+Then I should see a message
