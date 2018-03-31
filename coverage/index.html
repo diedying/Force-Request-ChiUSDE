@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-30T19:16:01-05:00">2018-03-30T19:16:01-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-30T19:20:44-05:00">2018-03-30T19:20:44-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">86.48%</span></span>
+    (<span class="covered_percent"><span class="yellow">86.45%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         6.56
+         6.7
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>34</b> files in total.
-    <b>873</b> relevant lines. 
-    <span class="green"><b>755</b> lines covered</span> and
+    <b>871</b> relevant lines. 
+    <span class="green"><b>753</b> lines covered</span> and
     <span class="red"><b>118</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -77,15 +77,15 @@
         <td>204</td>
         <td>135</td>
         <td>69</td>
-        <td>5.5</td>
+        <td>6.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#6bf936047fd30f0004bf3d416603c666ef445e85" class="src_link" title="app/controllers/students_controller.rb">app/controllers/students_controller.rb</a></td>
-        <td class="red strong">67.31 %</td>
-        <td>169</td>
-        <td>104</td>
-        <td>70</td>
+        <td class="red strong">66.67 %</td>
+        <td>167</td>
+        <td>102</td>
+        <td>68</td>
         <td>34</td>
         <td>1.1</td>
       </tr>
@@ -187,7 +187,7 @@
         <td>79</td>
         <td>77</td>
         <td>2</td>
-        <td>42.8</td>
+        <td>42.9</td>
       </tr>
       
       <tr>
@@ -1520,14 +1520,14 @@
           <code class="ruby">        @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)</code>
         </li>
       
-        <li class="covered" data-hits="297" data-linenumber="144">
-          <span class="hits">297</span>
+        <li class="covered" data-hits="342" data-linenumber="144">
+          <span class="hits">342</span>
           
           <code class="ruby">        @students = @students.reject{ |s| @state_selected[s.state] == false}</code>
         </li>
       
-        <li class="covered" data-hits="297" data-linenumber="145">
-          <span class="hits">297</span>
+        <li class="covered" data-hits="342" data-linenumber="145">
+          <span class="hits">342</span>
           
           <code class="ruby">        @students = @students.reject{ |s| @priority_selected[s.priority] == false}</code>
         </li>
@@ -2968,10 +2968,10 @@
         <div class="source_table" id="6bf936047fd30f0004bf3d416603c666ef445e85">
   <div class="header">
     <h3>app/controllers/students_controller.rb</h3>
-    <h4><span class="red">67.31 %</span> covered</h4>
+    <h4><span class="red">66.67 %</span> covered</h4>
     <div>
-      <b>104</b> relevant lines. 
-      <span class="green"><b>70</b> lines covered</span> and
+      <b>102</b> relevant lines. 
+      <span class="green"><b>68</b> lines covered</span> and
       <span class="red"><b>34</b> lines missed.</span>
     </div>
   </div>
@@ -3462,532 +3462,520 @@
         <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
-          <code class="ruby">            puts(@student[0].password)</code>
+          <code class="ruby">            flash[:warning] = &quot;The old password you entered is wrong!&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
-          <code class="ruby">            puts(params[:session][:oldPassword])</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            flash[:warning] = &quot;The old password you entered is wrong!&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="84">
-          <span class="hits">1</span>
-          
           <code class="ruby">            redirect_to students_edit_password_path </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="87">
-          
-          
           <code class="ruby">    #sent the reset forgotten password mail to student email</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="88">
+        <li class="covered" data-hits="1" data-linenumber="86">
           <span class="hits">1</span>
           
           <code class="ruby">    def sent_reset_password_mail</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
           <code class="ruby">        @student = Student.where(&quot;uin =&#39;#{params[:session][:uin]}&#39;&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
           <code class="ruby">        if @student[0].nil?#case : the UIN is not signed up</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="91">
+        <li class="missed" data-hits="0" data-linenumber="89">
           
           
           <code class="ruby">            flash[:warning] = &quot;There is no account associated with the given UIN.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="92">
+        <li class="missed" data-hits="0" data-linenumber="90">
           
           
           <code class="ruby">            redirect_to &#39;/students/forget_password&#39;  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="93">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="94">
+        <li class="covered" data-hits="1" data-linenumber="92">
           <span class="hits">1</span>
           
           <code class="ruby">            @student[0].reset_password_confirmation_token#create the reset password confirmation token and the reset email sent time</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="95">
+        <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
           <code class="ruby">            StudentMailer.reset_password(@student[0]).deliver</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
+        <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
           <code class="ruby">            flash[:notice] = &quot;Please check your tamu email to reset your password!&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="97">
+        <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
           <code class="ruby">            redirect_to root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="96">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="98">
           
           
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="99">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="100">
-          
-          
           <code class="ruby">    #before login(forget the password) to update the password(create password)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="101">
+        <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
           <code class="ruby">    def reset_password </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="102">
+        <li class="missed" data-hits="0" data-linenumber="100">
           
           
           <code class="ruby">        @student = Student.where(&quot;reset_password_confirm_token = &#39;#{params[:id]}&#39;&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="103">
+        <li class="missed" data-hits="0" data-linenumber="101">
           
           
           <code class="ruby">        if @student[0] and !(@student[0].password_reset_expired?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="104">
+        <li class="missed" data-hits="0" data-linenumber="102">
           
           
           <code class="ruby">            session_update(:name, @student[0][:name])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="105">
+        <li class="missed" data-hits="0" data-linenumber="103">
           
           
           <code class="ruby">            session_update(:current_state, &quot;student&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="106">
+        <li class="missed" data-hits="0" data-linenumber="104">
           
           
           <code class="ruby">            session_update(:uin, @student[0][:uin])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="never" data-hits="" data-linenumber="105">
           
           
           <code class="ruby">        else#case 1. the link expire; case 2. the link has been used</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="108">
+        <li class="missed" data-hits="0" data-linenumber="106">
           
           
           <code class="ruby">            flash[:warning] = &quot;Sorry. The link is expired!&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="109">
+        <li class="missed" data-hits="0" data-linenumber="107">
           
           
           <code class="ruby">            redirect_to root_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="110">
+        <li class="never" data-hits="" data-linenumber="108">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="never" data-hits="" data-linenumber="109">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="112">
+        <li class="never" data-hits="" data-linenumber="110">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="113">
+        <li class="covered" data-hits="1" data-linenumber="111">
           <span class="hits">1</span>
           
           <code class="ruby">    def update_reset_password</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="114">
+        <li class="missed" data-hits="0" data-linenumber="112">
           
           
           <code class="ruby">        @student = Student.where(:uin =&gt; session_get(:uin))</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="115">
+        <li class="missed" data-hits="0" data-linenumber="113">
           
           
           <code class="ruby">        if params[:session][:password] == params[:session][:password2]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="116">
+        <li class="missed" data-hits="0" data-linenumber="114">
           
           
           <code class="ruby">            @student[0].update_attribute(:password, params[:session][:password])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="117">
+        <li class="missed" data-hits="0" data-linenumber="115">
           
           
           <code class="ruby">            @student[0].password_reset_done#finish the reset password</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="118">
+        <li class="missed" data-hits="0" data-linenumber="116">
           
           
           <code class="ruby">            session_update(:name, @student[0][:name])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="119">
+        <li class="missed" data-hits="0" data-linenumber="117">
           
           
           <code class="ruby">            session_update(:current_state, &quot;student&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="120">
+        <li class="missed" data-hits="0" data-linenumber="118">
           
           
           <code class="ruby">            session_update(:uin, @student[0][:uin])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="121">
+        <li class="missed" data-hits="0" data-linenumber="119">
           
           
           <code class="ruby">            flash[:notice] = &quot;Your password has been changed!&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
+        <li class="missed" data-hits="0" data-linenumber="120">
           
           
           <code class="ruby">            redirect_to students_show_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="never" data-hits="" data-linenumber="121">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="124">
+        <li class="missed" data-hits="0" data-linenumber="122">
           
           
           <code class="ruby">            flash[:warning] = &quot;The twice entered new password must be same!&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="125">
+        <li class="missed" data-hits="0" data-linenumber="123">
           
           
           <code class="ruby">            redirect_to reset_password_url(@student[0].reset_password_confirm_token)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="never" data-hits="" data-linenumber="124">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="never" data-hits="" data-linenumber="125">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="128">
+        <li class="never" data-hits="" data-linenumber="126">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="129">
+        <li class="covered" data-hits="1" data-linenumber="127">
           <span class="hits">1</span>
           
           <code class="ruby">    def profile</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="130">
+        <li class="covered" data-hits="1" data-linenumber="128">
           <span class="hits">1</span>
           
           <code class="ruby">        @students = Student.where(:uin =&gt; session_get(:uin))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="131">
+        <li class="never" data-hits="" data-linenumber="129">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="132">
+        <li class="never" data-hits="" data-linenumber="130">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="133">
+        <li class="covered" data-hits="1" data-linenumber="131">
           <span class="hits">1</span>
           
           <code class="ruby">    def initForNewForceRequest</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="134">
+        <li class="covered" data-hits="1" data-linenumber="132">
           <span class="hits">1</span>
           
           <code class="ruby">        @classificationList = StudentRequest::CLASSIFICATION_LIST</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="135">
+        <li class="covered" data-hits="1" data-linenumber="133">
           <span class="hits">1</span>
           
           <code class="ruby">        @YearSemester = StudentRequest::YEAR_SEMESTER</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="136">
+        <li class="covered" data-hits="1" data-linenumber="134">
           <span class="hits">1</span>
           
           <code class="ruby">        @requestSemester = StudentRequest::REQUEST_SEMESTER</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="137">
+        <li class="covered" data-hits="1" data-linenumber="135">
           <span class="hits">1</span>
           
           <code class="ruby">        @majorList = Major.pluck(:major_id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="138">
+        <li class="never" data-hits="" data-linenumber="136">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="137">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="140">
+        <li class="covered" data-hits="1" data-linenumber="138">
           <span class="hits">1</span>
           
           <code class="ruby">    def add_new_student</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="141">
+        <li class="covered" data-hits="1" data-linenumber="139">
           <span class="hits">1</span>
           
           <code class="ruby">        initForNewForceRequest</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="142">
+        <li class="never" data-hits="" data-linenumber="140">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="143">
+        <li class="never" data-hits="" data-linenumber="141">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="144">
+        <li class="covered" data-hits="1" data-linenumber="142">
           <span class="hits">1</span>
           
           <code class="ruby">    def add_student</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="145">
+        <li class="covered" data-hits="1" data-linenumber="143">
           <span class="hits">1</span>
           
           <code class="ruby">        @classificationList = StudentRequest::CLASSIFICATION_LIST</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="146">
+        <li class="covered" data-hits="1" data-linenumber="144">
           <span class="hits">1</span>
           
           <code class="ruby">        @majorList = Major.pluck(:major_id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="147">
+        <li class="covered" data-hits="1" data-linenumber="145">
           <span class="hits">1</span>
           
           <code class="ruby">        if params[:session][:uin2] == params[:session][:uin]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="148">
+        <li class="covered" data-hits="1" data-linenumber="146">
           <span class="hits">1</span>
           
           <code class="ruby">          @students = Student.where(&quot;uin = &#39;#{params[:session][:uin]}&#39;&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="149">
+        <li class="covered" data-hits="1" data-linenumber="147">
           <span class="hits">1</span>
           
           <code class="ruby">          if @students[0].nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="150">
+        <li class="never" data-hits="" data-linenumber="148">
           
           
           <code class="ruby">            #if scrape_info(params[:session][:name], params[:session][:email]) != {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="151">
+        <li class="never" data-hits="" data-linenumber="149">
           
           
           <code class="ruby">              # record = scrape_info(params[:session][:name], params[:session][:email])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="152">
+        <li class="covered" data-hits="1" data-linenumber="150">
           <span class="hits">1</span>
           
           <code class="ruby">              @newStudent = Student.create!(:name =&gt; params[:session][:name], :uin =&gt; params[:session][:uin], :email =&gt; params[:session][:email], :password =&gt; params[:session][:password],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="153">
+        <li class="never" data-hits="" data-linenumber="151">
           
           
           <code class="ruby">                                                  :major =&gt; params[:session][:major], :classification =&gt; params[:session][:classification])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="154">
+        <li class="covered" data-hits="1" data-linenumber="152">
           <span class="hits">1</span>
           
           <code class="ruby">              flash[:notice] = &quot;Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully.&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="155">
+        <li class="covered" data-hits="1" data-linenumber="153">
           <span class="hits">1</span>
           
           <code class="ruby">              redirect_to student_requests_adminprivileges_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="156">
+        <li class="never" data-hits="" data-linenumber="154">
           
           
           <code class="ruby">            #else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="157">
+        <li class="never" data-hits="" data-linenumber="155">
           
           
           <code class="ruby">              #flash[:notice] = &quot;Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="158">
+        <li class="never" data-hits="" data-linenumber="156">
           
           
           <code class="ruby">              #redirect_to student_requests_adminprivileges_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="159">
+        <li class="never" data-hits="" data-linenumber="157">
           
           
           <code class="ruby">            #end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="160">
+        <li class="never" data-hits="" data-linenumber="158">
           
           
           <code class="ruby">          else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="161">
+        <li class="missed" data-hits="0" data-linenumber="159">
           
           
           <code class="ruby">            flash[:notice] = &quot;Student record is already there&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="162">
+        <li class="missed" data-hits="0" data-linenumber="160">
           
           
           <code class="ruby">            redirect_to student_requests_adminprivileges_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="163">
+        <li class="never" data-hits="" data-linenumber="161">
           
           
           <code class="ruby">          end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="164">
+        <li class="never" data-hits="" data-linenumber="162">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="165">
+        <li class="missed" data-hits="0" data-linenumber="163">
           
           
           <code class="ruby">          flash[:notice] = &quot;The twice entered UIN must be same!&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="166">
+        <li class="missed" data-hits="0" data-linenumber="164">
           
           
           <code class="ruby">          redirect_to student_requests_adminprivileges_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="167">
+        <li class="never" data-hits="" data-linenumber="165">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="168">
+        <li class="never" data-hits="" data-linenumber="166">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="169">
+        <li class="never" data-hits="" data-linenumber="167">
           
           
           <code class="ruby">end</code>
@@ -6835,8 +6823,8 @@
           <code class="ruby">        all.each do |student_request|</code>
         </li>
       
-        <li class="covered" data-hits="48" data-linenumber="248">
-          <span class="hits">48</span>
+        <li class="covered" data-hits="56" data-linenumber="248">
+          <span class="hits">56</span>
           
           <code class="ruby">          csv &lt;&lt; student_request.attributes.values_at(*column_names)</code>
         </li>

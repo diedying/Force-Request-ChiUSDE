@@ -78,8 +78,6 @@ class StudentsController < ApplicationController
                 redirect_to students_edit_password_path 
             end
         else
-            puts(@student[0].password)
-            puts(params[:session][:oldPassword])
             flash[:warning] = "The old password you entered is wrong!"
             redirect_to students_edit_password_path 
         end
