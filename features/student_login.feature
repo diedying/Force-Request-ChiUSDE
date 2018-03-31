@@ -3,18 +3,22 @@ Feature: students Login
   So that my information is protected
   I want to login to the force request system with password
   
-Background: students have been added to database 
+Background: activators have been added to database 
 
-Given the following students exist:
+Given the following activators exist:
   | name           | uin        | password   | email              |
   | Andrew Bregger | 123123123  | 654321     | adb3649@tamu.edu   |  
-  | Adam will      | 789789789  | 456789     | Will@tamu.edu      |  
 
-Scenario: Student Login
+Scenario: fail to login
 When I am on the Login Page
-And I fill in correct login info
-And I click login
-And I should be on Student Dashboard Page and click profile
-Then I should see my personal information
-And I click OK
-Then I should go back to dashboard
+When I login in with a account doesn't exsit
+Then I should stay at the same page
+And I should see a non-account exsits message
+When I enter wrong login information
+Then I should stay at the same page
+And I should see a error message
+When I login in with account has not been activate
+Then I should stay at the same page
+And I should see a not-activated message
+ 
+

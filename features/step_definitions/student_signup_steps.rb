@@ -5,12 +5,12 @@ Given /the following students exist/ do |students_table|
     end
 end
 
-When(/^I am a student want to sign up for an account$/) do
+Given(/^I am a student want to sign up for an account$/) do
   visit('/')
   page.should have_content("Login Page")
 end
 
-Then(/^I click on Sign Up$/) do
+When(/^I click on Sign Up$/) do
   click_link('Sign Up')
 end
 
@@ -28,7 +28,7 @@ end
 
 
 
-When(/^I fill in the form incorrectly$/) do 
+When(/^I enter two different password or UIN information$/) do 
   @user_info = {:lastname => "yang", :firstname =>"junqi", :email => "junqiyang@tamu.edu", :password => "123456", :UIN => "789789789"}
   fill_in('Enter LastName', :with => @user_info[:lastname])
   fill_in('Enter FirstName', :with => @user_info[:firstname])
@@ -39,7 +39,7 @@ When(/^I fill in the form incorrectly$/) do
   fill_in('ReEnter your password', :with => @user_info[:password])
 end
 
-When(/^I fill in with exsiting account information$/) do 
+When(/^I use a UIN which already been used to sign up$/) do 
   @user_info = {:lastname => "Will", :firstname =>"Adam", :email => "Will@tamu.edu", :password => "456789", :UIN => "789789789"}
   fill_in('Enter LastName', :with => @user_info[:lastname])
   fill_in('Enter FirstName', :with => @user_info[:firstname])
@@ -50,7 +50,19 @@ When(/^I fill in with exsiting account information$/) do
   fill_in('ReEnter your password', :with => @user_info[:password])
 end
 
-When(/^I fill in the form correctly then SignUp$/) do 
+When(/^I enter a email does not exsiting in TAMU system$/) do 
+ @user_info = {:lastname => "yang", :firstname =>"junqi", :email => "junqiyang@email.tamu.edu", :password => "123456", :UIN => "789789789"}
+  fill_in('Enter LastName', :with => @user_info[:lastname])
+  fill_in('Enter FirstName', :with => @user_info[:firstname])
+  fill_in('ReEnter your UIN', :with => @user_info[:UIN])
+  fill_in('Enter your UIN', :with => @user_info[:UIN])
+  fill_in('Enter your email', :with => @user_info[:email])
+  fill_in('Enter your password', :with => @user_info[:password])
+  fill_in('ReEnter your password', :with => @user_info[:password])
+end
+
+
+When(/^I enter correct information$/) do 
   @user_info = {:lastname => "yang", :firstname =>"junqi", :email => "junqiyang@tamu.edu", :major => "Computer Science", :classification => "G", :password => "321312", :UIN => "789789789"}
   fill_in 'Enter LastName', :with => @user_info[:lastname]
   fill_in 'Enter FirstName', :with => @user_info[:firstname]
@@ -58,10 +70,9 @@ When(/^I fill in the form correctly then SignUp$/) do
   fill_in 'Enter your UIN', :with => @user_info[:UIN]
   fill_in 'Enter your email', :with => @user_info[:email]
   select "G", :from => "Select your classification"
-  select "Computer Science", :from => "Select your Major"#something wrong here, maybe we just make major a list???
+  select "Computer Science", :from => "Select your Major"
   fill_in('Enter your password', :with => @user_info[:password])
   fill_in('ReEnter your password', :with => @user_info[:password])
-  click_button('Signup')
  end
 
 And(/^I click SignUp$/) do
@@ -80,26 +91,27 @@ Then (/^I should stay on the same page$/) do
   page.should have_content("ReEnter your password")  
 end
 
-
-And(/^recieve a warning massage$/) do
-  if page.respond_to? :should
-    page.should have_content("The twice entered UIN and password must be same!")
-  else
-    assert page.should have_content("The twice entered UIN and password must be same!")
-  end
+Then (/^I should return to root page$/) do
+  page.should have_content("Login Page")
 end
 
-Then(/^I recieve another warning massage$/) do
-  if page.respond_to? :should
-    page.should have_content("You have already signed up")
-  else
-    assert page.should have_content("You have already signed up")
-  end
+
+And(/^I should recieve a mismatch warning massage$/) do
+    page.should have_content("Those UINs or passwords didn't match. Try agagin.")
+end
+
+And(/^I should recieve a account-exist warning massage$/) do
+    page.should have_content("An account associated with")
+    page.should have_content("has been created.")
+end
+
+Then(/^I should recieve a no-record warning massage$/) do
+    page.should have_content("Your name and email didn't match")
 end
 
 
 Then(/^I should see my account create successfully$/) do
-  page.should have_content("activate your account")
+  page.should have_content("An account has been created")
   page.should have_content("Login Page")
 end
 

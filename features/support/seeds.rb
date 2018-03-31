@@ -31,7 +31,7 @@ student_requests = [{:uin => '126003824', :name => 'Mo Li',
 majors = [{:major_id => 'CPSC'}, {:major_id => 'CECN'}, {:major_id => 'CEEN'}, {:major_id => 'ELEN'}, {:major_id => 'APMS'},
             {:major_id => 'CPSL'}, {:major_id => 'CECL'}, {:major_id => 'CEEL'}, {:major_id => 'Others'}]
            
-admins = [{:uin => '123456789', :name => 'admin', :password => 'tamu2017'}]
+admins = [{:uin => '123456789', :name => 'admin', :password => 'tamu2017', :email => '123456789@tamu.edu'}]
 
 students = [{uin: "126003824", password: "123123", major: "Computer Engineering - CEEN", classification: "G7-Graduate, Master's Level", name: "Mo Li", email: "king_lm@tamu.edu"},
             {uin: "123123123", password: "321", major: "Computer Engineering - CEEN", classification: "G8-Graduate", name: "Mian Qin", email: "celery1124@tamu.edu"},

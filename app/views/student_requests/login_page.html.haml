@@ -5,9 +5,9 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :session, :uin, 'Enter your uin'
+          = label :session, :email, 'Enter your Email'
         %td
-          = text_field(:session, :uin, class: 'input-field')
+          = text_field(:session, :email, class: 'input-field',:type => "email")
           //the format of uin of admin and student may not same, so it is not easy to check at front end
           // = text_field(:session, :uin, class: 'input-field', :pattern => "[0-9]{9}", :oninvalid => "this.setCustomValidity('Invalid UIN')", :oninput => "this.setCustomValidity('')")
       %tr

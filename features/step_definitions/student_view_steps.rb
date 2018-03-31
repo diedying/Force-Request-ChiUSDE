@@ -1,35 +1,29 @@
-############################################################################################################
-#view profile
-############################################################################################################
-When(/^I am on the Login Page$/) do
-  visit('/')
-  page.should have_content("Login Page")
-end
-
-And(/^I fill in correct login info/) do
-  @user_info = {:UIN => "789789789",  :password => "456789"}
-  fill_in('Enter your uin', :with => @user_info[:UIN])
+When(/^I login with correct login info$/) do
+  @user_info = {:email => "junqiyang@tamu.edu",  :password => "151718"}
+  fill_in('Enter your Email', :with => @user_info[:email])
   fill_in('Enter your password', :with => @user_info[:password])
-end
-
-And(/^I click login/) do
   click_button('Login')
 end
 
-And(/^I should be on Student Dashboard Page and click profile$/) do
-  # page.has_content?("Howdy! Welcome back Mian Qin")
-  # click_button('Your Profile')
-  if page.respond_to? :should
-    page.should have_content("Adam will(789789789)")
-    page.should have_content("View Your Profile")
-  else
-    assert page.should have_content("Adam will(789789789)")
-  end
-  click_link('View Your Profile')
-  # click_button('View Your Profile')
-  # visit('/students/show')
+Then (/^I should be on Student Dashboard Page$/) do
+  page.should have_content("New Force Request")
+  page.should have_content("Your Profile")
+  page.should have_content("Change Your Password")
 end
 
+############################################################################################################
+#view profile
+############################################################################################################
+
+When(/^I am on Dashboard$/) do
+  page.should have_content("New Force Request")
+  page.should have_content("Your Profile")
+  page.should have_content("Change Your Password")
+end
+
+When(/^I click my profile$/) do
+    click_link("Your Profile")
+end
 
 Then(/^I should see my personal information$/) do
   page.should have_content("Full Name")
@@ -53,8 +47,13 @@ end
 ############################################################################################################
 
 
-When(/^I click on New Force Request, I should see my profile auto-filled, and fill in the form, and then click Save Request$/) do
+When(/^I click on New Force Request$/) do
   click_link('New Force Request')
+end
+
+
+
+And(/^I complete the form$/) do
   @student_request = {:minor=>"None", :expected_graduation=>"2018 Fall", :request_semester=>"2018 Fall", :course_id=>"629", :section_id => "600"}
   page.has_content?("123123123")
   select(@student_request[:expected_graduation], from:'Expected Graduation*')
@@ -62,11 +61,15 @@ When(/^I click on New Force Request, I should see my profile auto-filled, and fi
   fill_in('Minor', :with => @student_request[:minor])
   fill_in('Course Id*', :with => @student_request[:course_id])
   fill_in('Section Id*', :with => @student_request[:section_id]) 
+end
+
+And(/^I click Save Request$/) do
   click_button('Save')
 end
 
 
-Then(/^I should see my info$/) do
+
+Then(/^I should see a confirm message$/) do
   page.should have_content("Student Request was successfully created.")
   page.should have_content("629")
   page.should have_content("600")
@@ -113,8 +116,8 @@ Then(/^I stay on the page on recieve warining$/) do
 end
 
 When(/^I fill the form and confirm$/) do
-  @user_info = {:old => "456789",  :new => "qwerty"}
-  fill_in 'Enter your old password', with:"456789"
+  @user_info = {:old => "151718",  :new => "qwerty"}
+  fill_in('Enter your old password', :with => @user_info[:old])
   fill_in('Enter your new password', :with => @user_info[:new])
   fill_in('session[password2]', :with => @user_info[:new])
   click_button('Confirm')
@@ -122,11 +125,10 @@ end
 
 
 When(/^I fill the new password wrongly$/) do
-  @user_info = {:old => "456789",  :new => "qwerty"}
+  @user_info = {:old => "151718",  :new => "qwerty"}
   fill_in('Enter your old password', :with => @user_info[:old])
   fill_in('Enter your new password', :with => @user_info[:new])
-  fill_in('session[password2]', :with => 'xxx')
-  
+  fill_in('session[password2]', :with => 'xxx')  
   click_button('Confirm')
 end
   

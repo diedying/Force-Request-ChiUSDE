@@ -16,8 +16,8 @@ end
 
 And(/^I use admin account to login$/) do
   choose('session_user_admin')
-  @user_info = {:UIN => "123456789",  :password => "tamu2017"}
-  fill_in('Enter your uin', :with => @user_info[:UIN])
+  @user_info = {:UIN => "123456789@tamu.edu",  :password => "tamu2017"}
+  fill_in('Enter your Email', :with => @user_info[:UIN])
   fill_in('Enter your password', :with => @user_info[:password])
   click_button('Login')
 end

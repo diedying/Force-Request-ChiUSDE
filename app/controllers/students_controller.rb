@@ -33,22 +33,22 @@ class StudentsController < ApplicationController
                                               :major => record['Major'], :classification => record['Classification'])
                     if @newStudent.save#succeed to create the account of student
                         StudentMailer.registration_confirmation(@newStudent).deliver
-                        flash[:notice] = "Please check your tamu email to activate your account!"
+                        flash[:notice] = "An account has been created. A email has been sent to the provided email address, click the link to activate your account."
                         redirect_to root_path
                     else
-                        flash[:error] = "Ooooppss, something went wrong!"
+                        flash[:error] = "Something went wrong, try again."
                         redirect_to root_path
                     end
                 else#can't scrape the record
-                    flash[:warning] = "Warning: Your information is incorrect!\nPlease use your TAMU email to register!\nUse the name that appears on your Student ID!"
+                    flash[:warning] = "Your name and email didn't match the record in the TAMU system. Please visit: https://services.tamu.edu/directory-search/#adv-search for details"
                     redirect_to students_signup_path
                 end
             else#the student has signed up
-                flash[:warning] = "Warning: You have already signed up!"
+                flash[:warning] = "An account associated with "+params[:session][:uin]+" has been created. Please contact your ADMIN if you think this is a mistake."
                 redirect_to root_path
             end
-        else
-            flash[:warning] = "Warning: The twice entered UIN and password must be same!"
+        else            
+            flash[:warning] = "Those UINs or passwords didn't match. Try agagin."
             redirect_to students_signup_path
         end
     end
@@ -69,6 +69,7 @@ class StudentsController < ApplicationController
         @student = Student.where(:uin => session_get(:uin))
         if @student[0].password == params[:session][:oldPassword]
             if params[:session][:password] == params[:session][:password2]
+               
                 @student[0].update_attribute(:password, params[:session][:password])
                 flash[:notice] = "Your password has been changed!"
                 redirect_to students_show_path
@@ -77,6 +78,8 @@ class StudentsController < ApplicationController
                 redirect_to students_edit_password_path 
             end
         else
+            puts(@student[0].password)
+            puts(params[:session][:oldPassword])
             flash[:warning] = "The old password you entered is wrong!"
             redirect_to students_edit_password_path 
         end
