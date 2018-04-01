@@ -143,7 +143,7 @@ majors = [
             {:major_id => 'Zoology'},           
             {:major_id => 'Others'}]
             
-admins = [{:uin => '123456789', :name => 'admin', :password => 'tamu2017'}]
+admins = [{:uin => '123456789', :name => 'admin', :password => 'tamu2017', :email => '123456789@tamu.edu'}]
 
 students = []
 

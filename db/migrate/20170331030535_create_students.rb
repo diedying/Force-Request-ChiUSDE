@@ -4,6 +4,7 @@ class CreateStudents < ActiveRecord::Migration
     t.string "uin"
     t.string "name"
     t.string "password"
+    t.string "email"
   end
 
   create_table "audits", force: :cascade do |t|

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.string "uin"
     t.string "name"
     t.string "password"
+    t.string "email"
   end
 
   create_table "audits", force: :cascade do |t|

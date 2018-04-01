@@ -8,6 +8,8 @@ module ScrapeHelper
         #lastName = split_name[0]
         #firstName = split_name[1]
 
+        
+        
         # Old pattern for name in signup.html.haml: :pattern => "[a-zA-ZüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,}"
 
         #get the search url of specific name / major
