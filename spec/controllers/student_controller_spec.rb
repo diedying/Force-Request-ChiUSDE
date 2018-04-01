@@ -45,7 +45,7 @@ describe StudentRequestsController, :type => :controller do
 
 	describe 'delete a force request' do
 	    before :each do
-	       @fake_student = FactoryGirl.create(:student_request)
+	    @fake_student = FactoryGirl.create(:student_request)
 	    end
 
 	    it 'should call the model method that retrieves the student request for that id and sets state to WITHDRAWN_STATE' do
