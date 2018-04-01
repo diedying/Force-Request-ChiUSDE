@@ -14,18 +14,18 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-01T17:32:21-05:00">2018-04-01T17:32:21-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-01T17:42:27-05:00">2018-04-01T17:42:27-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">84.48%</span></span>
+    (<span class="covered_percent"><span class="yellow">86.21%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         28.56
+         28.61
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>3</b> files in total.
     <b>116</b> relevant lines. 
-    <span class="green"><b>98</b> lines covered</span> and
-    <span class="red"><b>18</b> lines missed </span>
+    <span class="green"><b>100</b> lines covered</span> and
+    <span class="red"><b>16</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,12 +52,12 @@
       
       <tr>
         <td class="strong"><a href="#b8c0c11aec587b6f4c9056a18b538134c634a913" class="src_link" title="app/mailers/student_mailer.rb">app/mailers/student_mailer.rb</a></td>
-        <td class="yellow strong">83.33 %</td>
+        <td class="green strong">100.0 %</td>
         <td>20</td>
         <td>12</td>
-        <td>10</td>
-        <td>2</td>
-        <td>0.8</td>
+        <td>12</td>
+        <td>0</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -67,7 +67,7 @@
         <td>25</td>
         <td>15</td>
         <td>10</td>
-        <td>0.7</td>
+        <td>0.8</td>
       </tr>
       
       <tr>
@@ -99,11 +99,11 @@
         <div class="source_table" id="b8c0c11aec587b6f4c9056a18b538134c634a913">
   <div class="header">
     <h3>app/mailers/student_mailer.rb</h3>
-    <h4><span class="yellow">83.33 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>12</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -206,14 +206,14 @@
           <code class="ruby">    def reset_password(student)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
-          
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
           
           <code class="ruby">        @student = student</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="18">
-          
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
           
           <code class="ruby">        mail(:to =&gt; @student.email, :subject =&gt; &quot;Reset Your Password&quot;)</code>
         </li>
@@ -477,14 +477,14 @@
           <code class="ruby">    def confirmation_token</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="39">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="39">
+          <span class="hits">3</span>
           
           <code class="ruby">      if self.confirm_token.blank?</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="40">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="40">
+          <span class="hits">3</span>
           
           <code class="ruby">          self.confirm_token = SecureRandom.urlsafe_base64.to_s</code>
         </li>

@@ -42,23 +42,4 @@ RSpec.describe StudentMailer, type: :mailer do
       @student.destroy
     end
   end
-
-  describe 'reset password' do
-    before :each do
-      @student = Student.new( name: 'Bernard Lowe', email: 'blowe@westworld.com', password: 'IAmArnorld', uin: 12345678)
-      @student.save
-    end
-
-    let(:mail) { described_class.reset_password(@student).deliver_now }
-
-    it 'renders the subject' do
-      StudentMailer.reset_password(@student)
-      expect(mail.subject).to eq('Reset Your Password')
-      expect(mail.to).to eq(['blowe@westworld.com'])
-    end
-
-    after :each do
-      @student.destroy
-    end
-  end
 end
