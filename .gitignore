@@ -17,6 +17,9 @@
 /tmp
 /coverage
 log
+config/database.yml
+coverage/.resultset.json
+coverage/index.html
 
 Ignore database setup files
 /config/database.yml
