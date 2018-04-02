@@ -49,4 +49,29 @@ describe StudentRequestsController, :type => :controller do
       end
     end
   end
+
+  describe "Update Request" do
+    context "When Student Request ACTIVE_STATE" do
+      it "should update the state to WITHDRAWN_STATE" do
+          #GIVEN
+          student_request = FactoryGirl.create(:student_request)
+          student_request.state = StudentRequest::ACTIVE_STATE
+          StudentRequest.should_receive(:find).once.and_return(student_request)
+          student_request.should_receive(:save!)
+
+          #When
+          put :update, :id => 14
+
+          #THEN
+          expect(student_request.state).to eq(StudentRequest::WITHDRAWN_STATE)
+          expect(flash[:notice]).to eq("Student Request was successfully withdrawn.")
+
+
+
+      end
+
+
+    end
+  end
+
 end
