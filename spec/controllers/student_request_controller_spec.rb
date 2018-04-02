@@ -81,6 +81,13 @@ describe StudentRequestsController, :type => :controller do
       end
 
       it "should redirect to the student_requests_adminprivileges_path" do
+
+        Student.should_receive(:where).and_return([nil])
+
+        post :add_force_request, :admin_request => {:uin => "Non-existent UIN"}
+
+        assert_response :redirect, :action => 'students_show_path'
+
       end
     end
   end
