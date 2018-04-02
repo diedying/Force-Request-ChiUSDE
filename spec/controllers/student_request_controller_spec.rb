@@ -70,7 +70,7 @@ describe StudentRequestsController, :type => :controller do
   end
 
   describe "Add Force Request" do
-    context("When student doesn't exist") do
+    context("When UIN doesn't exist") do
       it " should issue a flash warning" do
         Student.should_receive(:where).and_return([nil])
 
@@ -81,12 +81,46 @@ describe StudentRequestsController, :type => :controller do
       end
 
       it "should redirect to the student_requests_adminprivileges_path" do
-
         Student.should_receive(:where).and_return([nil])
 
         post :add_force_request, :admin_request => {:uin => "Non-existent UIN"}
 
         assert_response :redirect, :action => 'students_show_path'
+      end
+    end
+
+    context("When UIN exists") do
+      context("When student is saved") do
+        before :each do
+          student = FactoryGirl.create(:student)
+          student_request = FactoryGirl.create(:student_request)
+          Student.should_receive(:where).and_return([student])
+
+
+          post :add_force_request, :admin_request => {:uin => student_request.uin},
+                                   :student_request => {:name => student_request.name,
+                                             :uin => student_request.uin,
+                                             :major => student_request.major,
+                                             :classification => student_request.classification,
+                                             :email => student_request.email,
+                                             :request_semester => student_request.request_semester,
+                                             :course_id => student_request.course_id,
+                                             :phone => student_request.phone}
+
+        end
+
+        it "should issue a flash notice" do
+          expect(flash[:notice]).to eq("Student Request was successfully created.")
+        end
+
+        it "should redirect to the the Admin Privileges Path" do
+          assert_response :redirect, :action => 'student_requests_adminprivileges_path'
+        end
+
+
+      end
+
+      context("When student cannot be saved") do
 
       end
     end
