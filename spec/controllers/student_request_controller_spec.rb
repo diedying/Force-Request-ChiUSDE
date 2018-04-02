@@ -96,7 +96,6 @@ describe StudentRequestsController, :type => :controller do
           student_request = FactoryGirl.create(:student_request)
           Student.should_receive(:where).and_return([student])
 
-
           post :add_force_request, :admin_request => {:uin => student_request.uin},
                                    :student_request => {:name => student_request.name,
                                              :uin => student_request.uin,
@@ -108,7 +107,6 @@ describe StudentRequestsController, :type => :controller do
                                              :phone => student_request.phone}
 
         end
-
         it "should issue a flash notice" do
           expect(flash[:notice]).to eq("Student Request was successfully created.")
         end
@@ -121,6 +119,24 @@ describe StudentRequestsController, :type => :controller do
       end
 
       context("When student cannot be saved") do
+
+        before :each do
+          student = FactoryGirl.create(:student)
+          student_request = FactoryGirl.create(:student_request)
+          Student.should_receive(:where).and_return([student])
+
+          post :add_force_request, :admin_request => {:uin => student_request.uin},
+                                   :student_request => {:name => student_request.name}
+        end
+
+        it "should issue a flash warning" do
+          expect(flash[:warning]).to eq("Major can't be blank, Classification can't be blank, Request semester can't be blank, Request semester  is not a valid request semester, Course can't be blank, Course is invalid")
+        end
+
+        it "should redirect to the to the admin privelages path" do
+
+          assert_response :redirect, :action => 'student_requests_adminprivileges_path'
+        end
 
       end
     end
