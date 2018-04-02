@@ -65,13 +65,23 @@ describe StudentRequestsController, :type => :controller do
           #THEN
           expect(student_request.state).to eq(StudentRequest::WITHDRAWN_STATE)
           expect(flash[:notice]).to eq("Student Request was successfully withdrawn.")
-
-
-
       end
-
-
     end
   end
 
+  describe "Add Force Request" do
+    context("When student doesn't exist") do
+      it " should issue a flash warning" do
+        Student.should_receive(:where).and_return([nil])
+
+        post :add_force_request, :admin_request => {:uin => "Non-existent UIN"}
+
+        expect(flash[:warning]).to eq('Student of UIN doesn\'t exist in system, please add him first!')
+
+      end
+
+      it "should redirect to the student_requests_adminprivileges_path" do
+      end
+    end
+  end
 end
