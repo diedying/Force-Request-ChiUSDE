@@ -12,34 +12,28 @@
     %table
     - @all_states.each do |state|
       %tr
+        %td= check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]      
         %td= state
-        %td= check_box_tag "state_sel[#{state}]", 'true', @state_selected[state]
     = submit_tag 'Refresh', class: "filter"
-  .filter_form2
-    %strong Filter Requests - Priority:
-    %br
-    %table
-    - @all_priorities.each do |priority|
-      %td= priority
-      %td= check_box_tag "priority_sel[#{priority}]", 'true', @priority_selected[priority]
-    = submit_tag 'Refresh', class: "filter"
+
 - @allcourses.each do |course|
   - if @coursestudentlist[course].length != 0
     %h4
-      %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "Course Name #{course}", :class => "course_id_button"}
+    %input{:onclick => "return toggleMe('student_requests_#{course}')", :type => "button", :value => "CSCE #{course}", :class => "course_id_button"}
     %div{:id => "student_requests_#{course}"}
       = form_tag(student_requests_multiupdate_path(), method: "put") do
         %table#student_requests.sortableadmin
           %thead 
             %tr
-              %th Select
+              %th 
               // %th Id
               %th UIN
               %th Full Name
               %th Major
               %th Class
               %th Minor
-              %th Section ID
+              %th Course
+              %th Section
               %th Expected Graduation
               // %th Request Semester
               %th State
@@ -58,6 +52,7 @@
                 %td= record.major
                 %td= record.classification
                 %td= record.minor
+                %td= record.course_id
                 %td= record.section_id
                 %td= record.expected_graduation
                 // %td= record.request_semester
@@ -69,11 +64,11 @@
             %table{ :class => "multiUpdate" }
               %tr
                 %td= select_tag("multi_state_sel", options_for_select(@allAdminStates))
-                %td= select_tag("multi_priority_sel", options_for_select(@allPriorityStates))
+                // %td= select_tag("multi_priority_sel", options_for_select(@allPriorityStates))
                 %td= submit_tag "Update Selected"
                 %td= link_to "Email Selected", "", :onclick => "multi_email(\"#{course}\"); return false"
               %tr{ :class => "excel_sheet"}
-                %td= link_to "Download as Excel Sheet", student_requests_getSpreadsheet_path(format: "csv", :course_id => course)
+               
               
 %p= link_to "Download the entire Force Request System data as Excel Sheet", student_requests_getSpreadsheetAllCourses_path(format: "csv"), :id => 'download_table'
 #myModal.modal
