@@ -46,23 +46,30 @@ class StudentRequestsController < ApplicationController
 
   def create  #create force requests by student
     @students = Student.where(:uin => session_get(:uin))
-
     student_request_params_with_uin = {:uin => session[:uin], :name  => @students[0].name, :major => @students[0].major,
                                         :email => @students[0].email, :classification => @students[0].classification}
     student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
-    @student_request = StudentRequest.new(student_request_params_with_uin)
-    @student_request.state = StudentRequest::ACTIVE_STATE
-    @student_request.priority = StudentRequest::NORMAL_PRIORITY
-    if @student_request.save
-      flash[:notice] = "Student Request was successfully created."
-      # This is where an email will be sent to comfirm the force request.
-      StudentMailer.confirm_force_request(@students[0], @student_request).deliver
-      redirect_to students_show_path
+    if StudentRequest.exists?(:uin => session_get(:uin), :course_id => params[:student_request][:course_id], :section_id => params[:student_request][:section_id])
+        flash[:warning] = "You have already submitted a force request for CSCE" +  params[:student_request][:course_id] + "-"+params[:student_request][:section_id]
+        initForNewForceRequest
+        render :new
     else
-      flash[:warning] = @student_request.errors.full_messages.join(", ")
-      initForNewForceRequest
-      render :new
+        @student_request = StudentRequest.new(student_request_params_with_uin)
+        @student_request.state = StudentRequest::ACTIVE_STATE
+        @student_request.priority = StudentRequest::NORMAL_PRIORITY
+
+        if @student_request.save
+          flash[:notice] = "Student Request was successfully created."
+          # This is where an email will be sent to comfirm the force request.
+          StudentMailer.confirm_force_request(@students[0], @student_request).deliver
+          redirect_to students_show_path
+        else
+          flash[:warning] = @student_request.errors.full_messages.join(", ")
+          initForNewForceRequest
+          render :new
+        end
     end
+
   end
 
   def update
@@ -70,7 +77,7 @@ class StudentRequestsController < ApplicationController
       @student_request = StudentRequest.find params[:id]
       if @student_request.state == StudentRequest::ACTIVE_STATE
         @student_request.state = StudentRequest::WITHDRAWN_STATE
-        @student_request.save!
+        @student_request.destroy
         flash[:notice] = "Student Request was successfully withdrawn."
       else
         flash[:warning] = "Student Request cannot be withdrawn."
