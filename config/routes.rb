@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'student_requests#login_page'
   
   get 'student_requests/adminview' => 'student_requests#adminview'
+  
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   put 'student_requests/multiupdate' => 'student_requests#multiupdate'
 
@@ -17,7 +18,9 @@ Rails.application.routes.draw do
   post 'student_requests/add_student' => 'student_requests#add_student'
   get 'student_requests/add_new_force_request' => 'student_requests#add_new_force_request'
   post 'student_requests/add_new_force_request' => 'student_requests#add_force_request' 
-  
+  put 'student_requests/approve' => 'student_requests#approve'
+  put 'student_requests/reject' => 'student_requests#reject'
+  put 'student_requests/hold' => 'student_requests#hold'
   
   delete 'student_requests/deleteall' => 'student_requests#deleteall'
   get 'student_requests/homeRedirect' => 'student_requests#homeRedirect'
@@ -26,18 +29,19 @@ Rails.application.routes.draw do
 
   resources :student_requests
   
-  
   # resources :students do
   #   member do
   #     get :confirm_email
   #   end
   # end
+  
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
   #activate the account
   get 'students/confirm_email/:id' => 'students#confirm_email', as: 'confirm_email'
   #show the student dashboard
   get 'students/show' => 'students#show'
+  
   #show the student profile
   get 'students/profile' => 'students#profile'
   #after login then change password
