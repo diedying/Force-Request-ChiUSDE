@@ -150,6 +150,7 @@ class StudentsController < ApplicationController
               @newStudent = Student.create!(:name => params[:session][:name], :uin => params[:session][:uin], :email => params[:session][:email], :password => params[:session][:password],
                                                   :major => params[:session][:major], :classification => params[:session][:classification])
               flash[:notice] = "Name:#{@newStudent.name}, UIN: #{@newStudent.uin}, Email: #{@newStudent.email} signed up successfully."
+              StudentMailer.registration_confirmation(@newStudent).deliver
               redirect_to student_requests_adminprivileges_path
             #else
               #flash[:notice] = "Student information is incorrect!\nPlease use TAMU email!\nUse name as which is on Student ID!"
