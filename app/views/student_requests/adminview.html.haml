@@ -61,7 +61,7 @@
                 // %td= record.priority
                 %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
                 %td= mail_to record.email, "email", subject: "Force Request System: Regarding course #{record.course_id}" 
-                %td=   (link_to 'Approve', {:action => "approve", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Hold', {:action => "hold", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Reject', {:action => "reject", :controller => "student_requests",:id => record.request_id}, :method => :put) 
+                %td= (link_to 'Approve', {:action => "approve", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Hold', {:action => "hold", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Reject', {:action => "reject", :controller => "student_requests",:id => record.request_id}, :method => :put) 
                 
                 
             %table{ :class => "multiUpdate" }

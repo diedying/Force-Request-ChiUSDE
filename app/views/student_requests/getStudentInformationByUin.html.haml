@@ -37,6 +37,7 @@
       %th Student Notes
       %th Admin Notes
       %th Creation Date
+      %th Actions
      
   %tbody
     - @student_by_uin.each do |record|
@@ -47,3 +48,5 @@
         %td= record.notes
         %td= record.notes_to_student
         %td= record.creation_date.strftime("%Y-%m-%d %H:%M:%S")
+        %td= (link_to 'Approve', {:action => "approve", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Hold', {:action => "hold", :controller => "student_requests",:id => record.request_id}, :method => :put) + "<br>".html_safe+ (link_to 'Reject', {:action => "reject", :controller => "student_requests",:id => record.request_id}, :method => :put) 
+              
