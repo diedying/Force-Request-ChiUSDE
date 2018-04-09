@@ -50,7 +50,7 @@ class StudentRequestsController < ApplicationController
                                         :email => @students[0].email, :classification => @students[0].classification}
     student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
     if StudentRequest.exists?(:uin => session_get(:uin), :course_id => params[:student_request][:course_id], :section_id => params[:student_request][:section_id])
-        flash[:warning] = "You have already submitted a force request for CSCE" +  params[:student_request][:course_id] + "-"+params[:student_request][:section_id]
+        flash[:warning] = "You have already submitted a force request for CSCE" +  params[:student_request][:course_id] + "-" + params[:student_request][:section_id]
         initForNewForceRequest
         render :new
     else
@@ -88,34 +88,32 @@ class StudentRequestsController < ApplicationController
 
   def edit
   end
-  
+
   def approve
-    puts"approved"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::APPROVED_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
-  
+
   def reject
-    puts"reject"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::REJECTED_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
+
   
-    def hold
-    puts"hold"
+  def hold
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::HOLD_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
-  
 
 
-  
+
+
 
 
   # def destroy
@@ -189,7 +187,7 @@ class StudentRequestsController < ApplicationController
     isUpdated = false
     @student_request = StudentRequest.find params[:id]
     if(@student_request.state == StudentRequest::WITHDRAWN_STATE)
-      flash[:warning] = "Request has been already been withdrawn by student. Please refresh your Page."
+      flash[:warning] = "Request has already been withdrawn by student. Please refresh your Page."
     else
       if(StudentRequest::STATES_AVAILABLE_TO_ADMIN.include? params[:state])
         @student_request.state = params[:state]
