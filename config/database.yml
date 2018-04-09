@@ -5,8 +5,8 @@ default: &default
   pool: 5
   timeout: 5000
   template: template0
-  username: JoshuaHowell
-  password: 
+  username: postgres
+  password: admin
 
 development:
   <<: *default
