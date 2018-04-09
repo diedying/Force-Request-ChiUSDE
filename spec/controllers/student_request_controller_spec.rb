@@ -64,7 +64,7 @@ describe StudentRequestsController, :type => :controller do
 
           #THEN
           expect(student_request.state).to eq(StudentRequest::WITHDRAWN_STATE)
-          expect(flash[:notice]).to eq("Student Request was successfully withdrawn.")
+          expect(flash[:notice]).to eq("Request was successfully withdrawn.")
       end
     end
   end
@@ -139,6 +139,28 @@ describe StudentRequestsController, :type => :controller do
         end
 
       end
+    end
+  end
+
+
+  describe "Admin Actions" do
+    it "should approve a student request" do
+      #Given
+      student_request = FactoryGirl.create(:student_request)
+      StudentRequest.should_receive(:find).with("14").once.and_return(student_request)
+      student_request.should_receive(:save)
+
+      #When
+      put :approve, :id => 14
+      #put student_requests/approve' => 'student_requests#approve'
+
+      #Then
+      expect(student_request.state).to eq(StudentRequest::APPROVED_STATE)
+
+        assert_response :redirect, :action => 'student_requests_adminview_path'
+
+
+
     end
   end
 end

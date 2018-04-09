@@ -88,34 +88,32 @@ class StudentRequestsController < ApplicationController
 
   def edit
   end
-  
+
   def approve
-    puts"approved"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::APPROVED_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
-  
+
   def reject
-    puts"approved"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::REJECTED_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
-  
-    def hold
-    puts"approved"
+
+  def hold
+
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::HOLD_STATE
     @student_request.save
     redirect_to student_requests_adminview_path
   end
-  
 
 
-  
+
+
 
 
   # def destroy
