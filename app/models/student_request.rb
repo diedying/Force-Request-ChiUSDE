@@ -20,8 +20,10 @@ class StudentRequest < ActiveRecord::Base
     
     #Classification
     CLASSIFICATION_LIST = ['U1', 'U2', 'U3', 'U4', 'G']
-    MAJOR_LIST = [                 
-             'Computer Science',         
+    MAJOR_LIST = [      
+             'None',    
+             'Computer Science', 
+
              'Computer Engineering',
              'Electrical Engineering',
              'Applied Mathematical Sciences',            
@@ -213,7 +215,6 @@ class StudentRequest < ActiveRecord::Base
     validates_format_of :course_id, :with => /^\d+$/, :multiline => true
     validates_format_of :section_id, :with => /^\d*$/, :multiline => true
     # validates_format_of :phone, :with => /1?\s*\W?\s*([2-9][0-8][0-9])\s*\W?\s*([2-9][0-9]{2})\s*\W?\s*([0-9]{4})(\se?x?t?(\d*))?/
-    validates_format_of :minor, :with => /(^[a-zA-Z]{4}$|^$)/, :multiline => true
     #validates :classification, inclusion: { in: CLASSIFICATION_LIST, 
     #  message: "%{value} is not a valid classification" }
     validates :request_semester, inclusion: { in: YEAR_SEMESTER, 

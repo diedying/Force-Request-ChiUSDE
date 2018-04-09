@@ -42,6 +42,9 @@ module ScrapeHelper
             # Get the classification from the directory's person page
             additionalInfo = personPage.css('.additional-info').css('ul')
             classification = additionalInfo.css('li')[0].text
+            puts("*************************")
+            puts(major)
+            puts("*************************")
             # Get the email address from the directory's person page
             contactInfo = personPage.css('.contact-info')
             pageEmail = contactInfo.css('a').text
@@ -51,7 +54,7 @@ module ScrapeHelper
                 record['Last Name'] = lastName
                 record['Email Address'] = realEmail
                 record['Major'] = major
-                record['Classification'] = classification
+                record['Classification'] = classification[15,2]
                 break
             end
             #end

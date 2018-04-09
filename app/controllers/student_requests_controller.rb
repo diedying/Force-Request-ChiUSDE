@@ -98,7 +98,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def reject
-    puts"approved"
+    puts"reject"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::REJECTED_STATE
     @student_request.save
@@ -106,7 +106,7 @@ class StudentRequestsController < ApplicationController
   end
   
     def hold
-    puts"approved"
+    puts"hold"
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::HOLD_STATE
     @student_request.save

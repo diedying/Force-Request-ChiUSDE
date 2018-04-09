@@ -4,15 +4,15 @@
     %table{:border => "0"}
       %tr
         %td
-          = label :session, :lastname, 'Enter LastName'
-        %td
-          = text_field(:session, :lastname, class: 'input-field', :pattern => "([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter Your LastName')", :oninput => "this.setCustomValidity('')", :required => true)
-      %tr
-        %td
           = label :session, :firstname, 'Enter FirstName'
         %td
           = text_field(:session, :firstname, class: 'input-field', :pattern => "([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter Your FirstName')", :oninput => "this.setCustomValidity('')", :required => true)
-            
+      %tr
+        %td
+          = label :session, :lastname, 'Enter LastName'
+        %td
+          = text_field(:session, :lastname, class: 'input-field', :pattern => "([A-Za-z]+)", :oninvalid => "this.setCustomValidity('Please enter Your LastName')", :oninput => "this.setCustomValidity('')", :required => true)
+             
       
       %tr
         %td
@@ -33,9 +33,7 @@
           // = text_field(:session, :email, class: 'input-field')
           = text_field(:session, :email, class: 'input-field', placeholder: 'xxx@tamu.edu', :pattern => "[a-z0-9._-]{1,}@tamu\.edu", :oninvalid => "this.setCustomValidity('Please enter TAMU Email Address')", :oninput => "this.setCustomValidity('')", :required => true)
           // = text_field(:session, :email, class: 'input-field', :oninvalid => "this.setCustomValidity('Not TAMU Email Address')", :oninput => "this.setCustomValidity('')")
-   
-      
-      
+       
       
       
       %tr
@@ -43,6 +41,12 @@
           = label :session, :major, 'Select your Major'
         %td
           = select :session, 'major', @majorList, :required => true
+      %tr
+        %td
+          = label :session, :minor, 'Select your Minor'
+        %td
+          = select :session, 'minor', @majorList, :required => true      
+      
       %tr
         %td
           = label :session, :classification, 'Select your classification'
@@ -65,7 +69,7 @@
         %td
           = label :session, :note, 'Notes'
         %td
-          = label :session, :note, 'XXXXXXXXXXXXXXXXXXX'  
+          = label :session, :note, "Provided email should match with the search result from </br>#{link_to 'TAMU Directory search', 'https://services.tamu.edu/directory-search/#adv-search'}".html_safe
       
     
     

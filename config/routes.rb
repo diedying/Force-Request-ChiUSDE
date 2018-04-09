@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   put 'student_requests/approve' => 'student_requests#approve'
   put 'student_requests/reject' => 'student_requests#reject'
   put 'student_requests/hold' => 'student_requests#hold'
+
   
   delete 'student_requests/deleteall' => 'student_requests#deleteall'
   get 'student_requests/homeRedirect' => 'student_requests#homeRedirect'
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
   
   #show the student profile
   get 'students/profile' => 'students#profile'
+  post 'students/update_profile' => 'students#update_profile'
   #after login then change password
   get 'students/edit_password' => 'students#edit_password'
   post 'students/update_password' => 'students#update_password'
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
   post 'students/update_reset_password' => 'students#update_reset_password'
   get 'students/add_new_student' => 'students#add_new_student'
   post 'students/add_new_student' => 'students#add_student'
-  
+
   
   # Admin
   get 'admins/add_new_admin' => 'admins#add_new_admin'

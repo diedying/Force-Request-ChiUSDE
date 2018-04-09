@@ -4,6 +4,8 @@ class StudentsController < ApplicationController
     
     #show the student dashboard page
     def show
+        @majorList = StudentRequest::MAJOR_LIST
+        @classificationList = StudentRequest::CLASSIFICATION_LIST
         if session_get(:uin) == nil
             redirect_to root_path
         else
@@ -17,6 +19,26 @@ class StudentsController < ApplicationController
         @student = Student.new
     end
     
+    def update_profile
+        @student = Student.where(:uin => session_get(:uin))
+        record = scrape_info(@student[0].lastname, @student[0].firstname, params[:student_request][:major] , params[:student_request][:email] )
+        if record.length() != 0
+            @student[0].major = record['Major']
+            @student[0].classification = record['Classification']
+            @student[0].uin = params[:student_request][:uin]
+            @student[0].email = params[:student_request][:email]
+            puts(params[:student_request][:minor])            
+            @student[0].minor = params[:student_request][:minor]
+            @student[0].save
+        else
+            flash[:error] = "Something went wrong, try again."
+            redirect_to students_profile_path
+        end
+        redirect_to root_path
+    end
+    
+    
+    
     # create a new student
     def create
         @classificationList = StudentRequest::CLASSIFICATION_LIST
@@ -29,8 +51,8 @@ class StudentsController < ApplicationController
                 record = scrape_info(params[:session][:lastname], params[:session][:firstname], params[:session][:major], params[:session][:email])
                 if  record.length() != 0#scrape the record
                     # sign up email confirm feature
-                    @newStudent = Student.new(:name => record['First Name']+' '+record['Last Name'], :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
-                                              :major => record['Major'], :classification => record['Classification'])
+                    @newStudent = Student.new(:name => record['First Name']+' '+record['Last Name'], :firstname => record['First Name'], :lastname => record['Last Name'],  :uin => params[:session][:uin], :email => record['Email Address'], :password => params[:session][:password],
+                                              :major => record['Major'], :classification => record['Classification'], :minor => params[:session][:minor])
                     if @newStudent.save#succeed to create the account of student
                         StudentMailer.registration_confirmation(@newStudent).deliver
                         flash[:notice] = "An account has been created. A email has been sent to the provided email address, click the link to activate your account."
@@ -125,6 +147,8 @@ class StudentsController < ApplicationController
     end
     
     def profile
+        @majorList = StudentRequest::MAJOR_LIST
+        @classificationList = StudentRequest::CLASSIFICATION_LIST
         @students = Student.where(:uin => session_get(:uin))
     end
     
