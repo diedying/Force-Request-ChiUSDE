@@ -152,15 +152,38 @@ describe StudentRequestsController, :type => :controller do
 
       #When
       put :approve, :id => 14
-      #put student_requests/approve' => 'student_requests#approve'
 
       #Then
       expect(student_request.state).to eq(StudentRequest::APPROVED_STATE)
+      assert_response :redirect, :action => 'student_requests_adminview_path'
+    end
 
-        assert_response :redirect, :action => 'student_requests_adminview_path'
+    it "should Reject a student request" do
+      #Given
+      student_request = FactoryGirl.create(:student_request)
+      StudentRequest.should_receive(:find).with("14").once.and_return(student_request)
+      student_request.should_receive(:save)
 
+      #When
+      put :reject, :id => 14
 
+      #Then
+      expect(student_request.state).to eq(StudentRequest::REJECTED_STATE)
+      assert_response :redirect, :action => 'student_requests_adminview_path'
+    end
 
+    it "should hold a student request" do
+      #Given
+      student_request = FactoryGirl.create(:student_request)
+      StudentRequest.should_receive(:find).with("14").once.and_return(student_request)
+      student_request.should_receive(:save)
+
+      #When
+      put :hold, :id => 14
+
+      #Then
+      expect(student_request.state).to eq(StudentRequest::HOLD_STATE)
+      assert_response :redirect, :action => 'student_requests_adminview_path'
     end
   end
 end

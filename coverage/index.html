@@ -14,18 +14,18 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-09T15:19:45-05:00">2018-04-09T15:19:45-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-09T15:28:37-05:00">2018-04-09T15:28:37-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">39.01%</span></span>
+    (<span class="covered_percent"><span class="red">41.49%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         5.34
+         5.48
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>5</b> files in total.
     <b>323</b> relevant lines. 
-    <span class="green"><b>126</b> lines covered</span> and
-    <span class="red"><b>197</b> lines missed </span>
+    <span class="green"><b>134</b> lines covered</span> and
+    <span class="red"><b>189</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -57,17 +57,17 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>1.9</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#38418cb585994041af8b91f6207621c4b93a6147" class="src_link" title="app/controllers/student_requests_controller.rb">app/controllers/student_requests_controller.rb</a></td>
-        <td class="red strong">14.35 %</td>
+        <td class="red strong">17.94 %</td>
         <td>417</td>
         <td>223</td>
-        <td>32</td>
-        <td>191</td>
-        <td>0.1</td>
+        <td>40</td>
+        <td>183</td>
+        <td>0.2</td>
       </tr>
       
       <tr>
@@ -77,7 +77,7 @@
         <td>79</td>
         <td>73</td>
         <td>6</td>
-        <td>21.3</td>
+        <td>21.5</td>
       </tr>
       
       <tr>
@@ -154,20 +154,20 @@
           <code class="ruby">  def set_cache_buster</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="5">
+          <span class="hits">3</span>
           
           <code class="ruby">    response.headers[&quot;Cache-Control&quot;] = &quot;no-cache, no-store, max-age=0, must-revalidate&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="6">
+          <span class="hits">3</span>
           
           <code class="ruby">    response.headers[&quot;Pragma&quot;] = &quot;no-cache&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="7">
+          <span class="hits">3</span>
           
           <code class="ruby">    response.headers[&quot;Expires&quot;] = &quot;Fri, 01 Jan 1990 00:00:00 GMT&quot;</code>
         </li>
@@ -210,11 +210,11 @@
         <div class="source_table" id="38418cb585994041af8b91f6207621c4b93a6147">
   <div class="header">
     <h3>app/controllers/student_requests_controller.rb</h3>
-    <h4><span class="red">14.35 %</span> covered</h4>
+    <h4><span class="red">17.94 %</span> covered</h4>
     <div>
       <b>223</b> relevant lines. 
-      <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>191</b> lines missed.</span>
+      <span class="green"><b>40</b> lines covered</span> and
+      <span class="red"><b>183</b> lines missed.</span>
     </div>
   </div>
   
@@ -815,26 +815,26 @@
           <code class="ruby">  def reject</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="100">
-          
+        <li class="covered" data-hits="1" data-linenumber="100">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request = StudentRequest.find params[:id]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="101">
-          
+        <li class="covered" data-hits="1" data-linenumber="101">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request.state = StudentRequest::REJECTED_STATE</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="102">
-          
+        <li class="covered" data-hits="1" data-linenumber="102">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="103">
-          
+        <li class="covered" data-hits="1" data-linenumber="103">
+          <span class="hits">1</span>
           
           <code class="ruby">    redirect_to student_requests_adminview_path</code>
         </li>
@@ -863,26 +863,26 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="108">
-          
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request = StudentRequest.find params[:id]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="109">
-          
+        <li class="covered" data-hits="1" data-linenumber="109">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request.state = StudentRequest::HOLD_STATE</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="110">
-          
+        <li class="covered" data-hits="1" data-linenumber="110">
+          <span class="hits">1</span>
           
           <code class="ruby">    @student_request.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="111">
-          
+        <li class="covered" data-hits="1" data-linenumber="111">
+          <span class="hits">1</span>
           
           <code class="ruby">    redirect_to student_requests_adminview_path</code>
         </li>
@@ -4104,14 +4104,14 @@
           <code class="ruby">      # self.creation_date = DateTime.now()</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="228">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="228">
+          <span class="hits">3</span>
           
           <code class="ruby">      Time.zone = &#39;Central Time (US &amp; Canada)&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="229">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="229">
+          <span class="hits">3</span>
           
           <code class="ruby">      self.creation_date = Time.zone.now()</code>
         </li>
@@ -4140,14 +4140,14 @@
           <code class="ruby">      # self.last_updated = DateTime.now()</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="234">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="234">
+          <span class="hits">3</span>
           
           <code class="ruby">      Time.zone = &#39;Central Time (US &amp; Canada)&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="235">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="235">
+          <span class="hits">3</span>
           
           <code class="ruby">      self.last_updated = Time.zone.now()</code>
         </li>
@@ -4176,14 +4176,14 @@
           <code class="ruby">      begin</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="240">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="240">
+          <span class="hits">3</span>
           
           <code class="ruby">        self. request_id = &quot;FRS&quot; + SecureRandom.hex(10)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="241">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="241">
+          <span class="hits">3</span>
           
           <code class="ruby">      end while self.class.exists?(:request_id =&gt; request_id)</code>
         </li>
