@@ -222,7 +222,7 @@ describe StudentRequestsController, :type => :controller do
   describe 'Load Admin Page' do
     it "should redirect to home page for wrong UIN" do
       #GIVEN
-      request.session[:uin] = 123
+      request.session[:uin] = nil
 
       get :adminview
 
