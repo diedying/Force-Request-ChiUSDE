@@ -57,7 +57,7 @@ describe StudentRequestsController, :type => :controller do
           student_request = FactoryGirl.create(:student_request)
           student_request.state = StudentRequest::ACTIVE_STATE
           StudentRequest.should_receive(:find).once.and_return(student_request)
-          student_request.should_receive(:save!)
+          student_request.should_receive(:destroy)
 
           #When
           put :update, :id => 14
