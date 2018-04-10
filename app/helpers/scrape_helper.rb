@@ -49,6 +49,20 @@ module ScrapeHelper
             contactInfo = personPage.css('.contact-info')
             pageEmail = contactInfo.css('a').text
             # Compare the page's email to the entered email
+            classification = classification[15,2]
+            if classification == "Fr"
+                classification = "U1"
+            else if classification == "So"
+                classification = "U2"
+            else if classification == "Ju"
+                classification = "U3"
+            else if classification == "Se"
+                classification = "U4"
+            else
+                classification = classification
+            end
+            
+            
             if pageEmail == realEmail
                 record['First Name'] = firstName
                 record['Last Name'] = lastName
