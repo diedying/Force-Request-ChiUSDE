@@ -68,7 +68,7 @@ module ScrapeHelper
                 record['Last Name'] = lastName
                 record['Email Address'] = realEmail
                 record['Major'] = major
-                record['Classification'] = classification[15,2]
+                record['Classification'] = classification
                 break
             end
             #end
