@@ -52,11 +52,11 @@ module ScrapeHelper
             classification = classification[15,2]
             if classification == "Fr"
                 classification = "U1"
-            else if classification == "So"
+            elseif classification == "So"
                 classification = "U2"
-            else if classification == "Ju"
+            elseif classification == "Ju"
                 classification = "U3"
-            else if classification == "Se"
+            elseif classification == "Se"
                 classification = "U4"
             else
                 classification = classification
