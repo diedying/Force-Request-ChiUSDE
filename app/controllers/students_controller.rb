@@ -21,7 +21,26 @@ class StudentsController < ApplicationController
     
     def update_profile
         @student = Student.where(:uin => session_get(:uin))
+        @student_new_email = Student.where("email =?", params[:student_request][:email])
+        @student_new_uin =  Student.where("uin = ?", params[:student_request][:uin])
         record = scrape_info(@student[0].lastname, @student[0].firstname, params[:student_request][:major] , params[:student_request][:email] )
+        
+        if @student[0].email != params[:student_request][:email]
+            if !@student_new_email[0].nil?
+                flash[:warning] = "The new email has already been taken."
+                redirect_to students_profile_path      
+                return                
+            end
+        end
+        
+        if @student[0].uin != params[:student_request][:uin]
+            if !@student_new_uin[0].nil?
+                flash[:warning] = "The new UIN has already been taken."
+                redirect_to students_profile_path
+                return
+            end      
+        end
+        
         if record.length() != 0
             @student[0].major = record['Major']
             @student[0].classification = record['Classification']
@@ -30,11 +49,13 @@ class StudentsController < ApplicationController
             puts(params[:student_request][:minor])            
             @student[0].minor = params[:student_request][:minor]
             @student[0].save
+            flash[:notice] = "The change has been applied."
+            redirect_to root_path
         else
-            flash[:error] = "Something went wrong, try again."
+            flash[:warning] = "Something went wrong, try again."
             redirect_to students_profile_path
         end
-        redirect_to root_path
+
     end
     
     
@@ -58,7 +79,7 @@ class StudentsController < ApplicationController
                         flash[:notice] = "An account has been created. A email has been sent to the provided email address, click the link to activate your account."
                         redirect_to root_path
                     else
-                        flash[:error] = "Something went wrong, try again."
+                        flash[:warning] = "Something went wrong, try again."
                         redirect_to root_path
                     end
                 else#can't scrape the record

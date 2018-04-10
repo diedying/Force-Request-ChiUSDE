@@ -39,7 +39,7 @@ module ScrapeHelper
             # TODO: result['class'] returns floating-form.u-radiusTop--0
             #if result['class'] == '.result-listing student'
             personPage = Nokogiri::HTML(open(urlPerson))
-            # Get the classification from the directory's person page
+            # Get the classification from the directory's person page 
             additionalInfo = personPage.css('.additional-info').css('ul')
             classification = additionalInfo.css('li')[0].text
 
@@ -73,7 +73,7 @@ module ScrapeHelper
                 record['Classification'] = classification
                 break
             end
-            #end
+            #end  
         end
         return record
         # end
