@@ -11,6 +11,7 @@ describe StudentRequestsController, :type => :controller do
             student_request = FactoryGirl.create(:student_request)
             #StudentRequest.should_receive(:exists?).with(:uin => student_request.uin, :course_id => student_request.course_id, :section_id => student_request.section_id).once.and_return(true)
             StudentRequest.should_receive(:exists?).once.and_return(true)
+            Major.should_receive(:pluck).with(:major_id).once.and_return("Computer Science")
 
             #When
             post :create, :student_request => {:name => student_request.name,
@@ -29,7 +30,8 @@ describe StudentRequestsController, :type => :controller do
           #classificationList = student_request_controller.instance_variable_get(:@classificationList)
           assigns(:classificationList).should eq(StudentRequest::CLASSIFICATION_LIST)
           assigns(:YearSemester).should eq(StudentRequest::YEAR_SEMESTER)
-          assigns(:majorList).should eq(Major.pluck(:major_id))
+          assigns(:requestSemester).should eq(StudentRequest::REQUEST_SEMESTER)
+          assigns(:majorList).should eq("Computer Science")
           assert_template 'new'
         end
     end
@@ -244,6 +246,22 @@ describe StudentRequestsController, :type => :controller do
       get :adminview
 
       assert_response :redirect, :action => root_path
+    end
+
+    it "should load all of the states" do
+      #Given
+      request.session[:uin] = 12345678
+      request.session[:state_sel] = {StudentRequest::ACTIVE_STATE => true}
+
+      #When
+      get :adminview
+
+      #THEN
+
+      assigns(:state_selected).should eq( StudentRequest::ACTIVE_STATE => true,
+        StudentRequest::REJECTED_STATE => false,
+         StudentRequest::APPROVED_STATE => false,
+         StudentRequest::HOLD_STATE => false)
 
 
 
