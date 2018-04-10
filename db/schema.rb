@@ -110,9 +110,9 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.datetime "updated_at"
     t.boolean  "email_confirmed",              default: false
     t.string   "confirm_token"
-    t.datetime "email_confirm_sent_at"
     t.string   "reset_password_confirm_token"
     t.datetime "reset_sent_at"
+    t.datetime "email_confirm_sent_at"
   end
 
 end
