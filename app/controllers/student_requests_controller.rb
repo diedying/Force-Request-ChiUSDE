@@ -226,7 +226,7 @@ class StudentRequestsController < ApplicationController
         #check if the uin of admin is valid
           @cur_user = Admin.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
           if @cur_user[0].nil?
-            flash[:warning] = "Your UIN or Password is WRONG!"
+            flash[:warning] = "Your Email or Password is Incorrect."
             redirect_to root_path
           else
             #update the session value which could be used in other pages
@@ -246,7 +246,7 @@ class StudentRequestsController < ApplicationController
         end
         @cur_user = Student.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
         if @cur_user[0].nil?#the UIN or Password don't match
-          flash[:warning] = "Entered UIN and Password didn't match. Try again."
+          flash[:warning] = "Entered Email and Password didn't match. Try again."
           redirect_to root_path
         else
           # check if the current student activate his account
