@@ -278,6 +278,12 @@ describe StudentRequestsController, :type => :controller do
          StudentRequest::APPROVED_STATE => false,
          StudentRequest::HOLD_STATE => false)
 
+         puts "******************* #{request.session[:state_sel]}"
+
+
+         expect(request.session[:state_sel]).to eq( ActionController::Parameters.new("Active" => "true"))
+
+
     end
   end
 end
