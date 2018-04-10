@@ -42,24 +42,26 @@ module ScrapeHelper
             # Get the classification from the directory's person page
             additionalInfo = personPage.css('.additional-info').css('ul')
             classification = additionalInfo.css('li')[0].text
-            puts("*************************")
-            puts(major)
-            puts("*************************")
+
             # Get the email address from the directory's person page
             contactInfo = personPage.css('.contact-info')
             pageEmail = contactInfo.css('a').text
             # Compare the page's email to the entered email
             classification = classification[15,2]
+            puts("***********************")
+            puts(classification+"********")
+            puts("***********************")
             if classification == "Fr"
                 classification = "U1"
-            elseif classification == "So"
+            end
+            if classification == "So"
                 classification = "U2"
-            elseif classification == "Ju"
+            end
+            if classification == "Ju"
                 classification = "U3"
-            elseif classification == "Se"
+            end
+            if classification == "Se"
                 classification = "U4"
-            else
-                classification = classification
             end
             
             
