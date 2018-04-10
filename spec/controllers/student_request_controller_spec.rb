@@ -4,7 +4,7 @@ require 'rails_helper'
 describe StudentRequestsController, :type => :controller do
   describe "Create Student Request: " do
     context 'on a a student request that already exists' do
-          it 'should do the thing' do
+          it 'should set the appropriate variable' do
             #Given
             student = FactoryGirl.create(:student)
             Student.should_receive(:where).once.and_return([student])
@@ -26,8 +26,7 @@ describe StudentRequestsController, :type => :controller do
 
           #THEN
           expect(flash[:warning]).to eq("You have already submitted a force request for CSCE" + student_request.course_id.to_s + "-505")
-          student_request_controller = StudentRequestsController.new
-          #classificationList = student_request_controller.instance_variable_get(:@classificationList)
+
           assigns(:classificationList).should eq(StudentRequest::CLASSIFICATION_LIST)
           assigns(:YearSemester).should eq(StudentRequest::YEAR_SEMESTER)
           assigns(:requestSemester).should eq(StudentRequest::REQUEST_SEMESTER)
@@ -248,7 +247,7 @@ describe StudentRequestsController, :type => :controller do
       assert_response :redirect, :action => root_path
     end
 
-    it "should load all of the states" do
+    it "should load all of the states when state_selected is nil in both the session and the params" do
       #Given
       request.session[:uin] = 12345678
       request.session[:state_sel] = {StudentRequest::ACTIVE_STATE => true}
@@ -263,8 +262,21 @@ describe StudentRequestsController, :type => :controller do
          StudentRequest::APPROVED_STATE => false,
          StudentRequest::HOLD_STATE => false)
 
+    end
 
+    it "should load all of the states when state_selected is passed in through params"  do
+      #Given
+      request.session[:uin] = 12345678
 
+      #When
+      get :adminview, :state_sel => {StudentRequest::ACTIVE_STATE => true}
+
+      #THEN
+
+      assigns(:state_selected).should eq( StudentRequest::ACTIVE_STATE => true,
+        StudentRequest::REJECTED_STATE => false,
+         StudentRequest::APPROVED_STATE => false,
+         StudentRequest::HOLD_STATE => false)
 
     end
   end
