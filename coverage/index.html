@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-09T16:38:33-05:00">2018-04-09T16:38:33-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-10T16:11:24-05:00">2018-04-10T16:11:24-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">81.89%</span></span>
+    (<span class="covered_percent"><span class="yellow">82.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.12
+         4.06
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>17</b> files in total.
-    <b>613</b> relevant lines. 
-    <span class="green"><b>502</b> lines covered</span> and
+    <b>619</b> relevant lines. 
+    <span class="green"><b>508</b> lines covered</span> and
     <span class="red"><b>111</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -67,7 +67,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>10.9</td>
+        <td>11.3</td>
       </tr>
       
       <tr>
@@ -77,7 +77,7 @@
         <td>223</td>
         <td>130</td>
         <td>93</td>
-        <td>1.1</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -143,9 +143,9 @@
       <tr>
         <td class="strong"><a href="#191ea9f3d434744a14ef3a1ad7b1cd3f9b17cd10" class="src_link" title="spec/controllers/student_request_controller_spec.rb">spec/controllers/student_request_controller_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>236</td>
-        <td>102</td>
-        <td>102</td>
+        <td>253</td>
+        <td>108</td>
+        <td>108</td>
         <td>0</td>
         <td>1.1</td>
       </tr>
@@ -413,20 +413,20 @@
           <code class="ruby">  def set_cache_buster</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="5">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="5">
+          <span class="hits">25</span>
           
           <code class="ruby">    response.headers[&quot;Cache-Control&quot;] = &quot;no-cache, no-store, max-age=0, must-revalidate&quot;</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="6">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="6">
+          <span class="hits">25</span>
           
           <code class="ruby">    response.headers[&quot;Pragma&quot;] = &quot;no-cache&quot;</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="7">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="7">
+          <span class="hits">25</span>
           
           <code class="ruby">    response.headers[&quot;Expires&quot;] = &quot;Fri, 01 Jan 1990 00:00:00 GMT&quot;</code>
         </li>
@@ -930,20 +930,20 @@
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="76">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="76">
+          <span class="hits">3</span>
           
           <code class="ruby">    unless params[:id].nil?</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="77">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="77">
+          <span class="hits">3</span>
           
           <code class="ruby">      @student_request = StudentRequest.find params[:id]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="78">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="78">
+          <span class="hits">3</span>
           
           <code class="ruby">      if @student_request.state == StudentRequest::ACTIVE_STATE</code>
         </li>
@@ -972,8 +972,8 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="83">
+          <span class="hits">2</span>
           
           <code class="ruby">        flash[:warning] = &quot;Student Request cannot be withdrawn.&quot;</code>
         </li>
@@ -984,8 +984,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="85">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="85">
+          <span class="hits">3</span>
           
           <code class="ruby">      redirect_to students_show_path</code>
         </li>
@@ -1242,8 +1242,8 @@
           <code class="ruby">    if session_get(:uin) == nil</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="128">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="128">
+          <span class="hits">2</span>
           
           <code class="ruby">      redirect_to root_path</code>
         </li>
@@ -1254,44 +1254,44 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="130">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="130">
+          <span class="hits">1</span>
           
           <code class="ruby">      @state_selected = {}</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="131">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="131">
+          <span class="hits">1</span>
           
           <code class="ruby">      @priority_selected = {}</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="132">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="132">
+          <span class="hits">1</span>
           
           <code class="ruby">      @all_priorities = [StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="133">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
           
           <code class="ruby">      @all_states = [StudentRequest::ACTIVE_STATE, StudentRequest::REJECTED_STATE, StudentRequest::APPROVED_STATE, StudentRequest::HOLD_STATE]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="134">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="134">
+          <span class="hits">1</span>
           
           <code class="ruby">      @default_states = [StudentRequest::ACTIVE_STATE, StudentRequest::HOLD_STATE]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="135">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
           
           <code class="ruby">      if params[:state_sel] == nil</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="136">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
           
           <code class="ruby">        if session_get(:state_sel) != nil</code>
         </li>
@@ -1320,14 +1320,14 @@
           <code class="ruby">        else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="141">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="141">
+          <span class="hits">1</span>
           
           <code class="ruby">          @all_states.each { |state|</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="142">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="4" data-linenumber="142">
+          <span class="hits">4</span>
           
           <code class="ruby">            @state_selected[state] = @default_states.include?(state)</code>
         </li>
@@ -1386,14 +1386,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="152">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="152">
+          <span class="hits">1</span>
           
           <code class="ruby">      if params[:priority_sel] == nil</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="153">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="153">
+          <span class="hits">1</span>
           
           <code class="ruby">        if session_get(:priority_sel) != nil</code>
         </li>
@@ -1422,14 +1422,14 @@
           <code class="ruby">        else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="158">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="158">
+          <span class="hits">1</span>
           
           <code class="ruby">          @all_priorities.each { |priority|</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="159">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="5" data-linenumber="159">
+          <span class="hits">5</span>
           
           <code class="ruby">            @priority_selected[priority] = @all_priorities.include?(priority)</code>
         </li>
@@ -1488,20 +1488,20 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="169">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="169">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allAdminStates = [&quot;Select State&quot;,StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="170">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="170">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allViewAdminStates = [StudentRequest::ACTIVE_STATE,StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="171">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="171">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allPriorityStates = [&quot;Select Priority&quot;,StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]</code>
         </li>
@@ -1512,14 +1512,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="173">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="173">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allcourses = StudentRequest.select(:course_id).map(&amp;:course_id).uniq</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="174">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="174">
+          <span class="hits">1</span>
           
           <code class="ruby">      @coursestudentlist = Hash.new</code>
         </li>
@@ -1530,32 +1530,32 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="176">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="176">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allcourses.each do |course|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="177">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="177">
+          <span class="hits">1</span>
           
           <code class="ruby">        @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="178">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="178">
+          <span class="hits">1</span>
           
           <code class="ruby">        @students = @students.reject{ |s| @state_selected[s.state] == false}</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="179">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="179">
+          <span class="hits">1</span>
           
           <code class="ruby">        @students = @students.reject{ |s| @priority_selected[s.priority] == false}</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="180">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="180">
+          <span class="hits">1</span>
           
           <code class="ruby">        @coursestudentlist[course] = @students</code>
         </li>
@@ -1566,8 +1566,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="182">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="182">
+          <span class="hits">1</span>
           
           <code class="ruby">      @allcourses = @allcourses.sort</code>
         </li>
@@ -4865,14 +4865,14 @@
           <code class="ruby">      # self.creation_date = DateTime.now()</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="228">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="27" data-linenumber="228">
+          <span class="hits">27</span>
           
           <code class="ruby">      Time.zone = &#39;Central Time (US &amp; Canada)&#39;</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="229">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="27" data-linenumber="229">
+          <span class="hits">27</span>
           
           <code class="ruby">      self.creation_date = Time.zone.now()</code>
         </li>
@@ -4901,14 +4901,14 @@
           <code class="ruby">      # self.last_updated = DateTime.now()</code>
         </li>
       
-        <li class="covered" data-hits="27" data-linenumber="234">
-          <span class="hits">27</span>
+        <li class="covered" data-hits="28" data-linenumber="234">
+          <span class="hits">28</span>
           
           <code class="ruby">      Time.zone = &#39;Central Time (US &amp; Canada)&#39;</code>
         </li>
       
-        <li class="covered" data-hits="27" data-linenumber="235">
-          <span class="hits">27</span>
+        <li class="covered" data-hits="28" data-linenumber="235">
+          <span class="hits">28</span>
           
           <code class="ruby">      self.last_updated = Time.zone.now()</code>
         </li>
@@ -4937,14 +4937,14 @@
           <code class="ruby">      begin</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="240">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="27" data-linenumber="240">
+          <span class="hits">27</span>
           
           <code class="ruby">        self. request_id = &quot;FRS&quot; + SecureRandom.hex(10)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="241">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="27" data-linenumber="241">
+          <span class="hits">27</span>
           
           <code class="ruby">      end while self.class.exists?(:request_id =&gt; request_id)</code>
         </li>
@@ -5578,8 +5578,8 @@
     <h3>spec/controllers/student_request_controller_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>102</b> relevant lines. 
-      <span class="green"><b>102</b> lines covered</span> and
+      <b>108</b> relevant lines. 
+      <span class="green"><b>108</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -6190,55 +6190,55 @@
         <li class="never" data-hits="" data-linenumber="101">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="covered" data-hits="1" data-linenumber="102">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      it &quot;should fail to update state to WITHDRAWN_STATE&quot; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="103">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        #GIVEN</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="104">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &quot;Add Force Request&quot; do</code>
+          <code class="ruby">        student_request = FactoryGirl.create(:student_request)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="105">
           <span class="hits">1</span>
           
-          <code class="ruby">    context(&quot;When UIN doesn&#39;t exist&quot;) do</code>
+          <code class="ruby">        student_request.state = StudentRequest::APPROVED_STATE</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="106">
           <span class="hits">1</span>
           
-          <code class="ruby">      it &quot; should issue a flash warning&quot; do</code>
+          <code class="ruby">        StudentRequest.should_receive(:find).once.and_return(student_request)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        Student.should_receive(:where).and_return([nil])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="never" data-hits="" data-linenumber="107">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="108">
+          
+          
+          <code class="ruby">        #when</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="109">
           <span class="hits">1</span>
           
-          <code class="ruby">        post :add_force_request, :admin_request =&gt; {:uin =&gt; &quot;Non-existent UIN&quot;}</code>
+          <code class="ruby">        put :update, :id =&gt; 14</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="110">
@@ -6247,22 +6247,22 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="111">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="111">
           
-          <code class="ruby">        expect(flash[:warning]).to eq(&#39;Student of UIN doesn\&#39;t exist in system, please add him first!&#39;)</code>
+          
+          <code class="ruby">        #Then</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="112">
+        <li class="covered" data-hits="1" data-linenumber="112">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">        expect(flash[:warning]).to eq(&quot;Student Request cannot be withdrawn.&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="113">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="114">
@@ -6271,154 +6271,154 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="115">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="115">
           
-          <code class="ruby">      it &quot;should redirect to the student_requests_adminprivileges_path&quot; do</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="116">
           
-          <code class="ruby">        Student.should_receive(:where).and_return([nil])</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="118">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        post :add_force_request, :admin_request =&gt; {:uin =&gt; &quot;Non-existent UIN&quot;}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="119">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="120">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        assert_response :redirect, :action =&gt; &#39;students_show_path&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="121">
-          
-          
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="122">
+        <li class="never" data-hits="" data-linenumber="118">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="121">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  describe &quot;Add Force Request&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="122">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    context(&quot;When UIN doesn&#39;t exist&quot;) do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      it &quot; should issue a flash warning&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
-          <code class="ruby">    context(&quot;When UIN exists&quot;) do</code>
+          <code class="ruby">        Student.should_receive(:where).and_return([nil])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="125">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      context(&quot;When student is saved&quot;) do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="126">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        before :each do</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="127">
-          <span class="hits">2</span>
-          
-          <code class="ruby">          student = FactoryGirl.create(:student)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="128">
-          <span class="hits">2</span>
-          
-          <code class="ruby">          student_request = FactoryGirl.create(:student_request)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="129">
-          <span class="hits">2</span>
-          
-          <code class="ruby">          Student.should_receive(:where).and_return([student])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="130">
+        <li class="never" data-hits="" data-linenumber="125">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="131">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="126">
+          <span class="hits">1</span>
           
-          <code class="ruby">          post :add_force_request, :admin_request =&gt; {:uin =&gt; student_request.uin},</code>
+          <code class="ruby">        post :add_force_request, :admin_request =&gt; {:uin =&gt; &quot;Non-existent UIN&quot;}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="132">
+        <li class="never" data-hits="" data-linenumber="127">
           
           
-          <code class="ruby">                                   :student_request =&gt; {:name =&gt; student_request.name,</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="133">
+        <li class="covered" data-hits="1" data-linenumber="128">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        expect(flash[:warning]).to eq(&#39;Student of UIN doesn\&#39;t exist in system, please add him first!&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
           
           
-          <code class="ruby">                                             :uin =&gt; student_request.uin,</code>
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="132">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      it &quot;should redirect to the student_requests_adminprivileges_path&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        Student.should_receive(:where).and_return([nil])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="134">
           
           
-          <code class="ruby">                                             :major =&gt; student_request.major,</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">                                             :classification =&gt; student_request.classification,</code>
+          <code class="ruby">        post :add_force_request, :admin_request =&gt; {:uin =&gt; &quot;Non-existent UIN&quot;}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="136">
           
           
-          <code class="ruby">                                             :email =&gt; student_request.email,</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="covered" data-hits="1" data-linenumber="137">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">                                             :request_semester =&gt; student_request.request_semester,</code>
+          <code class="ruby">        assert_response :redirect, :action =&gt; &#39;students_show_path&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="138">
           
           
-          <code class="ruby">                                             :course_id =&gt; student_request.course_id,</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="139">
           
           
-          <code class="ruby">                                             :phone =&gt; student_request.phone}</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="140">
@@ -6427,160 +6427,160 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="141">
+        <li class="covered" data-hits="1" data-linenumber="141">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">    context(&quot;When UIN exists&quot;) do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="142">
           <span class="hits">1</span>
           
-          <code class="ruby">        it &quot;should issue a flash notice&quot; do</code>
+          <code class="ruby">      context(&quot;When student is saved&quot;) do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="143">
           <span class="hits">1</span>
           
-          <code class="ruby">          expect(flash[:notice]).to eq(&quot;Student Request was successfully created.&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="144">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="145">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="146">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        it &quot;should redirect to the the Admin Privileges Path&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="147">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          assert_response :redirect, :action =&gt; &#39;student_requests_adminprivileges_path&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="148">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="149">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="150">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="151">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="152">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="153">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      context(&quot;When student cannot be saved&quot;) do</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="154">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="155">
-          <span class="hits">1</span>
-          
           <code class="ruby">        before :each do</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="156">
+        <li class="covered" data-hits="2" data-linenumber="144">
           <span class="hits">2</span>
           
           <code class="ruby">          student = FactoryGirl.create(:student)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="157">
+        <li class="covered" data-hits="2" data-linenumber="145">
           <span class="hits">2</span>
           
           <code class="ruby">          student_request = FactoryGirl.create(:student_request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="158">
+        <li class="covered" data-hits="2" data-linenumber="146">
           <span class="hits">2</span>
           
           <code class="ruby">          Student.should_receive(:where).and_return([student])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="159">
+        <li class="never" data-hits="" data-linenumber="147">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="160">
+        <li class="covered" data-hits="2" data-linenumber="148">
           <span class="hits">2</span>
           
           <code class="ruby">          post :add_force_request, :admin_request =&gt; {:uin =&gt; student_request.uin},</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="161">
+        <li class="never" data-hits="" data-linenumber="149">
           
           
-          <code class="ruby">                                   :student_request =&gt; {:name =&gt; student_request.name}</code>
+          <code class="ruby">                                   :student_request =&gt; {:name =&gt; student_request.name,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="162">
+        <li class="never" data-hits="" data-linenumber="150">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">                                             :uin =&gt; student_request.uin,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="163">
+        <li class="never" data-hits="" data-linenumber="151">
+          
+          
+          <code class="ruby">                                             :major =&gt; student_request.major,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="152">
+          
+          
+          <code class="ruby">                                             :classification =&gt; student_request.classification,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="153">
+          
+          
+          <code class="ruby">                                             :email =&gt; student_request.email,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="154">
+          
+          
+          <code class="ruby">                                             :request_semester =&gt; student_request.request_semester,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="155">
+          
+          
+          <code class="ruby">                                             :course_id =&gt; student_request.course_id,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="156">
+          
+          
+          <code class="ruby">                                             :phone =&gt; student_request.phone}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="157">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="158">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="159">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        it &quot;should issue a flash notice&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="160">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          expect(flash[:notice]).to eq(&quot;Student Request was successfully created.&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="161">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="162">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="163">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        it &quot;should redirect to the the Admin Privileges Path&quot; do</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="164">
           <span class="hits">1</span>
           
-          <code class="ruby">        it &quot;should issue a flash warning&quot; do</code>
+          <code class="ruby">          assert_response :redirect, :action =&gt; &#39;student_requests_adminprivileges_path&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="165">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="165">
           
-          <code class="ruby">          expect(flash[:warning]).to eq(&quot;Major can&#39;t be blank, Classification can&#39;t be blank, Request semester can&#39;t be blank, Request semester  is not a valid request semester, Course can&#39;t be blank, Course is invalid&quot;)</code>
+          
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="166">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="167">
@@ -6589,10 +6589,10 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="168">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="168">
           
-          <code class="ruby">        it &quot;should redirect to the to the admin privelages path&quot; do</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="169">
@@ -6604,37 +6604,37 @@
         <li class="covered" data-hits="1" data-linenumber="170">
           <span class="hits">1</span>
           
-          <code class="ruby">          assert_response :redirect, :action =&gt; &#39;student_requests_adminprivileges_path&#39;</code>
+          <code class="ruby">      context(&quot;When student cannot be saved&quot;) do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="171">
           
           
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="172">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="173">
+        <li class="covered" data-hits="1" data-linenumber="172">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">        before :each do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="174">
+        <li class="covered" data-hits="2" data-linenumber="173">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">          student = FactoryGirl.create(:student)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="175">
+        <li class="covered" data-hits="2" data-linenumber="174">
+          <span class="hits">2</span>
           
+          <code class="ruby">          student_request = FactoryGirl.create(:student_request)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="175">
+          <span class="hits">2</span>
           
-          <code class="ruby">  end</code>
+          <code class="ruby">          Student.should_receive(:where).and_return([student])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="176">
@@ -6643,46 +6643,46 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="177">
+        <li class="covered" data-hits="2" data-linenumber="177">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">          post :add_force_request, :admin_request =&gt; {:uin =&gt; student_request.uin},</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="178">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="178">
           
-          <code class="ruby">  describe &quot;Admin Actions&quot; do</code>
+          
+          <code class="ruby">                                   :student_request =&gt; {:name =&gt; student_request.name}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="179">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="179">
           
-          <code class="ruby">    it &quot;should approve a student request&quot; do</code>
+          
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="180">
           
           
-          <code class="ruby">      #Given</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="181">
           <span class="hits">1</span>
           
-          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
+          <code class="ruby">        it &quot;should issue a flash warning&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="182">
           <span class="hits">1</span>
           
-          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
+          <code class="ruby">          expect(flash[:warning]).to eq(&quot;Major can&#39;t be blank, Classification can&#39;t be blank, Request semester can&#39;t be blank, Request semester  is not a valid request semester, Course can&#39;t be blank, Course is invalid&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="183">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="183">
           
-          <code class="ruby">      student_request.should_receive(:save)</code>
+          
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="184">
@@ -6691,40 +6691,40 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="185">
-          
-          
-          <code class="ruby">      #When</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="186">
+        <li class="covered" data-hits="1" data-linenumber="185">
           <span class="hits">1</span>
           
-          <code class="ruby">      put :approve, :id =&gt; 14</code>
+          <code class="ruby">        it &quot;should redirect to the to the admin privelages path&quot; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="187">
+        <li class="never" data-hits="" data-linenumber="186">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="187">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          assert_response :redirect, :action =&gt; &#39;student_requests_adminprivileges_path&#39;</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="188">
           
           
-          <code class="ruby">      #Then</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="189">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="189">
           
-          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::APPROVED_STATE)</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="190">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="190">
           
-          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="191">
@@ -6736,55 +6736,55 @@
         <li class="never" data-hits="" data-linenumber="192">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="193">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="193">
           
-          <code class="ruby">    it &quot;should Reject a student request&quot; do</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="194">
           
           
-          <code class="ruby">      #Given</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="195">
           <span class="hits">1</span>
           
-          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
+          <code class="ruby">  describe &quot;Admin Actions&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="196">
           <span class="hits">1</span>
           
-          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
+          <code class="ruby">    it &quot;should approve a student request&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="197">
+        <li class="never" data-hits="" data-linenumber="197">
+          
+          
+          <code class="ruby">      #Given</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="198">
           <span class="hits">1</span>
           
-          <code class="ruby">      student_request.should_receive(:save)</code>
+          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="198">
+        <li class="covered" data-hits="1" data-linenumber="199">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="199">
-          
-          
-          <code class="ruby">      #When</code>
+          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="200">
           <span class="hits">1</span>
           
-          <code class="ruby">      put :reject, :id =&gt; 14</code>
+          <code class="ruby">      student_request.should_receive(:save)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="201">
@@ -6796,79 +6796,79 @@
         <li class="never" data-hits="" data-linenumber="202">
           
           
-          <code class="ruby">      #Then</code>
+          <code class="ruby">      #When</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="203">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::REJECTED_STATE)</code>
+          <code class="ruby">      put :approve, :id =&gt; 14</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="204">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="204">
           
-          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="205">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      #Then</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="206">
+        <li class="covered" data-hits="1" data-linenumber="206">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::APPROVED_STATE)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="207">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should hold a student request&quot; do</code>
+          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="208">
           
           
-          <code class="ruby">      #Given</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="209">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="210">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="211">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      student_request.should_receive(:save)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="212">
+        <li class="never" data-hits="" data-linenumber="209">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="213">
+        <li class="covered" data-hits="1" data-linenumber="210">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should Reject a student request&quot; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="211">
           
           
-          <code class="ruby">      #When</code>
+          <code class="ruby">      #Given</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="212">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="213">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="214">
           <span class="hits">1</span>
           
-          <code class="ruby">      put :hold, :id =&gt; 14</code>
+          <code class="ruby">      student_request.should_receive(:save)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="215">
@@ -6880,97 +6880,97 @@
         <li class="never" data-hits="" data-linenumber="216">
           
           
-          <code class="ruby">      #Then</code>
+          <code class="ruby">      #When</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="217">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::HOLD_STATE)</code>
+          <code class="ruby">      put :reject, :id =&gt; 14</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="218">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="218">
           
-          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="219">
           
           
+          <code class="ruby">      #Then</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="220">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::REJECTED_STATE)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="221">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="222">
+          
+          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="220">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="223">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="222">
+        <li class="covered" data-hits="1" data-linenumber="224">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &#39;Load Admin Page&#39; do</code>
+          <code class="ruby">    it &quot;should hold a student request&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="223">
+        <li class="never" data-hits="" data-linenumber="225">
+          
+          
+          <code class="ruby">      #Given</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="226">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should redirect to home page for wrong UIN&quot; do</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="224">
-          
-          
-          <code class="ruby">      #GIVEN</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="225">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      request.session[:uin] = 123</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="226">
-          
-          
-          <code class="ruby"></code>
+          <code class="ruby">      student_request = FactoryGirl.create(:student_request)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="227">
           <span class="hits">1</span>
           
-          <code class="ruby">      get :adminview</code>
+          <code class="ruby">      StudentRequest.should_receive(:find).with(&quot;14&quot;).once.and_return(student_request)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="228">
+        <li class="covered" data-hits="1" data-linenumber="228">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student_request.should_receive(:save)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="229">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="229">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      assert_response :redirect, :action =&gt; root_path</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="230">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      #When</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="231">
+        <li class="covered" data-hits="1" data-linenumber="231">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      put :hold, :id =&gt; 14</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="232">
@@ -6982,22 +6982,124 @@
         <li class="never" data-hits="" data-linenumber="233">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      #Then</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="234">
+        <li class="covered" data-hits="1" data-linenumber="234">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(student_request.state).to eq(StudentRequest::HOLD_STATE)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="235">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; &#39;student_requests_adminview_path&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="236">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="235">
+        <li class="never" data-hits="" data-linenumber="237">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="236">
+        <li class="never" data-hits="" data-linenumber="238">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="239">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  describe &#39;Load Admin Page&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="240">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should redirect to home page for wrong UIN&quot; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="241">
+          
+          
+          <code class="ruby">      #GIVEN</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="242">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      request.session[:uin] = nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="243">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="244">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      get :adminview</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="245">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="246">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="247">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="248">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="249">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="250">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="251">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="252">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="253">
           
           
           <code class="ruby">end</code>

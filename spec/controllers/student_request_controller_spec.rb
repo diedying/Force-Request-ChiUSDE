@@ -98,6 +98,23 @@ describe StudentRequestsController, :type => :controller do
           expect(student_request.state).to eq(StudentRequest::WITHDRAWN_STATE)
           expect(flash[:notice]).to eq("Student Request was successfully withdrawn.")
       end
+
+      it "should fail to update state to WITHDRAWN_STATE" do
+        #GIVEN
+        student_request = FactoryGirl.create(:student_request)
+        student_request.state = StudentRequest::APPROVED_STATE
+        StudentRequest.should_receive(:find).once.and_return(student_request)
+
+        #when
+        put :update, :id => 14
+
+        #Then
+        expect(flash[:warning]).to eq("Student Request cannot be withdrawn.")
+
+
+
+
+      end
     end
   end
 
