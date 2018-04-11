@@ -375,4 +375,15 @@ describe StudentRequestsController, :type => :controller do
     end
 
   end
+
+  describe "login" do
+    #post 'student_requests/login' => 'student_requests#login'
+    it "should set current_state to nil when logging in" do
+      Admin.should_receive(:where).once.and_return([nil])
+      #equest.session[:user] = "admin"
+       post :login, params: { 'session' => { :user => "admin"}}
+
+       expect(request.session[:current_state]).to be_nil
+    end
+  end
 end
