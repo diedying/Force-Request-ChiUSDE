@@ -102,17 +102,14 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.string   "major"
     t.string   "classification"
     t.string   "name"
-    t.string   "lastname"
-    t.string   "firstname"
     t.string   "email"
-    t.string   "minor"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "email_confirmed",              default: false
     t.string   "confirm_token"
+    t.datetime "email_confirm_sent_at"
     t.string   "reset_password_confirm_token"
     t.datetime "reset_sent_at"
-    t.datetime "email_confirm_sent_at"
   end
 
 end

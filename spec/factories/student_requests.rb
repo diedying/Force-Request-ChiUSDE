@@ -17,4 +17,11 @@ FactoryGirl.define do
     password "DarthVader123"
     uin "12345678"
   end
+
+  factory :admin do
+    name "Schaeffer"
+    uin "12345678"
+    password "SchaefferDoesntKnow"
+    email "IAmSchaeffer@tamu.edu"
+  end
 end

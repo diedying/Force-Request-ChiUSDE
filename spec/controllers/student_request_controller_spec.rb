@@ -401,5 +401,19 @@ describe StudentRequestsController, :type => :controller do
 
       assert_response :redirect, :action => root_path
     end
+
+    it "should set the current user to the returned user" do
+      admin = FactoryGirl.create(:admin)
+      Admin.should_receive(:where).with("email ='IAmSchaeffer@tamu.edu' and password ='SchaefferDoesntKnow'").once.and_return([admin])
+
+      post :login, params: { 'session' => { :user => "admin", :email =>"IAmSchaeffer@tamu.edu", :password => "SchaefferDoesntKnow"}}
+
+      expect(request.session[:name].to_s).to eq("Schaeffer")
+      expect(request.session[:current_state]).to eq("admin")
+      expect(request.session[:uin]).to eq("12345678")
+      assert_response :redirect, :action => student_requests_adminview_path
+    end
+
+    
   end
 end
