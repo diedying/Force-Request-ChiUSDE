@@ -103,7 +103,7 @@ class StudentRequestsController < ApplicationController
     redirect_to student_requests_adminview_path
   end
 
-  
+
   def hold
     @student_request = StudentRequest.find params[:id]
     @student_request.state = StudentRequest::HOLD_STATE

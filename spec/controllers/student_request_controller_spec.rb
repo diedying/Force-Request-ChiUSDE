@@ -300,5 +300,45 @@ describe StudentRequestsController, :type => :controller do
 
          expect(request.session[:priority_sel]).to eq("Very High" => true)
     end
+
+    it "should set the priority when neither  params nor session has :priority_sel"  do
+      #Given
+      request.session[:uin] = 12345678
+      request.session[:priority_sel] = {StudentRequest::VERYHIGH_PRIORITY => true}
+
+
+      #When
+      get :adminview
+
+      #THEN
+
+      assigns(:priority_selected).should eq(StudentRequest::VERYHIGH_PRIORITY => true,
+        StudentRequest::HIGH_PRIORITY => false,
+        StudentRequest::NORMAL_PRIORITY => false,
+        StudentRequest::LOW_PRIORITY => false,
+        StudentRequest::VERYLOW_PRIORITY => false)
+
+         expect(request.session[:priority_sel]).to eq("Very High" => true)
+    end
+
+    it "should set the priority from the params when available"  do
+      #Given
+      request.session[:uin] = 12345678
+      #request.session[:priority_sel] = {StudentRequest::VERYHIGH_PRIORITY => true}
+
+
+      #When
+      get :adminview, :priority_sel => {StudentRequest::VERYHIGH_PRIORITY => true}
+
+      #THEN
+
+      assigns(:priority_selected).should eq(StudentRequest::VERYHIGH_PRIORITY => true,
+        StudentRequest::HIGH_PRIORITY => false,
+        StudentRequest::NORMAL_PRIORITY => false,
+        StudentRequest::LOW_PRIORITY => false,
+        StudentRequest::VERYLOW_PRIORITY => false)
+
+         expect(request.session[:priority_sel]).to eq(ActionController::Parameters.new("Very High" => "true"))
+    end
   end
 end
