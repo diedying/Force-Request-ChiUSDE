@@ -380,10 +380,26 @@ describe StudentRequestsController, :type => :controller do
     #post 'student_requests/login' => 'student_requests#login'
     it "should set current_state to nil when logging in" do
       Admin.should_receive(:where).once.and_return([nil])
-      #equest.session[:user] = "admin"
-       post :login, params: { 'session' => { :user => "admin"}}
+
+      post :login, params: { 'session' => { :user => "admin"}}
 
        expect(request.session[:current_state]).to be_nil
+    end
+
+    it "should display a flash warning when account doesn't exist" do
+      Admin.should_receive(:where).once.and_return([nil])
+
+      post :login, params: { 'session' => { :user => "admin"}}
+
+      expect(flash[:warning]).to eq("Your Email or Password is Incorrect.")
+    end
+
+    it "should redirect to rooth path when account doesn't exist" do
+      Admin.should_receive(:where).once.and_return([nil])
+
+      post :login, params: { 'session' => { :user => "admin"}}
+
+      assert_response :redirect, :action => root_path
     end
   end
 end
