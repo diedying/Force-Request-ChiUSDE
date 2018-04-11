@@ -341,4 +341,18 @@ describe StudentRequestsController, :type => :controller do
          expect(request.session[:priority_sel]).to eq(ActionController::Parameters.new("Very High" => "true"))
     end
   end
+
+  describe "updaterequestbyadmin" do
+    it "should issue a flash warning when attempting to update an already withdrawn request" do
+
+        student_request = FactoryGirl.create(:student_request)
+        student_request.state = StudentRequest::WITHDRAWN_STATE
+        StudentRequest.should_receive(:find).once.and_return(student_request)
+
+        put :updaterequestbyadmin, :id => 14
+
+        expect(flash[:warning]).to eq("Request has already been withdrawn by student. Please refresh your Page.")
+    end
+
+  end
 end
