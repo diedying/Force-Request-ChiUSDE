@@ -354,5 +354,25 @@ describe StudentRequestsController, :type => :controller do
         expect(flash[:warning]).to eq("Request has already been withdrawn by student. Please refresh your Page.")
     end
 
+    it "should add admin notes if available" do
+      student_request = FactoryGirl.create(:student_request)
+      student_request.state = StudentRequest::ACTIVE_STATE
+      StudentRequest.should_receive(:find).once.and_return(student_request)
+
+      put :updaterequestbyadmin, {:id => 14, :notes_for_myself => "These are my admin notes."}
+
+      expect(assigns(:student_request).admin_notes).to eq("These are my admin notes.")
+    end
+
+    it "should add notes to a student if available" do
+      student_request = FactoryGirl.create(:student_request)
+      student_request.state = StudentRequest::ACTIVE_STATE
+      StudentRequest.should_receive(:find).once.and_return(student_request)
+
+      put :updaterequestbyadmin, {:id => 14, :notes_for_student => "These are my notes to a student."}
+
+      expect(assigns(:student_request).notes_to_student).to eq("These are my notes to a student.")
+    end
+
   end
 end
