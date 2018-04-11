@@ -260,7 +260,7 @@ class StudentRequestsController < ApplicationController
             session_update(:uin, @cur_user[0][:uin])
             redirect_to students_show_path
           else
-            flash[:warning] = "The account has not been activate. Please check your email to activate your account!"
+            flash[:warning] = "The account has not been activated. Please check your email to activate your account!"
             redirect_to root_path
           end
         end

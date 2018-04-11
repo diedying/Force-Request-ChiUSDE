@@ -414,6 +414,68 @@ describe StudentRequestsController, :type => :controller do
       assert_response :redirect, :action => student_requests_adminview_path
     end
 
-    
+    it "should display a flash warning when account doesn't exist" do
+      Student.should_receive(:where).once.and_return([nil])
+
+      post :login, params: { 'session' => { :user => "student"}}
+
+      expect(flash[:warning]).to eq("The account doesn't exsit. Please sign up first.")
+    end
+
+    it "should redirect to rooth path when account doesn't exist" do
+      Student.should_receive(:where).once.and_return([nil])
+
+      post :login, params: { 'session' => { :user => "student"}}
+
+      assert_response :redirect, :action => root_path
+    end
+
+    it "should redirect to rooth path when account doesn't exist" do
+      Student.should_receive(:where).once.and_return([nil])
+
+      post :login, params: { 'session' => { :user => "student"}}
+
+      assert_response :redirect, :action => root_path
+    end
+
+    it "should set the current user when the email has been confirmed" do
+      student = FactoryGirl.create(:student)
+      student.email_confirmed = true
+      Student.should_receive(:where).with("email = 'johndoe@tamu.edu'").once.and_return([student])
+      Student.should_receive(:where).with("email ='johndoe@tamu.edu' and password ='DarthVader123'").once.and_return([student])
+
+
+      post :login, params: { 'session' => { :user => "student", :email =>'johndoe@tamu.edu', :password => "DarthVader123"}}
+
+      expect(request.session[:name].to_s).to eq("John Doe")
+      expect(request.session[:current_state]).to eq("student")
+      expect(request.session[:uin]).to eq("12345678")
+      assert_response :redirect, :action => students_show_path
+    end
+
+    it "should set issue a flash warning when email has not been confirmed" do
+      student = FactoryGirl.create(:student)
+      student.email_confirmed = false
+      Student.should_receive(:where).with("email = 'johndoe@tamu.edu'").once.and_return([student])
+      Student.should_receive(:where).with("email ='johndoe@tamu.edu' and password ='DarthVader123'").once.and_return([student])
+
+      post :login, params: { 'session' => { :user => "student", :email =>'johndoe@tamu.edu', :password => "DarthVader123"}}
+
+      expect(flash[:warning]).to eq("The account has not been activated. Please check your email to activate your account!")
+    end
+
+    it "should redirect to root path when email has not been confirmed" do
+      student = FactoryGirl.create(:student)
+      student.email_confirmed = false
+      Student.should_receive(:where).with("email = 'johndoe@tamu.edu'").once.and_return([student])
+      Student.should_receive(:where).with("email ='johndoe@tamu.edu' and password ='DarthVader123'").once.and_return([student])
+      
+      post :login, params: { 'session' => { :user => "student", :email =>'johndoe@tamu.edu', :password => "DarthVader123"}}
+
+      assert_response :redirect, :action => root_path
+    end
+
+
+
   end
 end

@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.2/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.2/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_yellow.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_green.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.2/favicon.png" />
   </head>
   
@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-11T16:00:34-05:00">2018-04-11T16:00:34-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-11T16:38:16-05:00">2018-04-11T16:38:16-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">88.04%</span></span>
+    (<span class="covered_percent"><span class="green">90.78%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.22
+         4.16
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>17</b> files in total.
-    <b>669</b> relevant lines. 
-    <span class="green"><b>589</b> lines covered</span> and
-    <span class="red"><b>80</b> lines missed </span>
+    <b>705</b> relevant lines. 
+    <span class="green"><b>640</b> lines covered</span> and
+    <span class="red"><b>65</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -67,17 +67,17 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>16.4</td>
+        <td>19.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#38418cb585994041af8b91f6207621c4b93a6147" class="src_link" title="app/controllers/student_requests_controller.rb">app/controllers/student_requests_controller.rb</a></td>
-        <td class="red strong">67.71 %</td>
+        <td class="red strong">74.44 %</td>
         <td>420</td>
         <td>223</td>
-        <td>151</td>
-        <td>72</td>
-        <td>1.9</td>
+        <td>166</td>
+        <td>57</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -117,7 +117,7 @@
         <td>25</td>
         <td>25</td>
         <td>0</td>
-        <td>2.3</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -143,9 +143,9 @@
       <tr>
         <td class="strong"><a href="#191ea9f3d434744a14ef3a1ad7b1cd3f9b17cd10" class="src_link" title="spec/controllers/student_request_controller_spec.rb">spec/controllers/student_request_controller_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>417</td>
-        <td>176</td>
-        <td>176</td>
+        <td>481</td>
+        <td>212</td>
+        <td>212</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -413,20 +413,20 @@
           <code class="ruby">  def set_cache_buster</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="5">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="43" data-linenumber="5">
+          <span class="hits">43</span>
           
           <code class="ruby">    response.headers[&quot;Cache-Control&quot;] = &quot;no-cache, no-store, max-age=0, must-revalidate&quot;</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="6">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="43" data-linenumber="6">
+          <span class="hits">43</span>
           
           <code class="ruby">    response.headers[&quot;Pragma&quot;] = &quot;no-cache&quot;</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="7">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="43" data-linenumber="7">
+          <span class="hits">43</span>
           
           <code class="ruby">    response.headers[&quot;Expires&quot;] = &quot;Fri, 01 Jan 1990 00:00:00 GMT&quot;</code>
         </li>
@@ -469,11 +469,11 @@
         <div class="source_table" id="38418cb585994041af8b91f6207621c4b93a6147">
   <div class="header">
     <h3>app/controllers/student_requests_controller.rb</h3>
-    <h4><span class="red">67.71 %</span> covered</h4>
+    <h4><span class="red">74.44 %</span> covered</h4>
     <div>
       <b>223</b> relevant lines. 
-      <span class="green"><b>151</b> lines covered</span> and
-      <span class="red"><b>72</b> lines missed.</span>
+      <span class="green"><b>166</b> lines covered</span> and
+      <span class="red"><b>57</b> lines missed.</span>
     </div>
   </div>
   
@@ -1818,8 +1818,8 @@
           <code class="ruby">  def login</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="224">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="10" data-linenumber="224">
+          <span class="hits">10</span>
           
           <code class="ruby">    session_update(:current_state, nil)</code>
         </li>
@@ -1842,8 +1842,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="228">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="10" data-linenumber="228">
+          <span class="hits">10</span>
           
           <code class="ruby">    if params[:session][:user] == &#39;admin&#39;</code>
         </li>
@@ -1926,8 +1926,8 @@
           <code class="ruby">          end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="242">
-          
+        <li class="covered" data-hits="6" data-linenumber="242">
+          <span class="hits">6</span>
           
           <code class="ruby">    elsif params[:session][:user] == &#39;student&#39;</code>
         </li>
@@ -1938,32 +1938,32 @@
           <code class="ruby">      #check if the uin of student is valid</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="244">
-          
+        <li class="covered" data-hits="6" data-linenumber="244">
+          <span class="hits">6</span>
           
           <code class="ruby">        @user = Student.where(&quot;email = &#39;#{params[:session][:email]}&#39;&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="245">
-          
+        <li class="covered" data-hits="6" data-linenumber="245">
+          <span class="hits">6</span>
           
           <code class="ruby">        if @user[0].nil?#the user doesn&#39;t sign up</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="246">
-          
+        <li class="covered" data-hits="3" data-linenumber="246">
+          <span class="hits">3</span>
           
           <code class="ruby">            flash[:warning] = &quot;The account doesn&#39;t exsit. Please sign up first.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="247">
-          
+        <li class="covered" data-hits="3" data-linenumber="247">
+          <span class="hits">3</span>
           
           <code class="ruby">            redirect_to root_path</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="248">
-          
+        <li class="covered" data-hits="3" data-linenumber="248">
+          <span class="hits">3</span>
           
           <code class="ruby">            return#tricky</code>
         </li>
@@ -1974,14 +1974,14 @@
           <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="250">
-          
+        <li class="covered" data-hits="3" data-linenumber="250">
+          <span class="hits">3</span>
           
           <code class="ruby">        @cur_user = Student.where(&quot;email =&#39;#{params[:session][:email]}&#39; and password =&#39;#{params[:session][:password]}&#39;&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="251">
-          
+        <li class="covered" data-hits="3" data-linenumber="251">
+          <span class="hits">3</span>
           
           <code class="ruby">        if @cur_user[0].nil?#the UIN or Password don&#39;t match</code>
         </li>
@@ -2010,8 +2010,8 @@
           <code class="ruby">          # check if the current student activate his account</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="256">
-          
+        <li class="covered" data-hits="3" data-linenumber="256">
+          <span class="hits">3</span>
           
           <code class="ruby">          if @cur_user[0].email_confirmed</code>
         </li>
@@ -2022,26 +2022,26 @@
           <code class="ruby">            #update the session value which could be used in other pages</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="258">
-          
+        <li class="covered" data-hits="1" data-linenumber="258">
+          <span class="hits">1</span>
           
           <code class="ruby">            session_update(:name, @cur_user[0][:name])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="259">
-          
+        <li class="covered" data-hits="1" data-linenumber="259">
+          <span class="hits">1</span>
           
           <code class="ruby">            session_update(:current_state, &quot;student&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="260">
-          
+        <li class="covered" data-hits="1" data-linenumber="260">
+          <span class="hits">1</span>
           
           <code class="ruby">            session_update(:uin, @cur_user[0][:uin])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="261">
-          
+        <li class="covered" data-hits="1" data-linenumber="261">
+          <span class="hits">1</span>
           
           <code class="ruby">            redirect_to students_show_path</code>
         </li>
@@ -2052,14 +2052,14 @@
           <code class="ruby">          else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="263">
+        <li class="covered" data-hits="2" data-linenumber="263">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">            flash[:warning] = &quot;The account has not been activate. Please check your email to activate your account!&quot;</code>
+          <code class="ruby">            flash[:warning] = &quot;The account has not been activated. Please check your email to activate your account!&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="264">
-          
+        <li class="covered" data-hits="2" data-linenumber="264">
+          <span class="hits">2</span>
           
           <code class="ruby">            redirect_to root_path</code>
         </li>
@@ -3472,14 +3472,14 @@
           <code class="ruby">    def confirmation_token</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="39">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="18" data-linenumber="39">
+          <span class="hits">18</span>
           
           <code class="ruby">      if self.confirm_token.blank?</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="40">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="18" data-linenumber="40">
+          <span class="hits">18</span>
           
           <code class="ruby">          self.confirm_token = SecureRandom.urlsafe_base64.to_s</code>
         </li>
@@ -5602,8 +5602,8 @@
     <h3>spec/controllers/student_request_controller_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>176</b> relevant lines. 
-      <span class="green"><b>176</b> lines covered</span> and
+      <b>212</b> relevant lines. 
+      <span class="green"><b>212</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -8104,10 +8104,394 @@
         <li class="never" data-hits="" data-linenumber="416">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="417">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should display a flash warning when account doesn&#39;t exist&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="418">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).once.and_return([nil])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="419">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="420">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="421">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="422">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(flash[:warning]).to eq(&quot;The account doesn&#39;t exsit. Please sign up first.&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="423">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="424">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="425">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should redirect to rooth path when account doesn&#39;t exist&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="426">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).once.and_return([nil])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="427">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="428">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="429">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="430">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="431">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="432">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="433">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should redirect to rooth path when account doesn&#39;t exist&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="434">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).once.and_return([nil])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="435">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="436">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="437">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="438">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="439">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="440">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="441">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should set the current user when the email has been confirmed&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="442">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student = FactoryGirl.create(:student)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="443">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student.email_confirmed = true</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="444">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email = &#39;johndoe@tamu.edu&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="445">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email =&#39;johndoe@tamu.edu&#39; and password =&#39;DarthVader123&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="446">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="447">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="448">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;, :email =&gt;&#39;johndoe@tamu.edu&#39;, :password =&gt; &quot;DarthVader123&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="449">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="450">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(request.session[:name].to_s).to eq(&quot;John Doe&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="451">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(request.session[:current_state]).to eq(&quot;student&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="452">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(request.session[:uin]).to eq(&quot;12345678&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="453">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; students_show_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="454">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="455">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="456">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should set issue a flash warning when email has not been confirmed&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="457">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student = FactoryGirl.create(:student)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="458">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student.email_confirmed = false</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="459">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email = &#39;johndoe@tamu.edu&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="460">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email =&#39;johndoe@tamu.edu&#39; and password =&#39;DarthVader123&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="461">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="462">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;, :email =&gt;&#39;johndoe@tamu.edu&#39;, :password =&gt; &quot;DarthVader123&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="463">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="464">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(flash[:warning]).to eq(&quot;The account has not been activated. Please check your email to activate your account!&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="465">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="466">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="467">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;should redirect to root path when email has not been confirmed&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="468">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student = FactoryGirl.create(:student)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="469">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      student.email_confirmed = false</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="470">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email = &#39;johndoe@tamu.edu&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="471">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Student.should_receive(:where).with(&quot;email =&#39;johndoe@tamu.edu&#39; and password =&#39;DarthVader123&#39;&quot;).once.and_return([student])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="472">
+          
+          
+          <code class="ruby">      </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="473">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      post :login, params: { &#39;session&#39; =&gt; { :user =&gt; &quot;student&quot;, :email =&gt;&#39;johndoe@tamu.edu&#39;, :password =&gt; &quot;DarthVader123&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="474">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="475">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_response :redirect, :action =&gt; root_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="476">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="477">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="478">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="479">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="480">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="417">
+        <li class="never" data-hits="" data-linenumber="481">
           
           
           <code class="ruby">end</code>
