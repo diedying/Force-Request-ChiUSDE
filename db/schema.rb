@@ -98,11 +98,16 @@ ActiveRecord::Schema.define(version: 20170414191552) do
 
   create_table "students", force: :cascade do |t|
     t.string   "uin"
-    t.string   "password"
+    t.string   "encrypted_password"
+    t.string   "encrypted_password_iv"
     t.string   "major"
     t.string   "classification"
     t.string   "name"
-    t.string   "email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "minor"
+    t.string   "encrypted_email"
+    t.string   "encrypted_email_iv"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "email_confirmed",              default: false

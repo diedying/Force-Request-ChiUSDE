@@ -241,23 +241,26 @@ class StudentRequestsController < ApplicationController
           end
     elsif params[:session][:user] == 'student'
       #check if the uin of student is valid
-        @user = Student.where("email = '#{params[:session][:email]}'")
-        if @user[0].nil?#the user doesn't sign up
+        ####@user = Student.where("email = '#{params[:session][:email]}'")
+        @user = Student.find_by_email(params[:session][:email])
+        ####if @user[0].nil?#the user didn't sign up
+        if @user.nil?#the user didn't sign up
             flash[:warning] = "The account doesn't exsit. Please sign up first."
             redirect_to root_path
             return#tricky
         end
-        @cur_user = Student.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
-        if @cur_user[0].nil?#the UIN or Password don't match
+        ####@cur_user = Student.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
+        @cur_user = Student.find_by_email_and_password(params[:session][:email], params[:session][:password])
+        if @cur_user.nil?#the UIN or Password don't match
           flash[:warning] = "Entered Email and Password didn't match. Try again."
           redirect_to root_path
         else
           # check if the current student activate his account
-          if @cur_user[0].email_confirmed
+          if @cur_user.email_confirmed
             #update the session value which could be used in other pages
-            session_update(:name, @cur_user[0][:name])
+            session_update(:name, @cur_user[:name])
             session_update(:current_state, "student")
-            session_update(:uin, @cur_user[0][:uin])
+            session_update(:uin, @cur_user[:uin])
             redirect_to students_show_path
           else
             flash[:warning] = "The account has not been activated. Please check your email to activate your account!"

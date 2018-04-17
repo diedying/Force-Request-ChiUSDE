@@ -67,8 +67,10 @@ class StudentsController < ApplicationController
         #check the reenter uin and email is same
         if params[:session][:uin2] == params[:session][:uin] and params[:session][:password2] == params[:session][:password]
             #use the uin and email to check if the student has signed up
-            @student = Student.where("email = ? OR uin = ?",params[:session][:email],params[:session][:uin] )
-            if @student[0].nil?#the student hasn't signed up before
+            @student = Student.find_by_email(params[:session][:email])
+            ####@student = Student.where("email = ? OR uin = ?",params[:session][:email],params[:session][:uin] )
+            #####if @student[0].nil?#the student hasn't signed up before
+            if @student.nil?
                 record = scrape_info(params[:session][:lastname], params[:session][:firstname], params[:session][:major], params[:session][:email])
                 if  record.length() != 0#scrape the record
                     # sign up email confirm feature
