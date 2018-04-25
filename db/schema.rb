@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -20,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.string "uin"
     t.string "name"
     t.string "password"
+    t.string "email"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -37,13 +37,12 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.string   "remote_address"
     t.string   "request_uuid"
     t.datetime "created_at"
+    t.index ["associated_id", "associated_type"], name: "associated_index", using: :btree
+    t.index ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
+    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+    t.index ["user_id", "user_type"], name: "user_index", using: :btree
   end
-
-  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
-  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
-  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
-  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
 
   create_table "majors", force: :cascade do |t|
     t.string "major_id"
@@ -91,27 +90,31 @@ ActiveRecord::Schema.define(version: 20170414191552) do
     t.datetime "last_updated"
     t.text     "notes_to_student"
     t.text     "admin_notes"
+    t.index ["course_id"], name: "index_student_requests_on_course_id", using: :btree
+    t.index ["request_id"], name: "index_student_requests_on_request_id", unique: true, using: :btree
+    t.index ["section_id"], name: "index_student_requests_on_section_id", using: :btree
+    t.index ["state"], name: "index_student_requests_on_state", using: :btree
   end
-
-  add_index "student_requests", ["course_id"], name: "index_student_requests_on_course_id", using: :btree
-  add_index "student_requests", ["request_id"], name: "index_student_requests_on_request_id", unique: true, using: :btree
-  add_index "student_requests", ["section_id"], name: "index_student_requests_on_section_id", using: :btree
-  add_index "student_requests", ["state"], name: "index_student_requests_on_state", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "uin"
-    t.string   "password"
+    t.string   "encrypted_password"
+    t.string   "encrypted_password_iv"
     t.string   "major"
     t.string   "classification"
     t.string   "name"
-    t.string   "email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "minor"
+    t.string   "encrypted_email"
+    t.string   "encrypted_email_iv"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "email_confirmed",              default: false
     t.string   "confirm_token"
+    t.datetime "email_confirm_sent_at"
     t.string   "reset_password_confirm_token"
     t.datetime "reset_sent_at"
-    t.datetime "email_confirm_sent_at"
   end
 
 end

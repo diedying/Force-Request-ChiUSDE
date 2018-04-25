@@ -1,47 +1,51 @@
-= form_tag(students_show_path, method: :get) do
-  %table{:border => "0"}
-    %tr
-      %td
-        = label :student_request, :name, 'Full Name'
-      %td  
-        = @students[0].name
-        // = text_field :student_request, 'name', class: 'input-field', value: @students[0].name, :readonly => true
-    %tr
-      %td  
-        = label :student_request, :major, 'Major'
-      %td  
-        = @students[0].major
-        // = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :readonly => true
-    %tr
-      %td   
-        = label :student_request, :classification, 'Classification'
-      %td  
-        = @students[0].classification
-        // = text_field :student_request, 'classification', class: 'input-field', value: @students[0].classification, :readonly => true
-        // %tr
-        //   %td    
-        //     = label :student_request, :minor, 'Minor'
-        //   %td  
-        //     = text_field :student_request, 'minor', class: 'input-field', :onfocus => "formtooltip('minor_tip',1)", :onblur => "formtooltip('minor_tip',0)", :size => "6", :type => "text", :readonly => true
-        //     %span#minor_tip.form-help Enter the 4-letter code for your minor, if any
-    %tr
-      %td 
-        = label :student_request, :email, 'Email'
-      %td  
-        = @students[0].email
-        // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email,  :readonly => true
-        // = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email', :readonly => true
-        // %tr
-        //   %td   
-        //     = label :student_request, :phone, 'Phone'
-        //   %td  
-        //     = text_field :student_request, 'phone', class: 'input-field', :readonly => true
-        // %tr
-        //   %td   
-        //     = label :student_request, :expected_graduation, 'Expected Graduation*'
-        //   %td 
-        //     = select :student_request, 'expected_graduation', @YearSemester
+%h1 Your Profile
+.profilepage
+  = form_tag('/students/update_profile', method: :post) do
+    %table{:border => "0"}
+      %tr
+        %td
+          = label :student_request, :name, 'Full Name'
+        %td  
+          = @students[0].name
+           
+      %tr
+        %td
+          = label :student_request, :uin, 'UIN'
+        %td
+          = text_field :student_request, 'uin', class: 'input-field', value: @students[0].uin, :pattern => "[0-9]{9}"
+     
+      %tr
+        %td  
+          = label :student_request, :major, 'Major'
+        %td  
+          = text_field :student_request, 'major', class: 'input-field', value: @students[0].major, :readonly => true
   
-  = submit_tag 'Confirm', :id => "profile_button_left"
-= form_tag(students_show_path, method: :get) do
-  = submit_tag  "Cancel", :id => "profile_button_right"
+    
+      %tr
+        %td  
+          = label :student_request, :minor, 'Minor'
+        %td  
+          = select :student_request, 'minor', @majorList, :required => true, selected: @students[0].minor
+    
+      %tr
+        %td   
+          = label :student_request, :classification, 'Classification'
+        %td  
+          = @students[0].classification
+      %tr
+        %td 
+          = label :student_request, :email, 'Email'
+        %td  
+          = text_field :student_request, 'email', class: 'input-field', value: @students[0].email, :type => 'email'
+      
+      %tr
+        %td 
+          = label :student_request, :note, 'note'
+        %td  
+          = label :note, 'By clicking on Update, Your profile will be updated and you will be redirected to login page'
+
+
+    = submit_tag 'Update', :id =>  "profile_button_left"
+
+  = form_tag(students_show_path, method: :get) do
+    = submit_tag  "Back", :id => "profile_button_right"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'student_requests#login_page'
   
   get 'student_requests/adminview' => 'student_requests#adminview'
+  
   put 'student_requests/updaterequestbyadmin' => 'student_requests#updaterequestbyadmin'
   put 'student_requests/multiupdate' => 'student_requests#multiupdate'
 
@@ -17,7 +18,10 @@ Rails.application.routes.draw do
   post 'student_requests/add_student' => 'student_requests#add_student'
   get 'student_requests/add_new_force_request' => 'student_requests#add_new_force_request'
   post 'student_requests/add_new_force_request' => 'student_requests#add_force_request' 
-  
+  put 'student_requests/approve' => 'student_requests#approve'
+  put 'student_requests/reject' => 'student_requests#reject'
+  put 'student_requests/hold' => 'student_requests#hold'
+
   
   delete 'student_requests/deleteall' => 'student_requests#deleteall'
   get 'student_requests/homeRedirect' => 'student_requests#homeRedirect'
@@ -26,20 +30,22 @@ Rails.application.routes.draw do
 
   resources :student_requests
   
-  
   # resources :students do
   #   member do
   #     get :confirm_email
   #   end
   # end
+  
   get 'students/signup' => 'students#signup'
   post 'students/create' => 'students#create'
   #activate the account
   get 'students/confirm_email/:id' => 'students#confirm_email', as: 'confirm_email'
   #show the student dashboard
   get 'students/show' => 'students#show'
+  
   #show the student profile
   get 'students/profile' => 'students#profile'
+  post 'students/update_profile' => 'students#update_profile'
   #after login then change password
   get 'students/edit_password' => 'students#edit_password'
   post 'students/update_password' => 'students#update_password'
@@ -50,7 +56,7 @@ Rails.application.routes.draw do
   post 'students/update_reset_password' => 'students#update_reset_password'
   get 'students/add_new_student' => 'students#add_new_student'
   post 'students/add_new_student' => 'students#add_student'
-  
+
   
   # Admin
   get 'admins/add_new_admin' => 'admins#add_new_admin'

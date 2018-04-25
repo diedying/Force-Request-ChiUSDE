@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
     include SessionHelper
     include ScrapeHelper
-    
+
   def addAdmin
     admin_request_params = {:uin => params[:admin_request][:uin],
                             :name => params[:admin_request][:name],
@@ -15,8 +15,6 @@ class AdminsController < ApplicationController
       redirect_to student_requests_adminview_path
     end
   end
-  
-  
-  
-  
+
+
 end

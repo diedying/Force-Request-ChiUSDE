@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.4.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -25,6 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "audited", "~> 4.3"
 
+gem "attr_encrypted", "~> 3.0.0"
+
+gem "figaro"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,31 +47,32 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'guard-rspec'
-  
-  # Use postgres as the database for Active Record
-  gem 'pg'
-  
+  gem 'tzinfo-data'
+
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   #gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
-  gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
+
 end
 
 group :production do
   gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
-  gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
+  gem 'pg', '0.21.0'
 end
 
 # Gemfile
 group :test do
   gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.6.1'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'simplecov', :require => false
   gem "factory_girl_rails", "~> 4.0"
+  gem 'pg', '0.21.0'
+  gem 'rubycas-client', :git => 'git://github.com/shubham7jain/rubycas-client.git'
+  gem 'rails-controller-testing'
 end

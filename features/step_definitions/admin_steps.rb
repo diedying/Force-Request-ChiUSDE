@@ -16,8 +16,8 @@ end
 
 And(/^I use admin account to login$/) do
   choose('session_user_admin')
-  @user_info = {:UIN => "123456789",  :password => "tamu2017"}
-  fill_in('Enter your uin', :with => @user_info[:UIN])
+  @user_info = {:UIN => "123456789@tamu.edu",  :password => "tamu2017"}
+  fill_in('Enter your Email', :with => @user_info[:UIN])
   fill_in('Enter your password', :with => @user_info[:password])
   click_button('Login')
 end
@@ -41,8 +41,8 @@ end
     
 Then(/^I should go to action page$/) do
      page.should have_content("Add New Force Admin")
-     page.should have_content("Add New Force Request to System")  
-     page.should have_content("Add New Student to System")
+     page.should have_content("Add New Force Request")  
+     page.should have_content("Add New Student")
 end
 
 When(/^I add a new admin$/) do
@@ -55,7 +55,7 @@ And(/^I fill the info of new admin$/) do
     fill_in('admin_request_uin', :with => @user_info[:UIN])
     fill_in('admin_request_name', :with => @user_info[:name])
     fill_in('admin_request_password', :with => @user_info[:password])
-    click_button('button_confirm')
+    click_button('Confirm')
 end
 
 Then(/^I should back to admin dashboard$/) do
@@ -64,34 +64,34 @@ end
 
 
 When(/^I click add a new student$/) do
-    click_link('Add New Student to System')
+    click_link('Add New Student')
 end
 
 And(/^I fill the info of new student$/) do
     page.should have_content("lassification of student (U1,U3,G7,G8,etc):") 
-    @user_info = {:UIN => "777888999", :name => "Xiaoer Wang",  :email => "qweasd@tamu.edu", :major => 'CEEL', :classification => 'U1'}
+    @user_info = {:UIN => "777888999", :name => "Xiaoer Wang",  :email => "adb3649@tamu.edu", :major => 'CEEL', :classification => 'U1'}
     fill_in('session_name', :with => @user_info[:name])
     fill_in('session_uin', :with => @user_info[:UIN])
     fill_in('session_uin2', :with => @user_info[:UIN])
     fill_in('session_email', :with => @user_info[:email])
     # select(@user_info[:major], from:'session_major')
     # select(@user_info[:classification], from:'session_classification')
-    click_button('button_confirm')
+    click_button('Confirm')
 end
 
 When(/^I click add a new force request to system$/) do
-    click_link('Add New Force Request to System')
+    click_link('Add New Force Request')
 end
 
 And(/^I fill the info of new request$/) do
-    @user_info = {:UIN => "777888999", :grad_year => "2017 Fall",  :Req_sem => "2017 Fall", :course_id => '314', :section_id => '100'}
+    @user_info = {:UIN => "777888999", :expected_graduation => "2018 Fall",  :request_semester => "2018 Fall", :course_id => '314', :section_id => '100'}
     fill_in('UIN of student*', :with => @user_info[:UIN])
-    select(@user_info[:grad_year], from:'Expected Graduation*')
-    select(@user_info[:Req_sem], from:'Request Semester*')
+    select(@user_info[:expected_graduation], from:'Expected Graduation*')
+    select(@user_info[:request_semester], from:'Request Semester*')
     fill_in('Course Id*', :with => @user_info[:course_id])
     fill_in('Section Id*', :with => @user_info[:section_id])
     
-    click_button('button_confirm')
+    click_button('Confirm')
 end
 
 
@@ -135,10 +135,10 @@ Then(/^the page collapse$/) do
     page.has_content?('	FRS44fe477f6025c48c6fb9')
 end
 
-When(/^I select state and priority and click update$/) do
+When(/^I select state and click update$/) do
     within('div[id = student_requests_026]')  do
-        select('Approved', from:'multi_state_sel')
-        select('Very High', from:'multi_priority_sel')
+        select('Approved', from: 'multi_state_sel')
+        # select('Very High', from:'multi_priority_sel')
         click_button('Update Selected')
         click_link('Download as Excel Sheet')
     end

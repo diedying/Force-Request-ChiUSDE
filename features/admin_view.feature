@@ -41,7 +41,7 @@ When I filter the requests with priority
 Then I have the requests in desired domain
 When I click course name button
 Then the page collapse
-When I select state and priority and click update
+When I select state and click update
 Then I Should see the desired domain of one class
 
 Scenario: Back to homepage

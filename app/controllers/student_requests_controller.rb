@@ -1,12 +1,12 @@
 class StudentRequestsController < ApplicationController
-  
+
   include SessionHelper
   include ScrapeHelper
   ###The following line is commented right now because the service is not registered with CAS.
   ### Once our service will be registered with CAS, we will uncomment this and handle session.
-  
+
   # before_filter CASClient::Frameworks::Rails::Filter
-  
+
   def student_request_params
     params.require(:student_request).permit(:request_id, :uin, :name, :major , :classification, :minor, :email, :phone, :expected_graduation, :request_semester, :course_id, :section_id, :notes, :state )
   end
@@ -20,14 +20,14 @@ class StudentRequestsController < ApplicationController
     initForNewForceRequest
     render :new
   end
-  
+
   def add_force_request #create force requests by admin
     @students = Student.where(:uin => params[:admin_request][:uin])
     if @students[0].nil?
       flash[:warning] = 'Student of UIN doesn\'t exist in system, please add him first!'
       redirect_to student_requests_adminprivileges_path
     else
-      student_request_params_with_uin = {:uin => params[:admin_request][:uin], :name  => @students[0].name, :major => @students[0].major, 
+      student_request_params_with_uin = {:uin => params[:admin_request][:uin], :name  => @students[0].name, :major => @students[0].major,
                                         :email => @students[0].email, :classification => @students[0].classification}
       student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
       @student_request = StudentRequest.new(student_request_params_with_uin)
@@ -46,28 +46,38 @@ class StudentRequestsController < ApplicationController
 
   def create  #create force requests by student
     @students = Student.where(:uin => session_get(:uin))
-    student_request_params_with_uin = {:uin => session[:uin], :name  => @students[0].name, :major => @students[0].major, 
+    student_request_params_with_uin = {:uin => session[:uin], :name  => @students[0].name, :major => @students[0].major,
                                         :email => @students[0].email, :classification => @students[0].classification}
     student_request_params_with_uin.merge!(student_request_params)#update the session[:uin] to :uin in student_request
-    @student_request = StudentRequest.new(student_request_params_with_uin)
-    @student_request.state = StudentRequest::ACTIVE_STATE
-    @student_request.priority = StudentRequest::NORMAL_PRIORITY
-    if @student_request.save
-      flash[:notice] = "Student Request was successfully created."
-      redirect_to students_show_path
+    if StudentRequest.exists?(:uin => session_get(:uin), :course_id => params[:student_request][:course_id], :section_id => params[:student_request][:section_id])
+        flash[:warning] = "You have already submitted a force request for CSCE" +  params[:student_request][:course_id] + "-" + params[:student_request][:section_id]
+        initForNewForceRequest
+        render :new
     else
-      flash[:warning] = @student_request.errors.full_messages.join(", ")
-      initForNewForceRequest
-      render :new
+        @student_request = StudentRequest.new(student_request_params_with_uin)
+        @student_request.state = StudentRequest::ACTIVE_STATE
+        @student_request.priority = StudentRequest::NORMAL_PRIORITY
+
+        if @student_request.save
+          flash[:notice] = "Student Request was successfully created."
+          # This is where an email will be sent to comfirm the force request.
+          StudentMailer.confirm_force_request(@students[0], @student_request).deliver
+          redirect_to students_show_path
+        else
+          flash[:warning] = @student_request.errors.full_messages.join(", ")
+          initForNewForceRequest
+          render :new
+        end
     end
+
   end
-  
+
   def update
     unless params[:id].nil?
       @student_request = StudentRequest.find params[:id]
       if @student_request.state == StudentRequest::ACTIVE_STATE
         @student_request.state = StudentRequest::WITHDRAWN_STATE
-        @student_request.save!
+        @student_request.destroy
         flash[:notice] = "Student Request was successfully withdrawn."
       else
         flash[:warning] = "Student Request cannot be withdrawn."
@@ -75,9 +85,35 @@ class StudentRequestsController < ApplicationController
       redirect_to students_show_path
     end
   end
-  
+
   def edit
   end
+
+  def approve
+    @student_request = StudentRequest.find params[:id]
+    @student_request.state = StudentRequest::APPROVED_STATE
+    @student_request.save
+    redirect_to student_requests_adminview_path
+  end
+
+  def reject
+    @student_request = StudentRequest.find params[:id]
+    @student_request.state = StudentRequest::REJECTED_STATE
+    @student_request.save
+    redirect_to student_requests_adminview_path
+  end
+
+
+  def hold
+    @student_request = StudentRequest.find params[:id]
+    @student_request.state = StudentRequest::HOLD_STATE
+    @student_request.save
+    redirect_to student_requests_adminview_path
+  end
+
+
+
+
 
 
   # def destroy
@@ -86,7 +122,7 @@ class StudentRequestsController < ApplicationController
   #   flash[:notice] = "Request '#{@student_request.request_id}' deleted."
   #   redirect_to student_requests_path
   # end
-  
+
   def adminview
     if session_get(:uin) == nil
       redirect_to root_path
@@ -112,7 +148,7 @@ class StudentRequestsController < ApplicationController
         }
         session_update(:state_sel, params[:state_sel])
       end
-    
+
       if params[:priority_sel] == nil
         if session_get(:priority_sel) != nil
           @all_priorities.each { |priority|
@@ -129,13 +165,14 @@ class StudentRequestsController < ApplicationController
         }
         session_update(:priority_sel, params[:priority_sel])
       end
-      
+
       @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
+      @allViewAdminStates = [StudentRequest::ACTIVE_STATE,StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
       @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
-     
+
       @allcourses = StudentRequest.select(:course_id).map(&:course_id).uniq
       @coursestudentlist = Hash.new
-     
+
       @allcourses.each do |course|
         @students = StudentRequest.where(course_id: course).where.not(state: StudentRequest::WITHDRAWN_STATE)
         @students = @students.reject{ |s| @state_selected[s.state] == false}
@@ -145,12 +182,12 @@ class StudentRequestsController < ApplicationController
       @allcourses = @allcourses.sort
     end
   end
-  
+
   def updaterequestbyadmin
-    isUpdated = false 
+    isUpdated = false
     @student_request = StudentRequest.find params[:id]
     if(@student_request.state == StudentRequest::WITHDRAWN_STATE)
-      flash[:warning] = "Request has been already been withdrawn by student. Please refresh your Page."
+      flash[:warning] = "Request has already been withdrawn by student. Please refresh your Page."
     else
       if(StudentRequest::STATES_AVAILABLE_TO_ADMIN.include? params[:state])
         @student_request.state = params[:state]
@@ -160,24 +197,25 @@ class StudentRequestsController < ApplicationController
          @student_request.priority = params[:priority]
          isUpdated = true
       end
-        
+
       unless params[:notes_for_myself].nil? or params[:notes_for_myself].empty?
         @student_request.admin_notes = params[:notes_for_myself]
         isUpdated = true
       end
+
       unless params[:notes_for_student].nil? or params[:notes_for_student].empty?
         @student_request.notes_to_student = params[:notes_for_student]
         isUpdated = true
       end
-      
+
       if(isUpdated)
         @student_request.save!
         flash[:notice] = "The " + @student_request.request_id + " request was successfully updated"
-      else 
-        flash[:warning] = "Please Select Appropriate action " 
+      else
+        flash[:warning] = "Please Select Appropriate action "
       end
     end
-   
+
     redirect_to student_requests_adminview_path
   end
 
@@ -185,12 +223,13 @@ class StudentRequestsController < ApplicationController
   def login
     session_update(:current_state, nil)
     #first, check the current user is student or admin
+
+
     if params[:session][:user] == 'admin'
         #check if the uin of admin is valid
-        if params[:session][:uin] =~ /^\d+$/
-          @cur_user = Admin.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
+          @cur_user = Admin.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
           if @cur_user[0].nil?
-            flash[:warning] = "Your UIN or Password is WRONG!"
+            flash[:warning] = "Your Email or Password is Incorrect."
             redirect_to root_path
           else
             #update the session value which could be used in other pages
@@ -200,44 +239,39 @@ class StudentRequestsController < ApplicationController
             session_update(:uin, @cur_user[0][:uin])
             redirect_to student_requests_adminview_path
           end
-        else
-          flash[:warning] = "Your admin UIN is invalid format!"
-          redirect_to root_path
-        end
     elsif params[:session][:user] == 'student'
       #check if the uin of student is valid
-      if params[:session][:uin] =~ /^\d{9}$/
-        @user = Student.where("uin = '#{params[:session][:uin]}'")
-        if @user[0].nil?#the user doesn't sign up
-            flash[:warning] = "Please sign up first!"
+        ####@user = Student.where("email = '#{params[:session][:email]}'")
+        @user = Student.find_by_email(params[:session][:email])
+        ####if @user[0].nil?#the user didn't sign up
+        if @user.nil?#the user didn't sign up
+            flash[:warning] = "The account doesn't exsit. Please sign up first."
             redirect_to root_path
             return#tricky
         end
-        @cur_user = Student.where("uin ='#{params[:session][:uin]}' and password ='#{params[:session][:password]}'")
-        if @cur_user[0].nil?#the UIN or Password don't match
-          flash[:warning] = "Your UIN or Password is WRONG!"
+        ####@cur_user = Student.where("email ='#{params[:session][:email]}' and password ='#{params[:session][:password]}'")
+        @cur_user = Student.find_by_email_and_password(params[:session][:email], params[:session][:password])
+        if @cur_user.nil?#the UIN or Password don't match
+          flash[:warning] = "Entered Email and Password didn't match. Try again."
           redirect_to root_path
         else
           # check if the current student activate his account
-          if @cur_user[0].email_confirmed
+          if @cur_user.email_confirmed
             #update the session value which could be used in other pages
-            session_update(:name, @cur_user[0][:name])
+            session_update(:name, @cur_user[:name])
             session_update(:current_state, "student")
-            session_update(:uin, @cur_user[0][:uin])
-            redirect_to students_show_path, notice:"your are logged in!"
+            session_update(:uin, @cur_user[:uin])
+            redirect_to students_show_path
           else
-            flash[:warning] = "Please activate your account!"
+            flash[:warning] = "The account has not been activated. Please check your email to activate your account!"
             redirect_to root_path
           end
         end
-      else
-        flash[:warning] = "Your student UIN is invalid format!"
-        redirect_to root_path
-      end
+
     end
   end
-  
-  
+
+
   def homeRedirect
     @currentstate = session_get(:current_state)
     if @currentstate == "admin"
@@ -248,27 +282,27 @@ class StudentRequestsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def logout
     session_remove
     session_update(:current_state, nil)
     redirect_to root_path
   end
-  
+
   def getSpreadsheet
     @student_by_course = StudentRequest.where(course_id: params[:course_id])
     respond_to do |format|
     format.csv { send_data @student_by_course.to_csv, :filename => params[:course_id]+".csv" }
     end
   end
-  
+
   def getSpreadsheetAllCourses
     @student = StudentRequest.all
     respond_to do |format|
     format.csv { send_data @student.to_csv, :filename => "All_force_requests"+".csv" }
     end
   end
-    
+
   def getStudentInformationByUin
     @student_by_uin = StudentRequest.where(uin: params[:uin])
   end
@@ -309,21 +343,21 @@ class StudentRequestsController < ApplicationController
     end
     redirect_to student_requests_adminview_path
   end
-  
+
   def initForNewForceRequest
     @classificationList = StudentRequest::CLASSIFICATION_LIST
     @YearSemester = StudentRequest::YEAR_SEMESTER
     @requestSemester = StudentRequest::REQUEST_SEMESTER
     @majorList = Major.pluck(:major_id)
   end
-  
+
   def adminprivileges
     if session_get(:uin) == nil
       redirect_to root_path
     end
     initForNewForceRequest
   end
-  
+
   # def addadmin
   #   admin_request_params = {:uin => params[:admin_request][:uin],
   #                           :name => params[:admin_request][:name],
@@ -337,7 +371,7 @@ class StudentRequestsController < ApplicationController
   #     redirect_to student_requests_adminview_path
   #   end
   # end
-  
+
   # def add_student
   #   @classificationList = StudentRequest::CLASSIFICATION_LIST
   #   @majorList = Major.pluck(:major_id)
@@ -363,14 +397,14 @@ class StudentRequestsController < ApplicationController
   #     redirect_to student_requests_adminprivileges_path
   #   end
   # end
-  
-  
+
+
   def getStudentInformationById
     @allAdminStates = ["Select State",StudentRequest::APPROVED_STATE, StudentRequest::REJECTED_STATE, StudentRequest::HOLD_STATE]
     @allPriorityStates = ["Select Priority",StudentRequest::VERYHIGH_PRIORITY, StudentRequest::HIGH_PRIORITY, StudentRequest::NORMAL_PRIORITY, StudentRequest::LOW_PRIORITY, StudentRequest::VERYLOW_PRIORITY]
     @student_by_id =  StudentRequest.where(request_id: params[:id])
   end
-  
+
   def deleteall
     @student_requests = StudentRequest.all.as_json
     @student_requests.each do |record|
@@ -382,7 +416,7 @@ class StudentRequestsController < ApplicationController
   end
   def cancel
   end
-  
+
   def add_new_force_request
     initForNewForceRequest
   end
